@@ -1,7 +1,12 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\Users\\denis\\source\\repos\\Hardware_Store\\",
-  "Documents": [],
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{1A776E3D-9731-4AB3-B69A-612DD9F0730E}|Hardware Store\\i.csproj|c:\\users\\denis\\source\\repos\\hardware_store\\hardware store\\frm_gerenciar_produtos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{1A776E3D-9731-4AB3-B69A-612DD9F0730E}|Hardware Store\\i.csproj|solutionrelative:hardware store\\frm_gerenciar_produtos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -9,7 +14,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": -1,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Bookmark",
@@ -22,6 +27,18 @@
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{eefa5220-e298-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Frm_Gerenciar_Produtos.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\denis\\source\\repos\\Hardware_Store\\Hardware Store\\Frm_Gerenciar_Produtos.cs",
+              "RelativeDocumentMoniker": "Hardware Store\\Frm_Gerenciar_Produtos.cs",
+              "ToolTip": "C:\\Users\\denis\\source\\repos\\Hardware_Store\\Hardware Store\\Frm_Gerenciar_Produtos.cs [Design]",
+              "RelativeToolTip": "Hardware Store\\Frm_Gerenciar_Produtos.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-03-09T20:10:53.762Z",
+              "EditorCaption": " [Design]"
             }
           ]
         }
