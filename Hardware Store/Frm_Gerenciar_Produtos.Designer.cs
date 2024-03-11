@@ -46,17 +46,26 @@
             this.label4 = new System.Windows.Forms.Label();
             this.cmb_categoria = new System.Windows.Forms.ComboBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.label11 = new System.Windows.Forms.Label();
+            this.dgv_produto = new System.Windows.Forms.DataGridView();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.label12 = new System.Windows.Forms.Label();
+            this.dgv_categoria = new System.Windows.Forms.DataGridView();
             this.txt_idCategoria = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.btn_categoria = new System.Windows.Forms.Button();
             this.txt_categoria = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.btn_excluir = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pic_foto)).BeginInit();
+            this.tabPage2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv_produto)).BeginInit();
             this.tabPage3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv_categoria)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -73,6 +82,7 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.btn_excluir);
             this.tabPage1.Controls.Add(this.label2);
             this.tabPage1.Controls.Add(this.txt_id);
             this.tabPage1.Controls.Add(this.label1);
@@ -113,6 +123,7 @@
             this.txt_id.Name = "txt_id";
             this.txt_id.Size = new System.Drawing.Size(183, 26);
             this.txt_id.TabIndex = 1;
+            this.txt_id.Leave += new System.EventHandler(this.txt_id_Leave);
             // 
             // label1
             // 
@@ -195,8 +206,10 @@
             this.pic_foto.Location = new System.Drawing.Point(265, 209);
             this.pic_foto.Name = "pic_foto";
             this.pic_foto.Size = new System.Drawing.Size(148, 140);
+            this.pic_foto.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pic_foto.TabIndex = 11;
             this.pic_foto.TabStop = false;
+            this.pic_foto.Click += new System.EventHandler(this.pic_foto_Click);
             // 
             // label5
             // 
@@ -229,6 +242,8 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.label11);
+            this.tabPage2.Controls.Add(this.dgv_produto);
             this.tabPage2.Location = new System.Drawing.Point(4, 23);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
@@ -237,8 +252,28 @@
             this.tabPage2.Text = "Visualizar Produtos";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.Location = new System.Drawing.Point(6, 3);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(185, 24);
+            this.label11.TabIndex = 8;
+            this.label11.Text = "Todos os Produtos";
+            // 
+            // dgv_produto
+            // 
+            this.dgv_produto.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgv_produto.Location = new System.Drawing.Point(6, 38);
+            this.dgv_produto.Name = "dgv_produto";
+            this.dgv_produto.Size = new System.Drawing.Size(421, 338);
+            this.dgv_produto.TabIndex = 0;
+            // 
             // tabPage3
             // 
+            this.tabPage3.Controls.Add(this.label12);
+            this.tabPage3.Controls.Add(this.dgv_categoria);
             this.tabPage3.Controls.Add(this.txt_idCategoria);
             this.tabPage3.Controls.Add(this.label10);
             this.tabPage3.Controls.Add(this.btn_categoria);
@@ -252,6 +287,24 @@
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Categorias";
             this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label12.Location = new System.Drawing.Point(6, 175);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(204, 24);
+            this.label12.TabIndex = 25;
+            this.label12.Text = "Todas as Categorias";
+            // 
+            // dgv_categoria
+            // 
+            this.dgv_categoria.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgv_categoria.Location = new System.Drawing.Point(10, 219);
+            this.dgv_categoria.Name = "dgv_categoria";
+            this.dgv_categoria.Size = new System.Drawing.Size(250, 132);
+            this.dgv_categoria.TabIndex = 24;
             // 
             // txt_idCategoria
             // 
@@ -310,21 +363,41 @@
             this.label8.TabIndex = 7;
             this.label8.Text = "Cadastrar novas Categorias";
             // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.FileName = "openFileDialog";
+            // 
+            // btn_excluir
+            // 
+            this.btn_excluir.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btn_excluir.BackgroundImage")));
+            this.btn_excluir.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btn_excluir.Location = new System.Drawing.Point(349, 57);
+            this.btn_excluir.Name = "btn_excluir";
+            this.btn_excluir.Size = new System.Drawing.Size(64, 39);
+            this.btn_excluir.TabIndex = 19;
+            this.btn_excluir.UseVisualStyleBackColor = true;
+            this.btn_excluir.Visible = false;
+            // 
             // Frm_Gerenciar_Produtos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(486, 437);
+            this.ClientSize = new System.Drawing.Size(468, 437);
             this.Controls.Add(this.tabControl1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Frm_Gerenciar_Produtos";
             this.Text = "Gerenciar Produtos";
+            this.Load += new System.EventHandler(this.Frm_Gerenciar_Produtos_Load);
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pic_foto)).EndInit();
+            this.tabPage2.ResumeLayout(false);
+            this.tabPage2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv_produto)).EndInit();
             this.tabPage3.ResumeLayout(false);
             this.tabPage3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv_categoria)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -355,5 +428,11 @@
         private System.Windows.Forms.TextBox txt_categoria;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.DataGridView dgv_categoria;
+        private System.Windows.Forms.DataGridView dgv_produto;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private System.Windows.Forms.Button btn_excluir;
     }
 }
