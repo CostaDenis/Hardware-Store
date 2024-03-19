@@ -31,6 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Frm_Gerenciar_Produtos));
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.btn_excluir = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.txt_id = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -58,7 +59,6 @@
             this.label9 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.btn_excluir = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pic_foto)).BeginInit();
@@ -105,6 +105,18 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Produtos";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // btn_excluir
+            // 
+            this.btn_excluir.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btn_excluir.BackgroundImage")));
+            this.btn_excluir.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btn_excluir.Location = new System.Drawing.Point(349, 57);
+            this.btn_excluir.Name = "btn_excluir";
+            this.btn_excluir.Size = new System.Drawing.Size(64, 39);
+            this.btn_excluir.TabIndex = 19;
+            this.btn_excluir.UseVisualStyleBackColor = true;
+            this.btn_excluir.Visible = false;
+            this.btn_excluir.Click += new System.EventHandler(this.btn_excluir_Click);
             // 
             // label2
             // 
@@ -366,17 +378,6 @@
             // openFileDialog1
             // 
             this.openFileDialog1.FileName = "openFileDialog";
-            // 
-            // btn_excluir
-            // 
-            this.btn_excluir.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btn_excluir.BackgroundImage")));
-            this.btn_excluir.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btn_excluir.Location = new System.Drawing.Point(349, 57);
-            this.btn_excluir.Name = "btn_excluir";
-            this.btn_excluir.Size = new System.Drawing.Size(64, 39);
-            this.btn_excluir.TabIndex = 19;
-            this.btn_excluir.UseVisualStyleBackColor = true;
-            this.btn_excluir.Visible = false;
             // 
             // Frm_Gerenciar_Produtos
             // 

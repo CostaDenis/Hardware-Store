@@ -139,5 +139,6 @@ namespace Hardware_Store
                sql = "Select * from TBCONTAS";
                dgv.DataSource = Central.Consulta(sql);   
         }
+
     }
 }

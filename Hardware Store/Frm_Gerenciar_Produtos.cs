@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Runtime.Remoting.Messaging;
 using System.Text;
@@ -35,13 +36,17 @@ namespace Hardware_Store
                     MessageBox.Show("Cadastrado com sucesso!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     sql = "Select * from TBPRODUTOS";
                     Atualizar_dgvProduto(sql);
-                } else
-                {
-                    MessageBox.Show("ID de Produto já usado!", "Aviso", MessageBoxButtons.OKCancel, MessageBoxIcon.Error);
+                } else {
+                    //MessageBox.Show("ID de Produto já usado!", "Aviso", MessageBoxButtons.OKCancel, MessageBoxIcon.Error);
+                    sql = "Update TBPRODUTOS set nome='" + txt_nome.Text + "', preco=" + double.Parse(txt_preco.Text) + ", categoria='" +
+                    cmb_categoria.Text + "', descricao='" + txt_descricao.Text + "', foto = '" + pic_foto.ImageLocation + "' where id_produto = " + int.TryParse(txt_id.Text, out int i) + "";
+                    Central.Consulta(sql);
+                    MessageBox.Show("" + double.Parse(txt_preco.Text), "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Produto Alterado!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    sql = "Select * from TBPRODUTOS";
+                    Atualizar_dgvProduto(sql);
                 }
-            }
-            else
-            {
+            } else {
                 MessageBox.Show("Complete todos os campos antes de cadastrar!", "Aviso", MessageBoxButtons.OKCancel, MessageBoxIcon.Error);
             }
         }
@@ -53,7 +58,7 @@ namespace Hardware_Store
             switch (tipo)
             {
                 case "Produtos":
-                    if (txt_nome.TextLength == 0 || txt_preco.TextLength == 0 || cmb_categoria.Text.Length == 0 ||
+                    if (txt_id.TextLength == 0 || txt_nome.TextLength == 0 || txt_preco.TextLength == 0 || cmb_categoria.Text.Length == 0 ||
                         txt_descricao.TextLength == 0 || pic_foto.Image == null)
                     {
                         resp = false;
@@ -74,22 +79,17 @@ namespace Hardware_Store
         {
             if (Checar_Campos("Categoria") == true)
             {
-                sql = "Select * from TBCATEGORIAS WHERE id_categoria = " + int.TryParse(txt_idCategoria.Text, out int categoria) + "";
-                if (Conferir_Disponibilidade(sql) == true)
-                {
+                sql = "select * from TBCATEGORIAS WHERE id_categoria = " + int.TryParse(txt_idCategoria.Text, out int categoria) + "";
+                if (Conferir_Disponibilidade(sql) == true) {
                     sql = "Insert into TBCATEGORIAS (id_categoria, nome) Values (" + int.TryParse(txt_idCategoria.Text, out int c) + ", '" + txt_categoria.Text + "')";
                     Central.Consulta(sql);
                     MessageBox.Show("Cadastrado com sucesso!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     sql = "Select * from TBCATEGORIAS";
                     Atualizar_dgvCategoria(sql);
-                } else
-                {
+                } else {
                     MessageBox.Show("ID de Categoria já usado!", "Aviso", MessageBoxButtons.OKCancel, MessageBoxIcon.Error);
                 }
-
-            }
-            else
-            {
+            } else {
                 MessageBox.Show("Complete todos os campos antes de cadastrar!", "Aviso", MessageBoxButtons.OKCancel, MessageBoxIcon.Error);
             }
         }
@@ -163,12 +163,58 @@ namespace Hardware_Store
                 }
                 btn_CadastrarProduto.Text = "Alterar Produto";
             } else {
-                txt_nome.Text = "";
-                txt_preco.Text = "";
-                cmb_categoria.Text = "";
-                txt_descricao.Text = "";
-                pic_foto.Image = null;
-                btn_excluir.Visible = false;
+                Limpar_Campos("Produtos");
+            }
+        }
+
+        private void Limpar_Campos(string campos)
+        {
+            switch (campos)
+            {
+                case "Produtos":
+                    //txt_id.Text = "";
+                    txt_nome.Text = "";
+                    txt_preco.Text = "";
+                    cmb_categoria.Text = "";
+                    txt_descricao.Text = "";
+                    pic_foto.Image = null;
+                    btn_excluir.Visible = false;
+                    btn_CadastrarProduto.Text = "Cadastrar Produto";
+                    break;
+            }
+        }
+
+        private bool Id_Produto_Existe()
+        {
+            
+            sql = "select * from TBPRODUTOS where id_produto = " + int.TryParse(txt_id.Text, out int id) + "";
+            Central.Consulta(sql);
+            DataTable dt = new DataTable();
+            dt = Central.Consulta(sql);
+
+            if (dt.Rows.Count > 0)
+            {
+                return true;
+            } else
+            {
+                return false;
+            }
+        }
+        private void btn_excluir_Click(object sender, EventArgs e)
+        {
+           if(Id_Produto_Existe() == true)
+            {
+                if(MessageBox.Show("Você está prestes a excluir esse produto da base de dados! Deseja Continuar?", "Aviso", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    sql = "Delete from TBPRODUTOS WHERE id_produto = " + int.TryParse(txt_id.Text, out int id) + "";
+                    Central.Consulta(sql);
+                    MessageBox.Show("Produto Deletado!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    Limpar_Campos("Produtos");
+                    txt_id.Text = "";
+                }
+            } else
+            {
+                MessageBox.Show("Verifique a ID!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
     }
