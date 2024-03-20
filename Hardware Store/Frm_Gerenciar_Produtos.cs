@@ -30,21 +30,38 @@ namespace Hardware_Store
                 if(Conferir_Disponibilidade(sql) == true)
                 {
                     sql = "Insert into TBPRODUTOS VALUES (" + int.TryParse(txt_id.Text, out int r) + ", " +
-                    "'" + txt_nome.Text + "', " + float.TryParse(txt_preco.Text, out float preco) + ", " +
+                    "'" + txt_nome.Text + "', '" + txt_preco.Text + "', " +
                     " '" + cmb_categoria.Text + "', '" + txt_descricao.Text + "', '" + pic_foto.ImageLocation + "')";
                     Central.Consulta(sql);
                     MessageBox.Show("Cadastrado com sucesso!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     sql = "Select * from TBPRODUTOS";
                     Atualizar_dgvProduto(sql);
                 } else {
-                    //MessageBox.Show("ID de Produto já usado!", "Aviso", MessageBoxButtons.OKCancel, MessageBoxIcon.Error);
-                    sql = "Update TBPRODUTOS set nome='" + txt_nome.Text + "', preco=" + double.Parse(txt_preco.Text) + ", categoria='" +
+                    sql = "Update TBPRODUTOS set nome='" + txt_nome.Text + "', preco='" + txt_preco.Text + "', categoria='" +
                     cmb_categoria.Text + "', descricao='" + txt_descricao.Text + "', foto = '" + pic_foto.ImageLocation + "' where id_produto = " + int.TryParse(txt_id.Text, out int i) + "";
                     Central.Consulta(sql);
-                    MessageBox.Show("" + double.Parse(txt_preco.Text), "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     MessageBox.Show("Produto Alterado!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     sql = "Select * from TBPRODUTOS";
                     Atualizar_dgvProduto(sql);
+                }
+            } else {
+                MessageBox.Show("Complete todos os campos antes de cadastrar!", "Aviso", MessageBoxButtons.OKCancel, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btn_categoria_Click(object sender, EventArgs e)
+        {
+            if (Checar_Campos("Categorias") == true)
+            {
+                sql = "select * from TBCATEGORIAS WHERE id_categoria = " + int.TryParse(txt_idCategoria.Text, out int categoria) + "";
+                if (Conferir_Disponibilidade(sql) == true) {
+                    sql = "Insert into TBCATEGORIAS (id_categoria, nome) Values (" + int.TryParse(txt_idCategoria.Text, out int c) + ", '" + txt_categoria.Text + "')";
+                    Central.Consulta(sql);
+                    MessageBox.Show("Cadastrado com sucesso!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    sql = "Select * from TBCATEGORIAS";
+                    Atualizar_dgvCategoria(sql);
+                } else {
+                    MessageBox.Show("ID de Categoria já usado!", "Aviso", MessageBoxButtons.OKCancel, MessageBoxIcon.Error);
                 }
             } else {
                 MessageBox.Show("Complete todos os campos antes de cadastrar!", "Aviso", MessageBoxButtons.OKCancel, MessageBoxIcon.Error);
@@ -75,25 +92,6 @@ namespace Hardware_Store
             return resp;
         }
 
-        private void btn_categoria_Click(object sender, EventArgs e)
-        {
-            if (Checar_Campos("Categoria") == true)
-            {
-                sql = "select * from TBCATEGORIAS WHERE id_categoria = " + int.TryParse(txt_idCategoria.Text, out int categoria) + "";
-                if (Conferir_Disponibilidade(sql) == true) {
-                    sql = "Insert into TBCATEGORIAS (id_categoria, nome) Values (" + int.TryParse(txt_idCategoria.Text, out int c) + ", '" + txt_categoria.Text + "')";
-                    Central.Consulta(sql);
-                    MessageBox.Show("Cadastrado com sucesso!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    sql = "Select * from TBCATEGORIAS";
-                    Atualizar_dgvCategoria(sql);
-                } else {
-                    MessageBox.Show("ID de Categoria já usado!", "Aviso", MessageBoxButtons.OKCancel, MessageBoxIcon.Error);
-                }
-            } else {
-                MessageBox.Show("Complete todos os campos antes de cadastrar!", "Aviso", MessageBoxButtons.OKCancel, MessageBoxIcon.Error);
-            }
-        }
-
         private void Atualizar_dgvCategoria(string s)
         {
             dgv_categoria.DataSource = Central.Consulta(s);
@@ -122,11 +120,11 @@ namespace Hardware_Store
         }
         private bool Conferir_Disponibilidade(string consulta)
         {
-            DataTable dataTable = new DataTable();
             bool resp = true;
 
-            dataTable = Central.Consulta(consulta);
-            if (dataTable.Rows.Count > 0)
+            if (Central.Consulta(consulta).Rows.Count == 0)
+            {
+            } else
             {
                 resp = false;
             }
@@ -172,7 +170,6 @@ namespace Hardware_Store
             switch (campos)
             {
                 case "Produtos":
-                    //txt_id.Text = "";
                     txt_nome.Text = "";
                     txt_preco.Text = "";
                     cmb_categoria.Text = "";
@@ -181,41 +178,28 @@ namespace Hardware_Store
                     btn_excluir.Visible = false;
                     btn_CadastrarProduto.Text = "Cadastrar Produto";
                     break;
+
+                case "Categoria":
+                    txt_categoria.Text = "";
+                    break;
             }
         }
 
-        private bool Id_Produto_Existe()
-        {
-            
-            sql = "select * from TBPRODUTOS where id_produto = " + int.TryParse(txt_id.Text, out int id) + "";
-            Central.Consulta(sql);
-            DataTable dt = new DataTable();
-            dt = Central.Consulta(sql);
-
-            if (dt.Rows.Count > 0)
-            {
-                return true;
-            } else
-            {
-                return false;
-            }
-        }
         private void btn_excluir_Click(object sender, EventArgs e)
         {
-           if(Id_Produto_Existe() == true)
-            {
                 if(MessageBox.Show("Você está prestes a excluir esse produto da base de dados! Deseja Continuar?", "Aviso", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
-                    sql = "Delete from TBPRODUTOS WHERE id_produto = " + int.TryParse(txt_id.Text, out int id) + "";
-                    Central.Consulta(sql);
-                    MessageBox.Show("Produto Deletado!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    Limpar_Campos("Produtos");
-                    txt_id.Text = "";
+                    try
+                    {
+                        sql = "Delete from TBPRODUTOS WHERE id_produto = " + int.TryParse(txt_id.Text, out int id) + "";
+                        Central.Consulta(sql);
+                        MessageBox.Show("Produto Deletado!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        Limpar_Campos("Produtos");
+                        txt_id.Text = "";
+                } catch {
+                    MessageBox.Show("Verifique a ID!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
                 }
-            } else
-            {
-                MessageBox.Show("Verifique a ID!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
         }
     }
 }

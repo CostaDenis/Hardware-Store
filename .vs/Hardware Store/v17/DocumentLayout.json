@@ -3,7 +3,7 @@
   "WorkspaceRootPath": "C:\\Users\\denis\\source\\repos\\Hardware_Store\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{1A776E3D-9731-4AB3-B69A-612DD9F0730E}|Hardware Store\\i.csproj|c:\\users\\denis\\source\\repos\\hardware_store\\hardware store\\frm_gerenciar_produtos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{1A776E3D-9731-4AB3-B69A-612DD9F0730E}|Hardware Store\\i.csproj|C:\\Users\\denis\\source\\repos\\Hardware_Store\\hardware store\\frm_gerenciar_produtos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{1A776E3D-9731-4AB3-B69A-612DD9F0730E}|Hardware Store\\i.csproj|solutionrelative:hardware store\\frm_gerenciar_produtos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
@@ -11,8 +11,8 @@
       "RelativeMoniker": "D:0:0:{1A776E3D-9731-4AB3-B69A-612DD9F0730E}|Hardware Store\\i.csproj|solutionrelative:hardware store\\frm_gerenciar_produtos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{1A776E3D-9731-4AB3-B69A-612DD9F0730E}|Hardware Store\\i.csproj|c:\\users\\denis\\source\\repos\\hardware_store\\hardware store\\frm_contas.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1A776E3D-9731-4AB3-B69A-612DD9F0730E}|Hardware Store\\i.csproj|solutionrelative:hardware store\\frm_contas.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{1A776E3D-9731-4AB3-B69A-612DD9F0730E}|Hardware Store\\i.csproj|c:\\users\\denis\\source\\repos\\hardware_store\\hardware store\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1A776E3D-9731-4AB3-B69A-612DD9F0730E}|Hardware Store\\i.csproj|solutionrelative:hardware store\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -39,14 +39,14 @@
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "Frm_Contas.cs",
-              "DocumentMoniker": "C:\\Users\\denis\\source\\repos\\Hardware_Store\\Hardware Store\\Frm_Contas.cs",
-              "RelativeDocumentMoniker": "Hardware Store\\Frm_Contas.cs",
-              "ToolTip": "C:\\Users\\denis\\source\\repos\\Hardware_Store\\Hardware Store\\Frm_Contas.cs",
-              "RelativeToolTip": "Hardware Store\\Frm_Contas.cs",
-              "ViewState": "AQIAAG0AAAAAAAAAAAAAwI0AAAAAAAAA",
+              "Title": "Form1.cs",
+              "DocumentMoniker": "C:\\Users\\denis\\source\\repos\\Hardware_Store\\Hardware Store\\Form1.cs",
+              "RelativeDocumentMoniker": "Hardware Store\\Form1.cs",
+              "ToolTip": "C:\\Users\\denis\\source\\repos\\Hardware_Store\\Hardware Store\\Form1.cs",
+              "RelativeToolTip": "Hardware Store\\Form1.cs",
+              "ViewState": "AQIAABQAAAAAAAAAAAAswB8AAAA7AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-19T01:33:22.482Z",
+              "WhenOpened": "2024-03-20T03:20:03.229Z",
               "EditorCaption": ""
             },
             {
@@ -57,7 +57,7 @@
               "RelativeDocumentMoniker": "Hardware Store\\Frm_Gerenciar_Produtos.cs",
               "ToolTip": "C:\\Users\\denis\\source\\repos\\Hardware_Store\\Hardware Store\\Frm_Gerenciar_Produtos.cs",
               "RelativeToolTip": "Hardware Store\\Frm_Gerenciar_Produtos.cs",
-              "ViewState": "AQIAABgAAAAAAAAAAAA5wCUAAAAuAAAA",
+              "ViewState": "AQIAAF0AAAAAAAAAAAAcwH0AAAANAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-03-09T21:58:27.844Z",
               "EditorCaption": ""
