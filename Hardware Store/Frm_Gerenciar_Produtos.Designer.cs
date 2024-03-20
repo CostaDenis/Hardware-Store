@@ -31,6 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Frm_Gerenciar_Produtos));
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.label13 = new System.Windows.Forms.Label();
             this.btn_excluir = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.txt_id = new System.Windows.Forms.TextBox();
@@ -59,6 +60,7 @@
             this.label9 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.btn_excluir_Categoria = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pic_foto)).BeginInit();
@@ -82,6 +84,7 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.label13);
             this.tabPage1.Controls.Add(this.btn_excluir);
             this.tabPage1.Controls.Add(this.label2);
             this.tabPage1.Controls.Add(this.txt_id);
@@ -105,6 +108,16 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Produtos";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label13.Location = new System.Drawing.Point(232, 128);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(35, 22);
+            this.label13.TabIndex = 20;
+            this.label13.Text = "R$";
             // 
             // btn_excluir
             // 
@@ -180,7 +193,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(212, 99);
+            this.label3.Location = new System.Drawing.Point(269, 99);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(61, 22);
             this.label3.TabIndex = 9;
@@ -199,7 +212,7 @@
             // txt_preco
             // 
             this.txt_preco.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_preco.Location = new System.Drawing.Point(216, 125);
+            this.txt_preco.Location = new System.Drawing.Point(273, 125);
             this.txt_preco.Name = "txt_preco";
             this.txt_preco.Size = new System.Drawing.Size(102, 26);
             this.txt_preco.TabIndex = 3;
@@ -284,6 +297,7 @@
             // 
             // tabPage3
             // 
+            this.tabPage3.Controls.Add(this.btn_excluir_Categoria);
             this.tabPage3.Controls.Add(this.label12);
             this.tabPage3.Controls.Add(this.dgv_categoria);
             this.tabPage3.Controls.Add(this.txt_idCategoria);
@@ -315,7 +329,7 @@
             this.dgv_categoria.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgv_categoria.Location = new System.Drawing.Point(10, 219);
             this.dgv_categoria.Name = "dgv_categoria";
-            this.dgv_categoria.Size = new System.Drawing.Size(250, 132);
+            this.dgv_categoria.Size = new System.Drawing.Size(250, 170);
             this.dgv_categoria.TabIndex = 24;
             // 
             // txt_idCategoria
@@ -325,6 +339,7 @@
             this.txt_idCategoria.Name = "txt_idCategoria";
             this.txt_idCategoria.Size = new System.Drawing.Size(183, 26);
             this.txt_idCategoria.TabIndex = 23;
+            this.txt_idCategoria.Leave += new System.EventHandler(this.txt_idCategoria_Leave);
             // 
             // label10
             // 
@@ -378,6 +393,18 @@
             // openFileDialog1
             // 
             this.openFileDialog1.FileName = "openFileDialog";
+            // 
+            // btn_excluir_Categoria
+            // 
+            this.btn_excluir_Categoria.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btn_excluir_Categoria.BackgroundImage")));
+            this.btn_excluir_Categoria.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btn_excluir_Categoria.Location = new System.Drawing.Point(348, 350);
+            this.btn_excluir_Categoria.Name = "btn_excluir_Categoria";
+            this.btn_excluir_Categoria.Size = new System.Drawing.Size(64, 39);
+            this.btn_excluir_Categoria.TabIndex = 26;
+            this.btn_excluir_Categoria.UseVisualStyleBackColor = true;
+            this.btn_excluir_Categoria.Visible = false;
+            this.btn_excluir_Categoria.Leave += new System.EventHandler(this.btn_excluir_Categoria_Click);
             // 
             // Frm_Gerenciar_Produtos
             // 
@@ -435,5 +462,7 @@
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.Button btn_excluir;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Button btn_excluir_Categoria;
     }
 }
