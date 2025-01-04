@@ -20,10 +20,9 @@ namespace Hardware_Store
         {
             if (Checar_Campos("Produtos") == true)
             {
-                float preco = float.Parse(txt_preco.Text, CultureInfo.InvariantCulture);
                 try
                 {
-
+                    float preco = float.Parse(txt_preco.Text, CultureInfo.InvariantCulture);
                     var categorias = ObterCategoriasBanco();
 
                     if (!categorias.TryGetValue(cmb_categoria.Text, out int idCategoria))
@@ -56,7 +55,12 @@ namespace Hardware_Store
                         MessageBox.Show("Cadastrado com sucesso!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         sql = "Select * from TBPRODUTOS";
                         Atualizar_dgvProduto(sql);
+                        Limpar_Campos("Produtos");
                     }
+                }
+                catch (System.FormatException)
+                {
+                    MessageBox.Show("Digite um dado válido para o id/preço!", "Aviso", MessageBoxButtons.OKCancel, MessageBoxIcon.Error);
                 }
                 catch
                 {
@@ -111,6 +115,7 @@ namespace Hardware_Store
                     MessageBox.Show("Cadastrado com sucesso!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     sql = "Select * from TBCATEGORIAS";
                     Atualizar_dgvCategoria(sql);
+                    Limpar_Campos("Categorias");
                 }
             }
             else
@@ -228,6 +233,7 @@ namespace Hardware_Store
             switch (campos)
             {
                 case "Produtos":
+                    txt_id.Text = "";
                     txt_nome.Text = "";
                     txt_preco.Text = "";
                     cmb_categoria.Text = "";
@@ -238,6 +244,7 @@ namespace Hardware_Store
                     break;
 
                 case "Categorias":
+                    txt_idCategoria.Text = "";
                     txt_categoria.Text = "";
                     btn_excluir_Categoria.Visible = false;
                     btn_categoria.Text = "Cadastrar Categoria";
@@ -256,7 +263,7 @@ namespace Hardware_Store
                     MessageBox.Show("Produto Deletado!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     Limpar_Campos("Produtos");
                     txt_id.Text = "";
-                    Atualizar_dgvCategoria("select * from tbprodutos");
+                    Atualizar_dgvProduto("select * from tbprodutos");
                 }
                 catch
                 {
@@ -284,6 +291,7 @@ namespace Hardware_Store
                 }
             }
         }
+
 
     }
 }
