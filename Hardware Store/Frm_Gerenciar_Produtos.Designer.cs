@@ -77,7 +77,7 @@
             this.tabControl1.Controls.Add(this.tabPage3);
             this.tabControl1.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tabControl1.Location = new System.Drawing.Point(16, 15);
-            this.tabControl1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabControl1.Margin = new System.Windows.Forms.Padding(4);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(588, 519);
@@ -102,11 +102,11 @@
             this.tabPage1.Controls.Add(this.label4);
             this.tabPage1.Controls.Add(this.cmb_categoria);
             this.tabPage1.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tabPage1.Location = new System.Drawing.Point(4, 28);
-            this.tabPage1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPage1.Location = new System.Drawing.Point(4, 25);
+            this.tabPage1.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.tabPage1.Size = new System.Drawing.Size(580, 487);
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(4);
+            this.tabPage1.Size = new System.Drawing.Size(580, 490);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Produtos";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -118,7 +118,7 @@
             this.label13.Location = new System.Drawing.Point(309, 158);
             this.label13.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(52, 33);
+            this.label13.Size = new System.Drawing.Size(42, 27);
             this.label13.TabIndex = 20;
             this.label13.Text = "R$";
             // 
@@ -127,7 +127,7 @@
             this.btn_excluir.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btn_excluir.BackgroundImage")));
             this.btn_excluir.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btn_excluir.Location = new System.Drawing.Point(465, 70);
-            this.btn_excluir.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btn_excluir.Margin = new System.Windows.Forms.Padding(4);
             this.btn_excluir.Name = "btn_excluir";
             this.btn_excluir.Size = new System.Drawing.Size(85, 48);
             this.btn_excluir.TabIndex = 19;
@@ -142,7 +142,7 @@
             this.label2.Location = new System.Drawing.Point(4, 16);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(380, 36);
+            this.label2.Size = new System.Drawing.Size(330, 32);
             this.label2.TabIndex = 6;
             this.label2.Text = "Cadastrar novos Produtos";
             // 
@@ -150,9 +150,9 @@
             // 
             this.txt_id.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_id.Location = new System.Drawing.Point(9, 86);
-            this.txt_id.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txt_id.Margin = new System.Windows.Forms.Padding(4);
             this.txt_id.Name = "txt_id";
-            this.txt_id.Size = new System.Drawing.Size(243, 35);
+            this.txt_id.Size = new System.Drawing.Size(243, 30);
             this.txt_id.TabIndex = 1;
             this.txt_id.Leave += new System.EventHandler(this.txt_id_Leave);
             // 
@@ -163,7 +163,7 @@
             this.label1.Location = new System.Drawing.Point(4, 122);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(93, 33);
+            this.label1.Size = new System.Drawing.Size(75, 27);
             this.label1.TabIndex = 7;
             this.label1.Text = "Nome";
             // 
@@ -174,7 +174,7 @@
             this.label7.Location = new System.Drawing.Point(4, 55);
             this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(187, 33);
+            this.label7.Size = new System.Drawing.Size(158, 27);
             this.label7.TabIndex = 18;
             this.label7.Text = "Id do Produto";
             // 
@@ -182,16 +182,16 @@
             // 
             this.txt_nome.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_nome.Location = new System.Drawing.Point(9, 153);
-            this.txt_nome.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txt_nome.Margin = new System.Windows.Forms.Padding(4);
             this.txt_nome.Name = "txt_nome";
-            this.txt_nome.Size = new System.Drawing.Size(243, 35);
+            this.txt_nome.Size = new System.Drawing.Size(243, 30);
             this.txt_nome.TabIndex = 2;
             // 
             // btn_CadastrarProduto
             // 
             this.btn_CadastrarProduto.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_CadastrarProduto.Location = new System.Drawing.Point(9, 437);
-            this.btn_CadastrarProduto.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btn_CadastrarProduto.Margin = new System.Windows.Forms.Padding(4);
             this.btn_CadastrarProduto.Name = "btn_CadastrarProduto";
             this.btn_CadastrarProduto.Size = new System.Drawing.Size(541, 39);
             this.btn_CadastrarProduto.TabIndex = 17;
@@ -206,7 +206,7 @@
             this.label3.Location = new System.Drawing.Point(359, 122);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(91, 33);
+            this.label3.Size = new System.Drawing.Size(74, 27);
             this.label3.TabIndex = 9;
             this.label3.Text = "Preço";
             // 
@@ -217,7 +217,7 @@
             this.label6.Location = new System.Drawing.Point(348, 226);
             this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(73, 33);
+            this.label6.Size = new System.Drawing.Size(60, 27);
             this.label6.TabIndex = 16;
             this.label6.Text = "Foto";
             // 
@@ -225,16 +225,16 @@
             // 
             this.txt_preco.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_preco.Location = new System.Drawing.Point(364, 154);
-            this.txt_preco.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txt_preco.Margin = new System.Windows.Forms.Padding(4);
             this.txt_preco.Name = "txt_preco";
-            this.txt_preco.Size = new System.Drawing.Size(135, 35);
+            this.txt_preco.Size = new System.Drawing.Size(135, 30);
             this.txt_preco.TabIndex = 3;
             // 
             // txt_descricao
             // 
             this.txt_descricao.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_descricao.Location = new System.Drawing.Point(9, 337);
-            this.txt_descricao.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txt_descricao.Margin = new System.Windows.Forms.Padding(4);
             this.txt_descricao.Multiline = true;
             this.txt_descricao.Name = "txt_descricao";
             this.txt_descricao.Size = new System.Drawing.Size(335, 91);
@@ -243,7 +243,7 @@
             // pic_foto
             // 
             this.pic_foto.Location = new System.Drawing.Point(353, 257);
-            this.pic_foto.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pic_foto.Margin = new System.Windows.Forms.Padding(4);
             this.pic_foto.Name = "pic_foto";
             this.pic_foto.Size = new System.Drawing.Size(197, 172);
             this.pic_foto.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -258,7 +258,7 @@
             this.label5.Location = new System.Drawing.Point(4, 294);
             this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(146, 33);
+            this.label5.Size = new System.Drawing.Size(117, 27);
             this.label5.TabIndex = 14;
             this.label5.Text = "Descrição";
             // 
@@ -269,7 +269,7 @@
             this.label4.Location = new System.Drawing.Point(4, 203);
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(141, 33);
+            this.label4.Size = new System.Drawing.Size(115, 27);
             this.label4.TabIndex = 12;
             this.label4.Text = "Categoria";
             // 
@@ -278,20 +278,20 @@
             this.cmb_categoria.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmb_categoria.FormattingEnabled = true;
             this.cmb_categoria.Location = new System.Drawing.Point(9, 242);
-            this.cmb_categoria.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cmb_categoria.Margin = new System.Windows.Forms.Padding(4);
             this.cmb_categoria.Name = "cmb_categoria";
-            this.cmb_categoria.Size = new System.Drawing.Size(243, 35);
+            this.cmb_categoria.Size = new System.Drawing.Size(243, 31);
             this.cmb_categoria.TabIndex = 4;
             // 
             // tabPage2
             // 
             this.tabPage2.Controls.Add(this.label11);
             this.tabPage2.Controls.Add(this.dgv_produto);
-            this.tabPage2.Location = new System.Drawing.Point(4, 28);
-            this.tabPage2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPage2.Location = new System.Drawing.Point(4, 25);
+            this.tabPage2.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.tabPage2.Size = new System.Drawing.Size(580, 487);
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(4);
+            this.tabPage2.Size = new System.Drawing.Size(580, 490);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Visualizar Produtos";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -303,7 +303,7 @@
             this.label11.Location = new System.Drawing.Point(8, 4);
             this.label11.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(274, 36);
+            this.label11.Size = new System.Drawing.Size(239, 32);
             this.label11.TabIndex = 8;
             this.label11.Text = "Todos os Produtos";
             // 
@@ -311,7 +311,7 @@
             // 
             this.dgv_produto.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgv_produto.Location = new System.Drawing.Point(8, 47);
-            this.dgv_produto.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dgv_produto.Margin = new System.Windows.Forms.Padding(4);
             this.dgv_produto.Name = "dgv_produto";
             this.dgv_produto.RowHeadersWidth = 62;
             this.dgv_produto.Size = new System.Drawing.Size(561, 416);
@@ -328,11 +328,11 @@
             this.tabPage3.Controls.Add(this.txt_categoria);
             this.tabPage3.Controls.Add(this.label9);
             this.tabPage3.Controls.Add(this.label8);
-            this.tabPage3.Location = new System.Drawing.Point(4, 28);
-            this.tabPage3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPage3.Location = new System.Drawing.Point(4, 25);
+            this.tabPage3.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.tabPage3.Size = new System.Drawing.Size(580, 487);
+            this.tabPage3.Padding = new System.Windows.Forms.Padding(4);
+            this.tabPage3.Size = new System.Drawing.Size(580, 490);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Categorias";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -342,7 +342,7 @@
             this.btn_excluir_Categoria.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btn_excluir_Categoria.BackgroundImage")));
             this.btn_excluir_Categoria.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btn_excluir_Categoria.Location = new System.Drawing.Point(464, 431);
-            this.btn_excluir_Categoria.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btn_excluir_Categoria.Margin = new System.Windows.Forms.Padding(4);
             this.btn_excluir_Categoria.Name = "btn_excluir_Categoria";
             this.btn_excluir_Categoria.Size = new System.Drawing.Size(85, 48);
             this.btn_excluir_Categoria.TabIndex = 26;
@@ -357,7 +357,7 @@
             this.label12.Location = new System.Drawing.Point(8, 215);
             this.label12.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(299, 36);
+            this.label12.Size = new System.Drawing.Size(263, 32);
             this.label12.TabIndex = 25;
             this.label12.Text = "Todas as Categorias";
             // 
@@ -365,19 +365,19 @@
             // 
             this.dgv_categoria.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgv_categoria.Location = new System.Drawing.Point(13, 270);
-            this.dgv_categoria.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dgv_categoria.Margin = new System.Windows.Forms.Padding(4);
             this.dgv_categoria.Name = "dgv_categoria";
             this.dgv_categoria.RowHeadersWidth = 62;
-            this.dgv_categoria.Size = new System.Drawing.Size(333, 209);
+            this.dgv_categoria.Size = new System.Drawing.Size(443, 209);
             this.dgv_categoria.TabIndex = 24;
             // 
             // txt_idCategoria
             // 
             this.txt_idCategoria.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_idCategoria.Location = new System.Drawing.Point(8, 116);
-            this.txt_idCategoria.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txt_idCategoria.Margin = new System.Windows.Forms.Padding(4);
             this.txt_idCategoria.Name = "txt_idCategoria";
-            this.txt_idCategoria.Size = new System.Drawing.Size(243, 35);
+            this.txt_idCategoria.Size = new System.Drawing.Size(243, 30);
             this.txt_idCategoria.TabIndex = 23;
             this.txt_idCategoria.Leave += new System.EventHandler(this.txt_idCategoria_Leave);
             // 
@@ -388,7 +388,7 @@
             this.label10.Location = new System.Drawing.Point(3, 85);
             this.label10.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(217, 33);
+            this.label10.Size = new System.Drawing.Size(179, 27);
             this.label10.TabIndex = 22;
             this.label10.Text = "ID da Categoria";
             // 
@@ -396,7 +396,7 @@
             // 
             this.btn_categoria.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_categoria.Location = new System.Drawing.Point(8, 154);
-            this.btn_categoria.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btn_categoria.Margin = new System.Windows.Forms.Padding(4);
             this.btn_categoria.Name = "btn_categoria";
             this.btn_categoria.Size = new System.Drawing.Size(541, 39);
             this.btn_categoria.TabIndex = 21;
@@ -408,9 +408,9 @@
             // 
             this.txt_categoria.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_categoria.Location = new System.Drawing.Point(304, 116);
-            this.txt_categoria.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txt_categoria.Margin = new System.Windows.Forms.Padding(4);
             this.txt_categoria.Name = "txt_categoria";
-            this.txt_categoria.Size = new System.Drawing.Size(243, 35);
+            this.txt_categoria.Size = new System.Drawing.Size(243, 30);
             this.txt_categoria.TabIndex = 20;
             // 
             // label9
@@ -420,7 +420,7 @@
             this.label9.Location = new System.Drawing.Point(299, 85);
             this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(267, 33);
+            this.label9.Size = new System.Drawing.Size(219, 27);
             this.label9.TabIndex = 19;
             this.label9.Text = "Nome da Categoria";
             // 
@@ -431,7 +431,7 @@
             this.label8.Location = new System.Drawing.Point(4, 17);
             this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(405, 36);
+            this.label8.Size = new System.Drawing.Size(354, 32);
             this.label8.TabIndex = 7;
             this.label8.Text = "Cadastrar novas Categorias";
             // 
@@ -446,7 +446,7 @@
             this.ClientSize = new System.Drawing.Size(624, 538);
             this.Controls.Add(this.tabControl1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Frm_Gerenciar_Produtos";
             this.Text = "Gerenciar Produtos";
             this.Load += new System.EventHandler(this.Frm_Gerenciar_Produtos_Load);

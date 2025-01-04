@@ -26,20 +26,19 @@ namespace Hardware_Store
 
                     var categorias = ObterCategoriasBanco();
 
-                    //Arrumar aqui
                     if (!categorias.TryGetValue(cmb_categoria.Text, out int idCategoria))
                     {
                         throw new Exception("Categoria não encontrada!");
                     }
 
 
-                    sql = "SELECT * FROM TBPRODUTOS WHERE id_produto = " + int.Parse(txt_id.Text) + "";
+                    sql = "SELECT * FROM TBPRODUTOS WHERE id = " + int.Parse(txt_id.Text) + "";
                     dt = Central.Consulta(sql);
                     if (dt.Rows.Count > 0)
                     {
 
-                        sql = $"Update TBPRODUTOS set nome = {txt_nome.Text}, preco = {preco}, categoria = {idCategoria}," +
-                            $"descricao = {txt_descricao.Text}, foto = {pic_foto.ImageLocation} where id_produto = {int.Parse(txt_id.Text)}";
+                        sql = $"Update TBPRODUTOS set nome = {txt_nome.Text}, preco = {preco}, id_categoria = {idCategoria}," +
+                            $"descricao = {txt_descricao.Text}, foto = {pic_foto.ImageLocation} where id = {int.Parse(txt_id.Text)}";
 
 
                         Central.Consulta(sql);
@@ -49,7 +48,7 @@ namespace Hardware_Store
                     }
                     else
                     {
-                        sql = $"INSERT INTO TBPRODUTOS (id_produto, nome, preco, categoria, descricao, foto) " +
+                        sql = $"INSERT INTO TBPRODUTOS (id, nome, preco, id_categoria, descricao, foto) " +
                         $"VALUES ({int.Parse(txt_id.Text)}, '{txt_nome.Text}', '{preco}', {idCategoria}, " +
                         $"'{txt_descricao.Text}', '{pic_foto.ImageLocation}')";
 
@@ -73,12 +72,19 @@ namespace Hardware_Store
         private Dictionary<string, int> ObterCategoriasBanco()
         {
             Dictionary<string, int> categorias = new Dictionary<string, int>();
-            sql = "Select id_categoria from TBCATEGORIAS";
+            sql = "Select * from TBCATEGORIAS";
             DataTable dt = Central.Consulta(sql);
 
             foreach (DataRow r in dt.Rows)
             {
-                categorias.Add(r["nome"].ToString(), Convert.ToInt32(r["id_categoria"]));
+                string nome = r["nome"].ToString();
+                int id = Convert.ToInt32(r["id"]);
+
+
+                if (!categorias.ContainsKey(nome))
+                {
+                    categorias.Add(nome, id);
+                }
             }
 
             return categorias;
@@ -89,10 +95,10 @@ namespace Hardware_Store
         {
             if (Checar_Campos("Categorias") == true)
             {
-                sql = "SELECT * FROM TBCATEGORIAS WHERE id_categoria = " + int.Parse(txt_idCategoria.Text) + "";
+                sql = "SELECT * FROM TBCATEGORIAS WHERE id = " + int.Parse(txt_idCategoria.Text) + "";
                 if (Central.Consulta(sql).Rows.Count > 0)
                 {
-                    sql = "UPDATE TBCATEGORIAS SET NOME = '" + txt_categoria.Text + "' WHERE id_categoria = " + int.Parse(txt_idCategoria.Text);
+                    sql = "UPDATE TBCATEGORIAS SET NOME = '" + txt_categoria.Text + "' WHERE id = " + int.Parse(txt_idCategoria.Text);
                     Central.Consulta(sql);
                     sql = "Select * from TBCATEGORIAS";
                     Atualizar_dgvCategoria(sql);
@@ -100,7 +106,7 @@ namespace Hardware_Store
                 }
                 else
                 {
-                    sql = "Insert into TBCATEGORIAS (id_categoria, nome) Values (" + int.Parse(txt_idCategoria.Text) + ", '" + txt_categoria.Text + "')";
+                    sql = "Insert into TBCATEGORIAS (id, nome) Values (" + int.Parse(txt_idCategoria.Text) + ", '" + txt_categoria.Text + "')";
                     Central.Consulta(sql);
                     MessageBox.Show("Cadastrado com sucesso!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     sql = "Select * from TBCATEGORIAS";
@@ -179,7 +185,7 @@ namespace Hardware_Store
 
         private void txt_id_Leave(object sender, EventArgs e)
         {
-            sql = "Select * from TBPRODUTOS where id_produto ='" + txt_id.Text + "'";
+            sql = "Select * from TBPRODUTOS where id ='" + txt_id.Text + "'";
             dt = Central.Consulta(sql);
             if (dt.Rows.Count > 0)
             {
@@ -188,7 +194,7 @@ namespace Hardware_Store
                 {
                     txt_nome.Text = r["nome"].ToString();
                     txt_preco.Text = r["preco"].ToString();
-                    cmb_categoria.Text = r["categoria"].ToString();
+                    cmb_categoria.Text = r["id_categoria"].ToString();
                     txt_descricao.Text = r["descricao"].ToString();
                     pic_foto.ImageLocation = r["foto"].ToString();
                 }
@@ -202,7 +208,7 @@ namespace Hardware_Store
 
         private void txt_idCategoria_Leave(object sender, EventArgs e)
         {
-            sql = "SELECT NOME FROM TBCATEGORIAS WHERE id_categoria = " + int.Parse(txt_idCategoria.Text) + "";
+            sql = "SELECT NOME FROM TBCATEGORIAS WHERE id = " + int.Parse(txt_idCategoria.Text) + "";
             dt = Central.Consulta(sql);
             if (dt.Rows.Count > 0)
             {
@@ -245,7 +251,7 @@ namespace Hardware_Store
             {
                 try
                 {
-                    sql = "Delete from TBPRODUTOS WHERE id_produto = " + int.Parse(txt_id.Text) + "";
+                    sql = "Delete from TBPRODUTOS WHERE id = " + int.Parse(txt_id.Text) + "";
                     Central.Consulta(sql);
                     MessageBox.Show("Produto Deletado!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     Limpar_Campos("Produtos");
@@ -265,7 +271,7 @@ namespace Hardware_Store
             {
                 try
                 {
-                    sql = "Delete from TBCATEGORIAS WHERE id_categoria = " + int.Parse(txt_idCategoria.Text) + "";
+                    sql = "Delete from TBCATEGORIAS WHERE id = " + int.Parse(txt_idCategoria.Text) + "";
                     Central.Consulta(sql);
                     MessageBox.Show("Categoria Deletada!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     Limpar_Campos("Categorias");
