@@ -28,5 +28,11 @@ namespace Hardware_Store
             Frm_Gerenciar_Produtos frm_gerenciar_produtos = new Frm_Gerenciar_Produtos();
             frm_gerenciar_produtos.Show();
         }
+
+        private void btn_loja_Click(object sender, EventArgs e)
+        {
+            Frm_MenuLoja frm_menuloja = new Frm_MenuLoja();
+            frm_menuloja.Show();
+        }
     }
 }

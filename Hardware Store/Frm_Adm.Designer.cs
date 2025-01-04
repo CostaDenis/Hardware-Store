@@ -32,6 +32,7 @@
             this.btn_relatorios = new System.Windows.Forms.Button();
             this.btn_produtos = new System.Windows.Forms.Button();
             this.btn_contas = new System.Windows.Forms.Button();
+            this.btn_loja = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btn_relatorios
@@ -63,11 +64,22 @@
             this.btn_contas.UseVisualStyleBackColor = true;
             this.btn_contas.Click += new System.EventHandler(this.btn_contas_Click);
             // 
+            // btn_loja
+            // 
+            this.btn_loja.Location = new System.Drawing.Point(278, 181);
+            this.btn_loja.Name = "btn_loja";
+            this.btn_loja.Size = new System.Drawing.Size(154, 29);
+            this.btn_loja.TabIndex = 6;
+            this.btn_loja.Text = "Loja";
+            this.btn_loja.UseVisualStyleBackColor = true;
+            this.btn_loja.Click += new System.EventHandler(this.btn_loja_Click);
+            // 
             // Frm_Adm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(490, 297);
+            this.Controls.Add(this.btn_loja);
             this.Controls.Add(this.btn_relatorios);
             this.Controls.Add(this.btn_produtos);
             this.Controls.Add(this.btn_contas);
@@ -83,5 +95,6 @@
         private System.Windows.Forms.Button btn_relatorios;
         private System.Windows.Forms.Button btn_produtos;
         private System.Windows.Forms.Button btn_contas;
+        private System.Windows.Forms.Button btn_loja;
     }
 }

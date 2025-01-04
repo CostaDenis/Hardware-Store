@@ -23,25 +23,26 @@ namespace Hardware_Store
 
         private void btn_entrar_Click(object sender, EventArgs e)
         {
-            if (txt_cpf.Text.Length == 0 || txt_cpf.Text.Length == 0)
-            {
-                MessageBox.Show("Insira todos os dados necessários!");
-            }
-            else
-            {
-                sql = "SELECT * FROM TBCONTAS WHERE ID_CPF=" + txt_cpf.Text + " AND SENHA='" + txt_senha.Text + "'";
-                dt = Central.Consulta(sql);
+            /*     if (txt_cpf.Text.Length == 0 || txt_cpf.Text.Length == 0)
+                 {
+                     MessageBox.Show("Insira todos os dados necessários!");
+                 }
+                 else
+                 {
+                     sql = "SELECT * FROM TBCONTAS WHERE ID_CPF=" + txt_cpf.Text + " AND SENHA='" + txt_senha.Text + "'";
+                     dt = Central.Consulta(sql);
 
-                if (dt.Rows.Count == 0)
-                {
-                    MessageBox.Show("Credenciais não compatíveis! Tente Novamente", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                }
-                else
-                {
-                    frm_adm.Show();
-                }
-
-            }
+                     if (dt.Rows.Count == 0)
+                     {
+                         MessageBox.Show("Credenciais não compatíveis! Tente Novamente", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                     }
+                     else
+                     {
+                         frm_adm.Show();
+                     }
+            */
+            frm_adm.Show();
         }
     }
-}
+
+    }

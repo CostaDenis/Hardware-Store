@@ -90,6 +90,12 @@
     <Compile Include="Frm_Gerenciar_Produtos.Designer.cs">
       <DependentUpon>Frm_Gerenciar_Produtos.cs</DependentUpon>
     </Compile>
+    <Compile Include="Frm_MenuLoja.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Frm_MenuLoja.Designer.cs">
+      <DependentUpon>Frm_MenuLoja.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Form1.resx">
@@ -103,6 +109,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Frm_Gerenciar_Produtos.resx">
       <DependentUpon>Frm_Gerenciar_Produtos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frm_MenuLoja.resx">
+      <DependentUpon>Frm_MenuLoja.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
