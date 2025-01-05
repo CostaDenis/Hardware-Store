@@ -205,10 +205,7 @@ namespace Hardware_Store
                 }
                 btn_CadastrarProduto.Text = "Alterar Produto";
             }
-            else
-            {
-                Limpar_Campos("Produtos");
-            }
+
         }
 
         private void txt_idCategoria_Leave(object sender, EventArgs e)
