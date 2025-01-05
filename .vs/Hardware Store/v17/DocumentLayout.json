@@ -7,10 +7,6 @@
       "RelativeMoniker": "D:0:0:{1A776E3D-9731-4AB3-B69A-612DD9F0730E}|Hardware Store\\i.csproj|solutionrelative:hardware store\\frm_menuloja.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{1A776E3D-9731-4AB3-B69A-612DD9F0730E}|Hardware Store\\i.csproj|c:\\users\\denis\\dev\\dotnet\\hardware_store\\hardware store\\frm_menuloja.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{1A776E3D-9731-4AB3-B69A-612DD9F0730E}|Hardware Store\\i.csproj|solutionrelative:hardware store\\frm_menuloja.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{1A776E3D-9731-4AB3-B69A-612DD9F0730E}|Hardware Store\\i.csproj|C:\\Users\\denis\\dev\\DotNet\\Hardware_Store\\hardware store\\central.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{1A776E3D-9731-4AB3-B69A-612DD9F0730E}|Hardware Store\\i.csproj|solutionrelative:hardware store\\central.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
@@ -22,7 +18,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Bookmark",
@@ -37,6 +33,10 @@
               "Name": "ST:0:0:{eefa5220-e298-11d0-8f78-00a0c9110057}"
             },
             {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{40ea2e6b-2121-4bb8-a43e-c83c04b51041}"
+            },
+            {
               "$type": "Document",
               "DocumentIndex": 0,
               "Title": "Frm_MenuLoja.cs",
@@ -44,7 +44,7 @@
               "RelativeDocumentMoniker": "Hardware Store\\Frm_MenuLoja.cs",
               "ToolTip": "C:\\Users\\denis\\dev\\DotNet\\Hardware_Store\\Hardware Store\\Frm_MenuLoja.cs",
               "RelativeToolTip": "Hardware Store\\Frm_MenuLoja.cs",
-              "ViewState": "AgIAAFwAAAAAAAAAAAAgwGsAAAAFAAAAAAAAAA==",
+              "ViewState": "AgIAAEcAAAAAAAAAAAAkwFIAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-01-05T14:49:50.872Z",
               "EditorCaption": ""
@@ -52,26 +52,14 @@
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "Frm_MenuLoja.cs [Design]",
-              "DocumentMoniker": "C:\\Users\\denis\\dev\\DotNet\\Hardware_Store\\Hardware Store\\Frm_MenuLoja.cs",
-              "RelativeDocumentMoniker": "Hardware Store\\Frm_MenuLoja.cs",
-              "ToolTip": "C:\\Users\\denis\\dev\\DotNet\\Hardware_Store\\Hardware Store\\Frm_MenuLoja.cs [Design]",
-              "RelativeToolTip": "Hardware Store\\Frm_MenuLoja.cs [Design]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-05T14:49:16.302Z",
-              "EditorCaption": " [Design]"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
               "Title": "Central.cs",
               "DocumentMoniker": "C:\\Users\\denis\\dev\\DotNet\\Hardware_Store\\Hardware Store\\Central.cs",
               "RelativeDocumentMoniker": "Hardware Store\\Central.cs",
               "ToolTip": "C:\\Users\\denis\\dev\\DotNet\\Hardware_Store\\Hardware Store\\Central.cs",
               "RelativeToolTip": "Hardware Store\\Central.cs",
-              "ViewState": "AgIAAAsAAAAAAAAAAAA/wAAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAACQAAAAAAAAAAAAcwCcAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-28T02:58:48.755Z",
+              "WhenOpened": "2025-01-05T17:57:51.34Z",
               "EditorCaption": ""
             }
           ]

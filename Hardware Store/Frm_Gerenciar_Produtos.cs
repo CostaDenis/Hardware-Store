@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Globalization;
 using System.Windows.Forms;
@@ -23,7 +22,7 @@ namespace Hardware_Store
                 try
                 {
                     float preco = float.Parse(txt_preco.Text, CultureInfo.InvariantCulture);
-                    var categorias = ObterCategoriasBanco();
+                    var categorias = Central.ObterCategoriasNomeParaId();
 
                     if (!categorias.TryGetValue(cmb_categoria.Text, out int idCategoria))
                     {
@@ -71,28 +70,6 @@ namespace Hardware_Store
             {
                 MessageBox.Show("Complete todos os campos antes de cadastrar!", "Aviso", MessageBoxButtons.OKCancel, MessageBoxIcon.Error);
             }
-        }
-
-        private Dictionary<string, int> ObterCategoriasBanco()
-        {
-            Dictionary<string, int> categorias = new Dictionary<string, int>();
-            sql = "Select * from TBCATEGORIAS";
-            DataTable dt = Central.Consulta(sql);
-
-            foreach (DataRow r in dt.Rows)
-            {
-                string nome = r["nome"].ToString();
-                int id = Convert.ToInt32(r["id"]);
-
-
-                if (!categorias.ContainsKey(nome))
-                {
-                    categorias.Add(nome, id);
-                }
-            }
-
-            return categorias;
-
         }
 
         private void btn_categoria_Click(object sender, EventArgs e)
@@ -233,7 +210,7 @@ namespace Hardware_Store
                     txt_id.Text = "";
                     txt_nome.Text = "";
                     txt_preco.Text = "";
-                    cmb_categoria.Text = "";
+                    cmb_categoria.SelectedIndex = -1;
                     txt_descricao.Text = "";
                     pic_foto.Image = null;
                     btn_excluir.Visible = false;

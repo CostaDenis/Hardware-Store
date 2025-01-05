@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
 using System.Windows.Forms;
@@ -15,8 +16,8 @@ namespace Hardware_Store
         private void Frm_MenuLoja_Load(object sender, EventArgs e)
         {
             //PreencheProdutos(1);
-            int numCategorias = BuscaQTDECategoria();
             string[] nomeCategorias = BuscaNomeCategoria();
+            int numCategorias = nomeCategorias.Length;
 
             tc_categorias.TabPages.Clear();
 
@@ -31,50 +32,22 @@ namespace Hardware_Store
                     Dock = DockStyle.Fill,
                     AutoScroll = true
                 };
-
-                //flp.Size = new Size(tabPage.Width, tabPage.Height);
                 tabPage.Controls.Add(flp);
-
-                //PreencheProdutos(nomeCategorias[i], 10);
-
-                for (int c = 0; c <= 10; c++)
-                {
-                    //Button btn = new Button
-                    //{
-                    //    Text = "Exemplo " + c,
-                    //    Size = new Size(100, 30)
-                    //};
-
-                    PictureBox pb = new PictureBox
-                    {
-                        Size = new Size(150, 150),
-                        Image = Image.FromFile(Application.StartupPath + "\\Img\\Produtos\\mouse_pad.jpg")
-                    };
-                    flp.Controls.Add(pb);
-                }
+                PreencheProdutos();
+                //for (int c = 0; c <= 10; c++)
+                //{
+                //    PictureBox pb = new PictureBox
+                //    {
+                //        Size = new Size(150, 150),
+                //        Image = Image.FromFile(Application.StartupPath + "\\Img\\Produtos\\mouse_pad.jpg")
+                //    };
+                //    flp.Controls.Add(pb);
+                //}
 
 
             }
 
         }
-
-        //private int BuscaDadosCategoria(out string[] nome) //Retorna o nome das categorias
-        //{
-        //    int numCategorias = 0;
-
-        //    string sql = "select * from TBCATEGORIAS";
-        //    DataTable dt = Central.Consulta(sql);
-
-        //    nome = new string[dt.Rows.Count];
-
-        //    foreach (DataRow row in dt.Rows)
-        //    {
-        //        numCategorias++;
-        //        nome[numCategorias - 1] = (string)row["nome"];
-        //    }
-
-        //    return dt.Rows.Count;  //Retorna a quantidade de categorias
-        //}
 
         private int BuscaQTDECategoria()
         {
@@ -97,13 +70,39 @@ namespace Hardware_Store
             return nome;
         }
 
-        private void PreencheProdutos(int id)
+        private void PreencheProdutos()
         {
-            string sql = $"select id_categoria from TBPRODUTOS " +
-                $"INNER JOIN TBCATEGORIAS on TBCATEGORIAS.id = TBPRODUTOS.id";
+            Dictionary<int, string> categorias = Central.ObterCategoriasIdParaNome();
+            string sql = "select nome, preco, id_categoria, descricao, foto from TBPRODUTOS";
             DataTable dt = Central.Consulta(sql);
-            MessageBox.Show(dt.Rows.Count.ToString());
+            int idCategoria = 0;
 
+            for (int i = 0; i < dt.Rows.Count; i++)
+            {
+                idCategoria = Convert.ToInt32(dt.Rows[i]["id_categoria"]);
+
+                if (categorias.TryGetValue(idCategoria, out string nomeCategoria))
+                {
+                    for (int c = 0; c < tc_categorias.TabPages.Count; c++)
+                    {
+                        if (tc_categorias.TabPages[c].Text == nomeCategoria)
+                        {
+
+                            //Teste
+                            FlowLayoutPanel flp = (FlowLayoutPanel)tc_categorias.TabPages[c].Controls[0];
+                            Button bt = new Button()
+                            {
+                                Text = dt.Rows[i]["nome"].ToString(),
+                                Size = new Size(150, 150),
+                                TextAlign = ContentAlignment.BottomCenter
+                            };
+                            flp.Controls.Add(bt);
+                        }
+                    }
+
+                }
+
+            }
         }
     }
 }
