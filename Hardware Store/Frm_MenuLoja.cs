@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace Hardware_Store
@@ -73,7 +74,11 @@ namespace Hardware_Store
         private void PreencheProdutos()
         {
             Dictionary<int, string> categorias = Central.ObterCategoriasIdParaNome();
+            var tabPagesMap = tc_categorias.TabPages.Cast<TabPage>()
+                .ToDictionary(tabPage => tabPage.Text, tabPage => tabPage);
             string sql = "select nome, preco, id_categoria, descricao, foto from TBPRODUTOS";
+            string nomeProduto = "";
+            bool produtoExiste = false;
             DataTable dt = Central.Consulta(sql);
             int idCategoria = 0;
 
@@ -81,28 +86,29 @@ namespace Hardware_Store
             {
                 idCategoria = Convert.ToInt32(dt.Rows[i]["id_categoria"]);
 
-                if (categorias.TryGetValue(idCategoria, out string nomeCategoria))
+                if (categorias.TryGetValue(idCategoria, out string nomeCategoria) &&
+                    tabPagesMap.TryGetValue(nomeCategoria, out TabPage tabPage) &&
+                    tabPage.Controls[0] is FlowLayoutPanel flp)
                 {
-                    for (int c = 0; c < tc_categorias.TabPages.Count; c++)
-                    {
-                        if (tc_categorias.TabPages[c].Text == nomeCategoria)
-                        {
+                    nomeProduto = dt.Rows[i]["nome"].ToString();
+                    produtoExiste = flp.Controls.OfType<Button>().Any(button => button.Text == nomeProduto);
 
-                            //Teste
-                            FlowLayoutPanel flp = (FlowLayoutPanel)tc_categorias.TabPages[c].Controls[0];
-                            Button bt = new Button()
-                            {
-                                Text = dt.Rows[i]["nome"].ToString(),
-                                Size = new Size(150, 150),
-                                TextAlign = ContentAlignment.BottomCenter
-                            };
-                            flp.Controls.Add(bt);
-                        }
+                    if (!produtoExiste)
+                    {
+                        Button bt = new Button()
+                        {
+                            Text = nomeProduto,
+                            Size = new Size(150, 150),
+                            TextAlign = ContentAlignment.BottomCenter
+                        };
+                        flp.Controls.Add(bt);
                     }
+
 
                 }
 
             }
         }
+
     }
 }

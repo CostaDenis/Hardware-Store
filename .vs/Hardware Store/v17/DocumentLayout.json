@@ -18,7 +18,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Bookmark",
@@ -33,10 +33,6 @@
               "Name": "ST:0:0:{eefa5220-e298-11d0-8f78-00a0c9110057}"
             },
             {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{40ea2e6b-2121-4bb8-a43e-c83c04b51041}"
-            },
-            {
               "$type": "Document",
               "DocumentIndex": 0,
               "Title": "Frm_MenuLoja.cs",
@@ -44,7 +40,7 @@
               "RelativeDocumentMoniker": "Hardware Store\\Frm_MenuLoja.cs",
               "ToolTip": "C:\\Users\\denis\\dev\\DotNet\\Hardware_Store\\Hardware Store\\Frm_MenuLoja.cs",
               "RelativeToolTip": "Hardware Store\\Frm_MenuLoja.cs",
-              "ViewState": "AgIAAEcAAAAAAAAAAAAkwFIAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAEoAAAAAAAAAAAAuwGcAAAAtAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-01-05T14:49:50.872Z",
               "EditorCaption": ""
@@ -59,8 +55,7 @@
               "RelativeToolTip": "Hardware Store\\Central.cs",
               "ViewState": "AgIAACQAAAAAAAAAAAAcwCcAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-05T17:57:51.34Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-05T17:57:51.34Z"
             }
           ]
         }
