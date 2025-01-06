@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Globalization;
+using System.IO;
 using System.Windows.Forms;
 
 namespace Hardware_Store
@@ -10,6 +12,9 @@ namespace Hardware_Store
         string sql;
         DataTable dt;
         string caminho_foto;
+        string relativePath;
+        Dictionary<string, int> categoriasId = Central.ObterCategoriasNomeParaId();
+        Dictionary<int, string> categoriasName = Central.ObterCategoriasIdParaNome();
         public Frm_Gerenciar_Produtos()
         {
             InitializeComponent();
@@ -22,21 +27,25 @@ namespace Hardware_Store
                 try
                 {
                     float preco = float.Parse(txt_preco.Text, CultureInfo.InvariantCulture);
-                    var categorias = Central.ObterCategoriasNomeParaId();
 
-                    if (!categorias.TryGetValue(cmb_categoria.Text, out int idCategoria))
+                    if (!categoriasId.TryGetValue(cmb_categoria.Text, out int idCategoria))
                     {
                         throw new Exception("Categoria não encontrada!");
                     }
 
+                    if (!int.TryParse(txt_id.Text, out int idProduto))
+                    {
+                        throw new Exception("ID do produto inválido!");
+                    }
 
-                    sql = "SELECT * FROM TBPRODUTOS WHERE id = " + int.Parse(txt_id.Text) + "";
+
+                    sql = $"SELECT * FROM TBPRODUTOS WHERE id = {idProduto}";
                     dt = Central.Consulta(sql);
                     if (dt.Rows.Count > 0)
                     {
 
-                        sql = $"Update TBPRODUTOS set nome = {txt_nome.Text}, preco = {preco}, id_categoria = {idCategoria}," +
-                            $"descricao = {txt_descricao.Text}, foto = {pic_foto.ImageLocation} where id = {int.Parse(txt_id.Text)}";
+                        sql = $"Update TBPRODUTOS set nome = '{txt_nome.Text}', preco = '{preco}', id_categoria = '{idCategoria}'," +
+                            $"descricao = '{txt_descricao.Text}', foto = '{relativePath}' where id = '{idProduto}'";
 
 
                         Central.Consulta(sql);
@@ -47,8 +56,8 @@ namespace Hardware_Store
                     else
                     {
                         sql = $"INSERT INTO TBPRODUTOS (id, nome, preco, id_categoria, descricao, foto) " +
-                        $"VALUES ({int.Parse(txt_id.Text)}, '{txt_nome.Text}', '{preco}', {idCategoria}, " +
-                        $"'{txt_descricao.Text}', '{pic_foto.ImageLocation}')";
+                        $"VALUES ({idProduto}, '{txt_nome.Text}', '{preco}', {idCategoria}, " +
+                        $"'{txt_descricao.Text}', '{relativePath}')";
 
                         Central.Consulta(sql);
                         MessageBox.Show("Cadastrado com sucesso!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -162,6 +171,7 @@ namespace Hardware_Store
             {
                 caminho_foto = openFileDialog1.FileName;
                 pic_foto.ImageLocation = caminho_foto;
+                relativePath = $"Img\\Produtos\\{Path.GetFileName(caminho_foto)}";
             }
         }
 
@@ -176,7 +186,10 @@ namespace Hardware_Store
                 {
                     txt_nome.Text = r["nome"].ToString();
                     txt_preco.Text = r["preco"].ToString();
-                    cmb_categoria.Text = r["id_categoria"].ToString();
+                    if (categoriasName.TryGetValue(int.Parse(r["id_categoria"].ToString()), out string categoria))
+                    {
+                        cmb_categoria.Text = categoria;
+                    }
                     txt_descricao.Text = r["descricao"].ToString();
                     pic_foto.ImageLocation = r["foto"].ToString();
                 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -102,6 +103,23 @@ namespace Hardware_Store
                             TextAlign = ContentAlignment.BottomCenter
                         };
                         flp.Controls.Add(bt);
+
+                        PictureBox pictureBox = new PictureBox
+                        {
+                            Size = new Size(150, 150),
+                            SizeMode = PictureBoxSizeMode.StretchImage
+                        };
+                        string imagePath = Path.Combine(Application.StartupPath, dt.Rows[i]["foto"].ToString());
+
+                        if (File.Exists(imagePath))
+                        {
+                            pictureBox.ImageLocation = imagePath; // Define a imagem no PictureBox
+                        }
+                        else
+                        {
+                            MessageBox.Show($"Imagem não encontrada: {imagePath}");
+                        }
+                        flp.Controls.Add(pictureBox);
                     }
 
 
