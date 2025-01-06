@@ -19,17 +19,16 @@ namespace Hardware_Store
 
         private void Frm_MenuLoja_Load(object sender, EventArgs e)
         {
-            //PreencheProdutos(1);
-            string[] nomeCategorias = BuscaNomeCategoria();
-            int numCategorias = nomeCategorias.Length;
+            string[] categoryName = SearchNameCategory();
+            int numCategory = categoryName.Length;
 
-            tc_categorias.TabPages.Clear();
+            tc_category.TabPages.Clear();
 
             //Preenche o TabPages com a(s) categoria(s)
-            for (int i = 0; i < numCategorias; i++)
+            for (int i = 0; i < numCategory; i++)
             {
-                TabPage tabPage = new TabPage($"{nomeCategorias[i]}");
-                tc_categorias.TabPages.Add(tabPage);
+                TabPage tabPage = new TabPage($"{categoryName[i]}");
+                tc_category.TabPages.Add(tabPage);
 
                 FlowLayoutPanel flp = new FlowLayoutPanel
                 {
@@ -37,34 +36,18 @@ namespace Hardware_Store
                     AutoScroll = true
                 };
                 tabPage.Controls.Add(flp);
-                PreencheProdutos();
-                //for (int c = 0; c <= 10; c++)
-                //{
-                //    PictureBox pb = new PictureBox
-                //    {
-                //        Size = new Size(150, 150),
-                //        Image = Image.FromFile(Application.StartupPath + "\\Img\\Produtos\\mouse_pad.jpg")
-                //    };
-                //    flp.Controls.Add(pb);
-                //}
+
+                FillProducts();
 
 
             }
 
         }
 
-        private int BuscaQTDECategoria()
-        {
-            string sql = "select * from TBCATEGORIAS";
-            DataTable dt = Central.Consulta(sql);
-
-            return dt.Rows.Count;
-        }
-
-        private string[] BuscaNomeCategoria()
+        private string[] SearchNameCategory()
         {
             string sql = "select nome from TBCATEGORIAS";
-            DataTable dt = Central.Consulta(sql);
+            DataTable dt = Central.Query(sql);
             string[] nome = new string[dt.Rows.Count];
 
             for (int i = 0; i < dt.Rows.Count; i++)
@@ -74,17 +57,16 @@ namespace Hardware_Store
             return nome;
         }
 
-        private void PreencheProdutos()
+        private void FillProducts()
         {
             Dictionary<int, string> categorias = Central.ObterCategoriasIdParaNome();
-            var tabPagesMap = tc_categorias.TabPages.Cast<TabPage>()
+            var tabPagesMap = tc_category.TabPages.Cast<TabPage>()
                 .ToDictionary(tabPage => tabPage.Text, tabPage => tabPage);
             string sql = "select Distinct id, nome, preco, id_categoria, descricao, foto from TBPRODUTOS";
             string productName = "", productPicture = "";
             float productPrice = 0.0f;
             int productId = 0;
-            DataTable dt = Central.Consulta(sql);
-            //List<string> productsAdded = new List<string
+            DataTable dt = Central.Query(sql);
             int idCategoria = 0;
 
             for (int i = 0; i < dt.Rows.Count; i++)
@@ -149,6 +131,7 @@ namespace Hardware_Store
             flp.Controls.Add(lblPrice);
         }
 
+        //Arrumar caminho das imagens
         private void CreateProductPictureBox(string image, FlowLayoutPanel flp)
         {
             PictureBox pictureBox = new PictureBox
@@ -156,7 +139,7 @@ namespace Hardware_Store
                 Size = new Size(150, 150),
                 SizeMode = PictureBoxSizeMode.StretchImage
             };
-            string imagePath = Path.Combine(Application.StartupPath, image);
+            string imagePath = Path.Combine(Application.StartupPath + "\\", image);
             if (File.Exists(imagePath))
             {
                 pictureBox.ImageLocation = imagePath;

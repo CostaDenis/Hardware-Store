@@ -9,16 +9,16 @@ namespace Hardware_Store
     internal class Central
     {
 
-        private static SQLiteConnection conexao;
+        private static SQLiteConnection connection;
 
         public static SQLiteConnection ConexaoBanco()
         {
-            conexao = new SQLiteConnection("Data Source = " + Application.StartupPath + "\\DataBase\\Hardware_DataBase.db");
-            conexao.Open();
-            return conexao;
+            connection = new SQLiteConnection("Data Source = " + Application.StartupPath + "\\DataBase\\Hardware_DataBase.db");
+            connection.Open();
+            return connection;
         }
 
-        public static DataTable Consulta(string sql)
+        public static DataTable Query(string sql)
         {
             SQLiteDataAdapter da = null;
             DataTable dt = new DataTable();
@@ -43,7 +43,7 @@ namespace Hardware_Store
         {
             Dictionary<string, int> categorias = new Dictionary<string, int>();
             string sql = "select id, nome from TBCATEGORIAS";
-            DataTable dt = Consulta(sql);
+            DataTable dt = Query(sql);
 
             foreach (DataRow row in dt.Rows)
             {
@@ -57,7 +57,7 @@ namespace Hardware_Store
         {
             Dictionary<int, string> categorias = new Dictionary<int, string>();
             string sql = "select id, nome from TBCATEGORIAS";
-            DataTable dt = Consulta(sql);
+            DataTable dt = Query(sql);
 
             foreach (DataRow row in dt.Rows)
             {

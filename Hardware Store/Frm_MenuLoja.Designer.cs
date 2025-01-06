@@ -32,17 +32,17 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.tc_categorias = new System.Windows.Forms.TabControl();
             this.hScrollBar1 = new System.Windows.Forms.HScrollBar();
+            this.tc_category = new System.Windows.Forms.TabControl();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.tabPage1.SuspendLayout();
-            this.tc_categorias.SuspendLayout();
+            this.tc_category.SuspendLayout();
             this.SuspendLayout();
             // 
             // pictureBox1
             // 
             this.pictureBox1.Location = new System.Drawing.Point(892, 110);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(232, 187);
             this.pictureBox1.TabIndex = 1;
@@ -51,9 +51,9 @@
             // tabPage2
             // 
             this.tabPage2.Location = new System.Drawing.Point(4, 25);
-            this.tabPage2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPage2.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(4);
             this.tabPage2.Size = new System.Drawing.Size(865, 382);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "tabPage2";
@@ -63,24 +63,13 @@
             // 
             this.tabPage1.Controls.Add(this.hScrollBar1);
             this.tabPage1.Location = new System.Drawing.Point(4, 25);
-            this.tabPage1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPage1.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(4);
             this.tabPage1.Size = new System.Drawing.Size(865, 382);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "tabPage1";
             this.tabPage1.UseVisualStyleBackColor = true;
-            // 
-            // tc_categorias
-            // 
-            this.tc_categorias.Controls.Add(this.tabPage1);
-            this.tc_categorias.Controls.Add(this.tabPage2);
-            this.tc_categorias.Location = new System.Drawing.Point(16, 31);
-            this.tc_categorias.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.tc_categorias.Name = "tc_categorias";
-            this.tc_categorias.SelectedIndex = 0;
-            this.tc_categorias.Size = new System.Drawing.Size(873, 411);
-            this.tc_categorias.TabIndex = 0;
             // 
             // hScrollBar1
             // 
@@ -89,21 +78,32 @@
             this.hScrollBar1.Size = new System.Drawing.Size(8, 8);
             this.hScrollBar1.TabIndex = 1;
             // 
+            // tc_category
+            // 
+            this.tc_category.Controls.Add(this.tabPage1);
+            this.tc_category.Controls.Add(this.tabPage2);
+            this.tc_category.Location = new System.Drawing.Point(16, 31);
+            this.tc_category.Margin = new System.Windows.Forms.Padding(4);
+            this.tc_category.Name = "tc_category";
+            this.tc_category.SelectedIndex = 0;
+            this.tc_category.Size = new System.Drawing.Size(873, 411);
+            this.tc_category.TabIndex = 0;
+            // 
             // Frm_MenuLoja
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1140, 542);
             this.Controls.Add(this.pictureBox1);
-            this.Controls.Add(this.tc_categorias);
+            this.Controls.Add(this.tc_category);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Frm_MenuLoja";
             this.Text = "Loja";
             this.Load += new System.EventHandler(this.Frm_MenuLoja_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.tabPage1.ResumeLayout(false);
-            this.tc_categorias.ResumeLayout(false);
+            this.tc_category.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -112,7 +112,7 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.TabPage tabPage1;
-        private System.Windows.Forms.TabControl tc_categorias;
+        private System.Windows.Forms.TabControl tc_category;
         private System.Windows.Forms.HScrollBar hScrollBar1;
     }
 }

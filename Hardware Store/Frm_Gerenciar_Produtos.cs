@@ -24,42 +24,51 @@ namespace Hardware_Store
         {
             if (Checar_Campos("Produtos") == true)
             {
+                string productName = txt_name.Text;
+                string productDescription = txt_description.Text;
+                int quantityProduct = int.Parse(txt_quantity.Text);
+
+                if (pic_picture.Image != null)
+                {
+                    relativePath = pic_picture.ImageLocation;
+                }
+
                 try
                 {
-                    float preco = float.Parse(txt_preco.Text, CultureInfo.InvariantCulture);
+                    float preco = float.Parse(txt_price.Text, CultureInfo.InvariantCulture);
 
-                    if (!categoriasId.TryGetValue(cmb_categoria.Text, out int idCategoria))
+                    if (!categoriasId.TryGetValue(cmb_category.Text, out int idCategory))
                     {
                         throw new Exception("Categoria não encontrada!");
                     }
 
-                    if (!int.TryParse(txt_id.Text, out int idProduto))
+                    if (!int.TryParse(txt_id.Text, out int idProduct))
                     {
                         throw new Exception("ID do produto inválido!");
                     }
 
 
-                    sql = $"SELECT * FROM TBPRODUTOS WHERE id = {idProduto}";
-                    dt = Central.Consulta(sql);
+                    sql = $"SELECT * FROM TBPRODUTOS WHERE id = {idProduct}";
+                    dt = Central.Query(sql);
                     if (dt.Rows.Count > 0)
                     {
 
-                        sql = $"Update TBPRODUTOS set nome = '{txt_nome.Text}', preco = '{preco}', id_categoria = '{idCategoria}'," +
-                            $"descricao = '{txt_descricao.Text}', foto = '{relativePath}' where id = '{idProduto}'";
+                        sql = $"Update TBPRODUTOS set nome = '{productName}', preco = '{preco}', quantidade = '{quantityProduct}', id_categoria = '{idCategory}'," +
+                            $"descricao = '{productDescription}', foto = '{relativePath}' where id = '{idProduct}'";
 
 
-                        Central.Consulta(sql);
+                        Central.Query(sql);
                         MessageBox.Show("Produto Alterado!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         sql = "Select * from TBPRODUTOS";
                         Atualizar_dgvProduto(sql);
                     }
                     else
                     {
-                        sql = $"INSERT INTO TBPRODUTOS (id, nome, preco, id_categoria, descricao, foto) " +
-                        $"VALUES ({idProduto}, '{txt_nome.Text}', '{preco}', {idCategoria}, " +
-                        $"'{txt_descricao.Text}', '{relativePath}')";
+                        sql = $"INSERT INTO TBPRODUTOS (id, nome, preco, quantidade, id_categoria, descricao, foto) " +
+                        $"VALUES ({idProduct}, '{productName}', '{preco}', '{quantityProduct}', {idCategory}, " +
+                        $"'{productDescription}', '{relativePath}')";
 
-                        Central.Consulta(sql);
+                        Central.Query(sql);
                         MessageBox.Show("Cadastrado com sucesso!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         sql = "Select * from TBPRODUTOS";
                         Atualizar_dgvProduto(sql);
@@ -85,19 +94,19 @@ namespace Hardware_Store
         {
             if (Checar_Campos("Categorias") == true)
             {
-                sql = "SELECT * FROM TBCATEGORIAS WHERE id = " + int.Parse(txt_idCategoria.Text) + "";
-                if (Central.Consulta(sql).Rows.Count > 0)
+                sql = "SELECT * FROM TBCATEGORIAS WHERE id = " + int.Parse(txt_idcategory.Text) + "";
+                if (Central.Query(sql).Rows.Count > 0)
                 {
-                    sql = "UPDATE TBCATEGORIAS SET NOME = '" + txt_categoria.Text + "' WHERE id = " + int.Parse(txt_idCategoria.Text);
-                    Central.Consulta(sql);
+                    sql = "UPDATE TBCATEGORIAS SET NOME = '" + txt_category.Text + "' WHERE id = " + int.Parse(txt_idcategory.Text);
+                    Central.Query(sql);
                     sql = "Select * from TBCATEGORIAS";
                     Atualizar_dgvCategoria(sql);
                     MessageBox.Show("Alterado com sucesso!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else
                 {
-                    sql = "Insert into TBCATEGORIAS (id, nome) Values (" + int.Parse(txt_idCategoria.Text) + ", '" + txt_categoria.Text + "')";
-                    Central.Consulta(sql);
+                    sql = "Insert into TBCATEGORIAS (id, nome) Values (" + int.Parse(txt_idcategory.Text) + ", '" + txt_category.Text + "')";
+                    Central.Query(sql);
                     MessageBox.Show("Cadastrado com sucesso!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     sql = "Select * from TBCATEGORIAS";
                     Atualizar_dgvCategoria(sql);
@@ -117,15 +126,15 @@ namespace Hardware_Store
             switch (tipo)
             {
                 case "Produtos":
-                    if (txt_id.TextLength == 0 || txt_nome.TextLength == 0 || txt_preco.TextLength == 0 || cmb_categoria.Text.Length == 0 ||
-                        txt_descricao.TextLength == 0 || pic_foto.Image == null)
+                    if (txt_id.TextLength == 0 || txt_name.TextLength == 0 || txt_price.TextLength == 0 || cmb_category.Text.Length == 0 ||
+                        txt_quantity.TextLength == 0 || txt_description.TextLength == 0 || pic_picture.Image == null)
                     {
                         resp = false;
                     }
                     break;
 
                 case "Categorias":
-                    if (txt_idCategoria.TextLength == 0 || txt_categoria.TextLength == 0)
+                    if (txt_idcategory.TextLength == 0 || txt_category.TextLength == 0)
                     {
                         resp = false;
                     }
@@ -136,12 +145,12 @@ namespace Hardware_Store
 
         private void Atualizar_dgvCategoria(string s)
         {
-            dgv_categoria.DataSource = Central.Consulta(s);
+            dgv_category.DataSource = Central.Query(s);
         }
 
         private void Atualizar_dgvProduto(string s)
         {
-            dgv_produto.DataSource = Central.Consulta(s);
+            dgv_products.DataSource = Central.Query(s);
         }
 
         private void Frm_Gerenciar_Produtos_Load(object sender, EventArgs e)
@@ -149,10 +158,10 @@ namespace Hardware_Store
             //Povoando DGV de Categorias e a ComboBox
             sql = "Select * from TBCATEGORIAS";
             Atualizar_dgvCategoria(sql);
-            dt = Central.Consulta(sql);
+            dt = Central.Query(sql);
             foreach (DataRow categorias in dt.Rows)
             {
-                cmb_categoria.Items.Add(categorias["nome"]);
+                cmb_category.Items.Add(categorias["nome"]);
             }
 
             //Povoando o DGV de Produtos
@@ -170,7 +179,7 @@ namespace Hardware_Store
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
                 caminho_foto = openFileDialog1.FileName;
-                pic_foto.ImageLocation = caminho_foto;
+                pic_picture.ImageLocation = caminho_foto;
                 relativePath = $"Img\\Produtos\\{Path.GetFileName(caminho_foto)}";
             }
         }
@@ -178,36 +187,37 @@ namespace Hardware_Store
         private void txt_id_Leave(object sender, EventArgs e)
         {
             sql = "Select * from TBPRODUTOS where id ='" + txt_id.Text + "'";
-            dt = Central.Consulta(sql);
+            dt = Central.Query(sql);
             if (dt.Rows.Count > 0)
             {
-                btn_excluir.Visible = true;
+                btn_deleteproduct.Visible = true;
                 foreach (DataRow r in dt.Rows)
                 {
-                    txt_nome.Text = r["nome"].ToString();
-                    txt_preco.Text = r["preco"].ToString();
+                    txt_name.Text = r["nome"].ToString();
+                    txt_price.Text = r["preco"].ToString();
+                    txt_quantity.Text = r["quantidade"].ToString();
                     if (categoriasName.TryGetValue(int.Parse(r["id_categoria"].ToString()), out string categoria))
                     {
-                        cmb_categoria.Text = categoria;
+                        cmb_category.Text = categoria;
                     }
-                    txt_descricao.Text = r["descricao"].ToString();
-                    pic_foto.ImageLocation = r["foto"].ToString();
+                    txt_description.Text = r["descricao"].ToString();
+                    pic_picture.ImageLocation = r["foto"].ToString();
                 }
-                btn_CadastrarProduto.Text = "Alterar Produto";
+                btn_addproduct.Text = "Alterar Produto";
             }
 
         }
 
         private void txt_idCategoria_Leave(object sender, EventArgs e)
         {
-            sql = "SELECT NOME FROM TBCATEGORIAS WHERE id = " + int.Parse(txt_idCategoria.Text) + "";
-            dt = Central.Consulta(sql);
+            sql = "SELECT NOME FROM TBCATEGORIAS WHERE id = " + int.Parse(txt_idcategory.Text) + "";
+            dt = Central.Query(sql);
             if (dt.Rows.Count > 0)
             {
                 object obj = dt.Rows[0][0];
-                btn_excluir_Categoria.Visible = true;
-                txt_categoria.Text = obj.ToString();
-                btn_categoria.Text = "Alterar Categoria";
+                btn_delete_category.Visible = true;
+                txt_category.Text = obj.ToString();
+                btn_addcategory.Text = "Alterar Categoria";
             }
             else
             {
@@ -221,20 +231,21 @@ namespace Hardware_Store
             {
                 case "Produtos":
                     txt_id.Text = "";
-                    txt_nome.Text = "";
-                    txt_preco.Text = "";
-                    cmb_categoria.SelectedIndex = -1;
-                    txt_descricao.Text = "";
-                    pic_foto.Image = null;
-                    btn_excluir.Visible = false;
-                    btn_CadastrarProduto.Text = "Cadastrar Produto";
+                    txt_name.Text = "";
+                    txt_price.Text = "";
+                    cmb_category.SelectedIndex = -1;
+                    txt_quantity.Text = "";
+                    txt_description.Text = "";
+                    pic_picture.Image = null;
+                    btn_deleteproduct.Visible = false;
+                    btn_addproduct.Text = "Cadastrar Produto";
                     break;
 
                 case "Categorias":
-                    txt_idCategoria.Text = "";
-                    txt_categoria.Text = "";
-                    btn_excluir_Categoria.Visible = false;
-                    btn_categoria.Text = "Cadastrar Categoria";
+                    txt_idcategory.Text = "";
+                    txt_category.Text = "";
+                    btn_delete_category.Visible = false;
+                    btn_addcategory.Text = "Cadastrar Categoria";
                     break;
             }
         }
@@ -246,7 +257,7 @@ namespace Hardware_Store
                 try
                 {
                     sql = "Delete from TBPRODUTOS WHERE id = " + int.Parse(txt_id.Text) + "";
-                    Central.Consulta(sql);
+                    Central.Query(sql);
                     MessageBox.Show("Produto Deletado!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     Limpar_Campos("Produtos");
                     txt_id.Text = "";
@@ -265,11 +276,11 @@ namespace Hardware_Store
             {
                 try
                 {
-                    sql = "Delete from TBCATEGORIAS WHERE id = " + int.Parse(txt_idCategoria.Text) + "";
-                    Central.Consulta(sql);
+                    sql = "Delete from TBCATEGORIAS WHERE id = " + int.Parse(txt_idcategory.Text) + "";
+                    Central.Query(sql);
                     MessageBox.Show("Categoria Deletada!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     Limpar_Campos("Categorias");
-                    txt_idCategoria.Text = "";
+                    txt_idcategory.Text = "";
                     Atualizar_dgvCategoria("select * from tbcategorias");
                 }
                 catch
@@ -279,6 +290,27 @@ namespace Hardware_Store
             }
         }
 
+        private void CheckForNumbers(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsDigit(e.KeyChar) && e.KeyChar != (char)8 && e.KeyChar != '.')
+            {
+                e.Handled = true;
+            }
+        }
 
+        private void txt_id_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            CheckForNumbers(sender, e);
+        }
+
+        private void txt_quantity_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            CheckForNumbers(sender, e);
+        }
+
+        private void txt_price_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            CheckForNumbers(sender, e);
+        }
     }
 }
