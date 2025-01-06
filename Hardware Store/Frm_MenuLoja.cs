@@ -10,6 +10,8 @@ namespace Hardware_Store
 {
     public partial class Frm_MenuLoja : Form
     {
+        List<int> productsIdAdded = new List<int>();
+
         public Frm_MenuLoja()
         {
             InitializeComponent();
@@ -77,55 +79,93 @@ namespace Hardware_Store
             Dictionary<int, string> categorias = Central.ObterCategoriasIdParaNome();
             var tabPagesMap = tc_categorias.TabPages.Cast<TabPage>()
                 .ToDictionary(tabPage => tabPage.Text, tabPage => tabPage);
-            string sql = "select nome, preco, id_categoria, descricao, foto from TBPRODUTOS";
-            string nomeProduto = "";
-            bool produtoExiste = false;
+            string sql = "select Distinct id, nome, preco, id_categoria, descricao, foto from TBPRODUTOS";
+            string productName = "", productPicture = "";
+            float productPrice = 0.0f;
+            int productId = 0;
             DataTable dt = Central.Consulta(sql);
+            //List<string> productsAdded = new List<string
             int idCategoria = 0;
 
             for (int i = 0; i < dt.Rows.Count; i++)
             {
+                productId = Convert.ToInt32(dt.Rows[i]["id"]);
+                productName = dt.Rows[i]["nome"].ToString().Trim();
                 idCategoria = Convert.ToInt32(dt.Rows[i]["id_categoria"]);
+                productPrice = float.Parse(dt.Rows[i]["preco"].ToString());
+                productPicture = dt.Rows[i]["foto"].ToString();
 
                 if (categorias.TryGetValue(idCategoria, out string nomeCategoria) &&
                     tabPagesMap.TryGetValue(nomeCategoria, out TabPage tabPage) &&
                     tabPage.Controls[0] is FlowLayoutPanel flp)
                 {
-                    nomeProduto = dt.Rows[i]["nome"].ToString();
-                    produtoExiste = flp.Controls.OfType<Button>().Any(button => button.Text == nomeProduto);
 
-                    if (!produtoExiste)
+                    if (!productsIdAdded.Contains(productId))
                     {
-                        Button bt = new Button()
-                        {
-                            Text = nomeProduto,
-                            Size = new Size(150, 150),
-                            TextAlign = ContentAlignment.BottomCenter
-                        };
-                        flp.Controls.Add(bt);
-
-                        PictureBox pictureBox = new PictureBox
-                        {
-                            Size = new Size(150, 150),
-                            SizeMode = PictureBoxSizeMode.StretchImage
-                        };
-                        string imagePath = Path.Combine(Application.StartupPath, dt.Rows[i]["foto"].ToString());
-
-                        if (File.Exists(imagePath))
-                        {
-                            pictureBox.ImageLocation = imagePath; // Define a imagem no PictureBox
-                        }
-                        else
-                        {
-                            MessageBox.Show($"Imagem não encontrada: {imagePath}");
-                        }
-                        flp.Controls.Add(pictureBox);
+                        productsIdAdded.Add(productId);
+                        AddProduct(productName, productPrice, productPicture, flp);
                     }
-
 
                 }
 
             }
+        }
+
+        private void AddProduct(string name, float price, string image, FlowLayoutPanel flp)
+        {
+            CreateProductLabels(name, price, flp);
+            CreateProductPictureBox(image, flp);
+            CreateProductButton(flp);
+        }
+
+        private void CreateProductButton(FlowLayoutPanel flp)
+        {
+            Button bt = new Button()
+            {
+                Text = "Adicionar ao carrinho",
+                AutoSize = true,
+                TextAlign = ContentAlignment.BottomCenter
+            };
+            flp.Controls.Add(bt);
+        }
+
+        private void CreateProductLabels(string name, float price, FlowLayoutPanel flp)
+        {
+            Label lblName = new Label
+            {
+                Text = name,
+                AutoSize = true
+            };
+
+
+            Label lblPrice = new Label
+            {
+                Text = price.ToString(),
+                AutoSize = true
+            };
+
+
+            flp.Controls.Add(lblName);
+            flp.Controls.Add(lblPrice);
+        }
+
+        private void CreateProductPictureBox(string image, FlowLayoutPanel flp)
+        {
+            PictureBox pictureBox = new PictureBox
+            {
+                Size = new Size(150, 150),
+                SizeMode = PictureBoxSizeMode.StretchImage
+            };
+            string imagePath = Path.Combine(Application.StartupPath, image);
+            if (File.Exists(imagePath))
+            {
+                pictureBox.ImageLocation = imagePath;
+            }
+            else
+            {
+                MessageBox.Show($"Imagem não encontrada: {imagePath}");
+            }
+            flp.Controls.Add(pictureBox);
         }
 
     }

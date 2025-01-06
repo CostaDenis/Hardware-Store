@@ -3,16 +3,16 @@
   "WorkspaceRootPath": "C:\\Users\\denis\\dev\\DotNet\\Hardware_Store\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{1A776E3D-9731-4AB3-B69A-612DD9F0730E}|Hardware Store\\i.csproj|C:\\Users\\denis\\dev\\DotNet\\Hardware_Store\\hardware store\\frm_menuloja.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{1A776E3D-9731-4AB3-B69A-612DD9F0730E}|Hardware Store\\i.csproj|c:\\users\\denis\\dev\\dotnet\\hardware_store\\hardware store\\frm_menuloja.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{1A776E3D-9731-4AB3-B69A-612DD9F0730E}|Hardware Store\\i.csproj|solutionrelative:hardware store\\frm_menuloja.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{1A776E3D-9731-4AB3-B69A-612DD9F0730E}|Hardware Store\\i.csproj|c:\\users\\denis\\dev\\dotnet\\hardware_store\\hardware store\\frm_gerenciar_produtos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1A776E3D-9731-4AB3-B69A-612DD9F0730E}|Hardware Store\\i.csproj|solutionrelative:hardware store\\frm_gerenciar_produtos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{1A776E3D-9731-4AB3-B69A-612DD9F0730E}|Hardware Store\\i.csproj|C:\\Users\\denis\\dev\\DotNet\\Hardware_Store\\hardware store\\frm_gerenciar_produtos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{1A776E3D-9731-4AB3-B69A-612DD9F0730E}|Hardware Store\\i.csproj|solutionrelative:hardware store\\frm_gerenciar_produtos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{1A776E3D-9731-4AB3-B69A-612DD9F0730E}|Hardware Store\\i.csproj|c:\\users\\denis\\dev\\dotnet\\hardware_store\\hardware store\\frm_gerenciar_produtos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{1A776E3D-9731-4AB3-B69A-612DD9F0730E}|Hardware Store\\i.csproj|solutionrelative:hardware store\\frm_gerenciar_produtos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{1A776E3D-9731-4AB3-B69A-612DD9F0730E}|Hardware Store\\i.csproj|C:\\Users\\denis\\dev\\DotNet\\Hardware_Store\\hardware store\\frm_gerenciar_produtos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1A776E3D-9731-4AB3-B69A-612DD9F0730E}|Hardware Store\\i.csproj|solutionrelative:hardware store\\frm_gerenciar_produtos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{1A776E3D-9731-4AB3-B69A-612DD9F0730E}|Hardware Store\\i.csproj|C:\\Users\\denis\\dev\\DotNet\\Hardware_Store\\hardware store\\central.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -26,7 +26,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 5,
+          "SelectedChildIndex": 6,
           "Children": [
             {
               "$type": "Bookmark",
@@ -41,21 +41,25 @@
               "Name": "ST:0:0:{eefa5220-e298-11d0-8f78-00a0c9110057}"
             },
             {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{40ea2e6b-2121-4bb8-a43e-c83c04b51041}"
+            },
+            {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "Frm_Gerenciar_Produtos.cs",
               "DocumentMoniker": "C:\\Users\\denis\\dev\\DotNet\\Hardware_Store\\Hardware Store\\Frm_Gerenciar_Produtos.cs",
               "RelativeDocumentMoniker": "Hardware Store\\Frm_Gerenciar_Produtos.cs",
               "ToolTip": "C:\\Users\\denis\\dev\\DotNet\\Hardware_Store\\Hardware Store\\Frm_Gerenciar_Produtos.cs",
               "RelativeToolTip": "Hardware Store\\Frm_Gerenciar_Produtos.cs",
-              "ViewState": "AgIAAKQAAAAAAAAAAAAxwMEAAABCAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAMEAAABCAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-01-06T16:11:29.265Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 1,
               "Title": "Frm_Gerenciar_Produtos.cs [Design]",
               "DocumentMoniker": "C:\\Users\\denis\\dev\\DotNet\\Hardware_Store\\Hardware Store\\Frm_Gerenciar_Produtos.cs",
               "RelativeDocumentMoniker": "Hardware Store\\Frm_Gerenciar_Produtos.cs",
@@ -73,7 +77,7 @@
               "RelativeDocumentMoniker": "Hardware Store\\Frm_MenuLoja.cs",
               "ToolTip": "C:\\Users\\denis\\dev\\DotNet\\Hardware_Store\\Hardware Store\\Frm_MenuLoja.cs",
               "RelativeToolTip": "Hardware Store\\Frm_MenuLoja.cs",
-              "ViewState": "AgIAAFkAAAAAAAAAAAAiwGoAAAA+AAAAAAAAAA==",
+              "ViewState": "AgIAAHcAAAAAAAAAAAAiwGQAAAARAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-01-05T14:49:50.872Z",
               "EditorCaption": ""
