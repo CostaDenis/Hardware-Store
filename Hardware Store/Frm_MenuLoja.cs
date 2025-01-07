@@ -11,7 +11,8 @@ namespace Hardware_Store
     public partial class Frm_MenuLoja : Form
     {
         List<int> productsIdAdded = new List<int>();
-        int quantityProducts = 0;
+        int numberProducts = 0;
+        bool pairFirst = true;
 
         public Frm_MenuLoja()
         {
@@ -31,12 +32,12 @@ namespace Hardware_Store
                 TabPage tabPage = new TabPage($"{categoryName[i]}");
                 tc_category.TabPages.Add(tabPage);
 
-                FlowLayoutPanel flp = new FlowLayoutPanel
+                Panel panel = new Panel
                 {
                     Dock = DockStyle.Fill,
                     AutoScroll = true
                 };
-                tabPage.Controls.Add(flp);
+                tabPage.Controls.Add(panel);
 
                 FillProducts();
 
@@ -80,13 +81,13 @@ namespace Hardware_Store
 
                 if (categorias.TryGetValue(idCategoria, out string nomeCategoria) &&
                     tabPagesMap.TryGetValue(nomeCategoria, out TabPage tabPage) &&
-                    tabPage.Controls[0] is FlowLayoutPanel flp)
+                    tabPage.Controls[0] is Panel panel)
                 {
 
                     if (!productsIdAdded.Contains(productId))
                     {
                         productsIdAdded.Add(productId);
-                        AddProduct(productName, productPrice, productPicture, flp);
+                        AddProduct(productName, productPrice, productPicture, panel);
                     }
 
                 }
@@ -94,22 +95,25 @@ namespace Hardware_Store
             }
         }
 
-        private void AddProduct(string name, float price, string image, FlowLayoutPanel flp)
+        private void AddProduct(string name, float price, string image, Panel panel)
         {
-            CreateProductLabels(name, price, flp);
-            CreateProductPictureBox(image, flp);
-            CreateProductButton(flp);
+            CreateProductLabels(name, price, panel);
+            //CreateProductPictureBox(image, flp);
+            //CreateProductButton(flp);
+
+            numberProducts++;
+            pairFirst = pairFirst ? false : true;
+            //MessageBox.Show($"NP: {numberProducts}, PF: {pairFirst}");
         }
 
-        private void CreateProductLabels(string name, float price, FlowLayoutPanel flp)
+        private void CreateProductLabels(string name, float price, Panel panel)
         {
             Label lblName = new Label
             {
                 Text = name,
                 AutoSize = true,
-
             };
-
+            CalculateNewPoint(numberProducts, true, lblName, null, null, null);
 
             Label lblPrice = new Label
             {
@@ -117,12 +121,11 @@ namespace Hardware_Store
                 AutoSize = true
             };
 
-
-            flp.Controls.Add(lblName);
-            flp.Controls.Add(lblPrice);
+            panel.Controls.Add(lblName);
+            //flp.Controls.Add(lblPrice);
         }
 
-        private void CreateProductButton(FlowLayoutPanel flp)
+        private void CreateProductButton(Panel panel)
         {
             Button bt = new Button()
             {
@@ -131,10 +134,10 @@ namespace Hardware_Store
                 TextAlign = ContentAlignment.BottomCenter,
 
             };
-            flp.Controls.Add(bt);
+            panel.Controls.Add(bt);
         }
 
-        private void CreateProductPictureBox(string image, FlowLayoutPanel flp)
+        private void CreateProductPictureBox(string image, Panel panel)
         {
             PictureBox pictureBox = new PictureBox
             {
@@ -150,11 +153,11 @@ namespace Hardware_Store
             {
                 MessageBox.Show($"Imagem não encontrada: {imagePath}");
             }
-            flp.Controls.Add(pictureBox);
+            panel.Controls.Add(pictureBox);
         }
 
         //Parametros opcionais com controls
-        private void CalculateNewPoint(int quantityProducts, bool pairFirst,
+        private void CalculateNewPoint(int numberProduct, bool pairFirst,
            Label lblname = null,
            Label lblPrice = null,
            PictureBox pb = null,
@@ -164,9 +167,44 @@ namespace Hardware_Store
 
             foreach (Control control in controlsList)
             {
+
                 if (control != null)
                 {
+                    Point location = Point.Empty;
 
+                    if (pairFirst)
+                    {
+
+                        switch (numberProduct)
+                        {
+                            case 1:
+                                location = new Point(172, 54);
+                                break;
+                            case 2:
+                                location = new Point(430, 54);
+                                break;
+                            case 3:
+                                location = new Point(693, 54);
+                                break;
+                        }
+                    }
+                    else
+                    {
+                        switch (numberProduct)
+                        {
+                            case 1:
+                                location = new Point(172, 100);
+                                break;
+                            case 2:
+                                location = new Point(430, 100);
+                                break;
+                            case 3:
+                                location = new Point(693, 100);
+                                break;
+                        }
+                    }
+                    MessageBox.Show($"Setting location of {control.GetType().Name} to {location}");
+                    control.Location = location;
 
 
                 }

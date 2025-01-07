@@ -18,7 +18,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Bookmark",
@@ -34,19 +34,6 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Frm_MenuLoja.cs",
-              "DocumentMoniker": "C:\\Users\\denis\\dev\\DotNet\\Hardware_Store\\Hardware Store\\Frm_MenuLoja.cs",
-              "RelativeDocumentMoniker": "Hardware Store\\Frm_MenuLoja.cs",
-              "ToolTip": "C:\\Users\\denis\\dev\\DotNet\\Hardware_Store\\Hardware Store\\Frm_MenuLoja.cs",
-              "RelativeToolTip": "Hardware Store\\Frm_MenuLoja.cs",
-              "ViewState": "AgIAAJEAAAAAAAAAAAAxwJwAAAA9AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-07T21:01:46.161Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 1,
               "Title": "Frm_MenuLoja.cs [Design]",
               "DocumentMoniker": "C:\\Users\\denis\\dev\\DotNet\\Hardware_Store\\Hardware Store\\Frm_MenuLoja.cs",
@@ -54,8 +41,21 @@
               "ToolTip": "C:\\Users\\denis\\dev\\DotNet\\Hardware_Store\\Hardware Store\\Frm_MenuLoja.cs [Design]",
               "RelativeToolTip": "Hardware Store\\Frm_MenuLoja.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-07T21:01:43.722Z",
+              "WhenOpened": "2025-01-07T21:58:14.965Z",
               "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Frm_MenuLoja.cs",
+              "DocumentMoniker": "C:\\Users\\denis\\dev\\DotNet\\Hardware_Store\\Hardware Store\\Frm_MenuLoja.cs",
+              "RelativeDocumentMoniker": "Hardware Store\\Frm_MenuLoja.cs",
+              "ToolTip": "C:\\Users\\denis\\dev\\DotNet\\Hardware_Store\\Hardware Store\\Frm_MenuLoja.cs",
+              "RelativeToolTip": "Hardware Store\\Frm_MenuLoja.cs",
+              "ViewState": "AgIAAKsAAAAAAAAAAAAuwKwAAAAxAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-07T21:01:46.161Z",
+              "EditorCaption": ""
             }
           ]
         }
