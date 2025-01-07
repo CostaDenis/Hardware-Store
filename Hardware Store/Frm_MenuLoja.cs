@@ -11,6 +11,7 @@ namespace Hardware_Store
     public partial class Frm_MenuLoja : Form
     {
         List<int> productsIdAdded = new List<int>();
+        int quantityProducts = 0;
 
         public Frm_MenuLoja()
         {
@@ -100,23 +101,13 @@ namespace Hardware_Store
             CreateProductButton(flp);
         }
 
-        private void CreateProductButton(FlowLayoutPanel flp)
-        {
-            Button bt = new Button()
-            {
-                Text = "Adicionar ao carrinho",
-                AutoSize = true,
-                TextAlign = ContentAlignment.BottomCenter
-            };
-            flp.Controls.Add(bt);
-        }
-
         private void CreateProductLabels(string name, float price, FlowLayoutPanel flp)
         {
             Label lblName = new Label
             {
                 Text = name,
-                AutoSize = true
+                AutoSize = true,
+
             };
 
 
@@ -131,7 +122,18 @@ namespace Hardware_Store
             flp.Controls.Add(lblPrice);
         }
 
-        //Arrumar caminho das imagens
+        private void CreateProductButton(FlowLayoutPanel flp)
+        {
+            Button bt = new Button()
+            {
+                Text = "Adicionar ao carrinho",
+                AutoSize = true,
+                TextAlign = ContentAlignment.BottomCenter,
+
+            };
+            flp.Controls.Add(bt);
+        }
+
         private void CreateProductPictureBox(string image, FlowLayoutPanel flp)
         {
             PictureBox pictureBox = new PictureBox
@@ -149,6 +151,27 @@ namespace Hardware_Store
                 MessageBox.Show($"Imagem não encontrada: {imagePath}");
             }
             flp.Controls.Add(pictureBox);
+        }
+
+        //Parametros opcionais com controls
+        private void CalculateNewPoint(int quantityProducts, bool pairFirst,
+           Label lblname = null,
+           Label lblPrice = null,
+           PictureBox pb = null,
+           Button btn = null)
+        {
+            List<Control> controlsList = new List<Control> { lblname, lblPrice, pb, btn };
+
+            foreach (Control control in controlsList)
+            {
+                if (control != null)
+                {
+
+
+
+                }
+            }
+
         }
 
     }
