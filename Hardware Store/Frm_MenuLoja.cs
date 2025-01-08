@@ -97,32 +97,46 @@ namespace Hardware_Store
 
         private void AddProduct(string name, float price, string image, Panel panel)
         {
-            CreateProductLabels(name, price, panel);
-            //CreateProductPictureBox(image, flp);
+
+            CreateProductPictureBox(image, CreateProductLabelsTop(name, price, panel), panel);
             //CreateProductButton(flp);
 
-            numberProducts++;
-            pairFirst = pairFirst ? false : true;
+            //numberProducts++;
+            //pairFirst = pairFirst ? false : true;
             //MessageBox.Show($"NP: {numberProducts}, PF: {pairFirst}");
         }
 
-        private void CreateProductLabels(string name, float price, Panel panel)
+        private Label CreateProductLabelsTop(string name, float price, Panel panel)
         {
             Label lblName = new Label
             {
                 Text = name,
                 AutoSize = true,
             };
-            CalculateNewPoint(numberProducts, true, lblName, null, null, null);
 
+            panel.Controls.Add(lblName);
+
+            return lblName;
+        }
+
+        private Label CreateProductLabelsBottom(float price, PictureBox pb, Panel panel, int index)
+        {
             Label lblPrice = new Label
             {
                 Text = price.ToString(),
+                Name = $"lblPrice_{index}",
                 AutoSize = true
             };
 
-            panel.Controls.Add(lblName);
-            //flp.Controls.Add(lblPrice);
+            panel.Controls.Add(lblPrice);
+
+            int centerX = pb.Left + pb.Width / 2;
+            int labelTop = pb.Top - lblPrice.Bottom + 10;
+
+            lblPrice.Left = centerX - lblPrice.Width / 2;
+            lblPrice.Top = labelTop;
+
+            return lblPrice;
         }
 
         private void CreateProductButton(Panel panel)
@@ -137,11 +151,12 @@ namespace Hardware_Store
             panel.Controls.Add(bt);
         }
 
-        private void CreateProductPictureBox(string image, Panel panel)
+        private void CreateProductPictureBox(string image, Label lblName, Panel panel)
         {
             PictureBox pictureBox = new PictureBox
             {
                 Size = new Size(150, 150),
+                Location = new Point(100, 54), //Teste
                 SizeMode = PictureBoxSizeMode.StretchImage
             };
             string imagePath = Path.Combine(Application.StartupPath + "\\", image);
@@ -154,6 +169,8 @@ namespace Hardware_Store
                 MessageBox.Show($"Imagem não encontrada: {imagePath}");
             }
             panel.Controls.Add(pictureBox);
+            CenterLabelTop(lblName, pictureBox);
+
         }
 
         //Parametros opcionais com controls
@@ -209,6 +226,28 @@ namespace Hardware_Store
 
                 }
             }
+
+        }
+
+        private void CenterLabelTop(Label lbl, PictureBox pb)
+        {
+            //Centraliza o label acima do PictureBox
+            int centerX = pb.Left + pb.Width / 2;
+            int labelTop = pb.Top - lbl.Height - 10;
+
+            lbl.Left = centerX - lbl.Width / 2;
+            lbl.Top = labelTop;
+
+        }
+
+        private void CenterLabelBottom(Label lbl, PictureBox pb)
+        {
+            //Centraliza o label abaixo do PictureBox
+            int centerX = pb.Left + pb.Width / 2;
+            int labelTop = pb.Top - lbl.Bottom + 10;
+
+            lbl.Left = centerX - lbl.Width / 2;
+            lbl.Top = labelTop;
 
         }
 
