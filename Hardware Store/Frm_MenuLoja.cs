@@ -11,8 +11,7 @@ namespace Hardware_Store
     public partial class Frm_MenuLoja : Form
     {
         List<int> productsIdAdded = new List<int>();
-        int numberProducts = 0;
-        bool pairFirst = true;
+        bool pairFirst = false;
         int index = 0;
 
         public Frm_MenuLoja()
@@ -94,24 +93,20 @@ namespace Hardware_Store
                 }
 
             }
+            pairFirst = pairFirst ? false : true;
         }
 
         private void AddProduct(string name, float price, string image, Panel panel)
         {
-
-            //CreateProductPictureBox(image, CreateProductLabelsTop(name, price, panel), panel);
             PictureBox pb = CreateProductPictureBox(image, panel);
-            CreateProductLabelsTop(name, pb, panel, index);
-            CreateProductLabelsBottom(price, pb, panel, index);
-            //CreateProductButton(flp);
+            Label lblName = CreateProductLabelsTop(name, pb, panel, index);
+            Label lblPrice = CreateProductLabelsBottom(price, pb, panel, index);
+            Button btn = CreateProductButton(panel, lblPrice);
 
-            //numberProducts++;
-            //pairFirst = pairFirst ? false : true;
-            //MessageBox.Show($"NP: {numberProducts}, PF: {pairFirst}");
             index++;
         }
 
-        private void CreateProductLabelsTop(string name, PictureBox pb, Panel panel, int index)
+        private Label CreateProductLabelsTop(string name, PictureBox pb, Panel panel, int index)
         {
             Label lblName = new Label
             {
@@ -128,9 +123,11 @@ namespace Hardware_Store
             lblName.Left = centerX - lblName.Width / 2;
             lblName.Top = labelTop;
 
+            return lblName;
+
         }
 
-        private void CreateProductLabelsBottom(float price, PictureBox pb, Panel panel, int index)
+        private Label CreateProductLabelsBottom(float price, PictureBox pb, Panel panel, int index)
         {
             Label lblPrice = new Label
             {
@@ -147,6 +144,7 @@ namespace Hardware_Store
             lblPrice.Left = centerX - lblPrice.Width / 2;
             lblPrice.Top = labelTop;
 
+            return lblPrice;
         }
 
         private PictureBox CreateProductPictureBox(string image, Panel panel)
@@ -154,9 +152,10 @@ namespace Hardware_Store
             PictureBox pictureBox = new PictureBox
             {
                 Size = new Size(150, 150),
-                Location = new Point(100, 54), //Teste
                 SizeMode = PictureBoxSizeMode.StretchImage
             };
+            pictureBox.Location = CalculateNewPoint(index, pairFirst, pictureBox);
+
             string imagePath = Path.Combine(Application.StartupPath + "\\", image);
             if (File.Exists(imagePath))
             {
@@ -172,72 +171,65 @@ namespace Hardware_Store
 
         }
 
-        private void CreateProductButton(Panel panel)
+        private Button CreateProductButton(Panel panel, Label lblBottom)
         {
-            Button bt = new Button()
+            Button btn = new Button()
             {
                 Text = "Adicionar ao carrinho",
                 AutoSize = true,
                 TextAlign = ContentAlignment.BottomCenter,
 
             };
-            panel.Controls.Add(bt);
+            panel.Controls.Add(btn);
+
+            int centerX = lblBottom.Left + lblBottom.Width / 2;
+            int labelTop = lblBottom.Top - btn.Bottom + 40;
+
+            btn.Left = centerX - btn.Width / 2;
+            btn.Top = labelTop;
+
+            return btn;
         }
 
 
-        //Parametros opcionais com controls
-        private void CalculateNewPoint(int numberProduct, bool pairFirst,
-           Label lblname = null,
-           Label lblPrice = null,
-           PictureBox pb = null,
-           Button btn = null)
+        //Arrumar as posições dos controles
+        private Point CalculateNewPoint(int numberProduct, bool pairFirst, PictureBox pb)
         {
-            List<Control> controlsList = new List<Control> { lblname, lblPrice, pb, btn };
 
-            foreach (Control control in controlsList)
+            Point location = Point.Empty;
+
+            if (pairFirst)
             {
 
-                if (control != null)
+                switch (numberProduct)
                 {
-                    Point location = Point.Empty;
-
-                    if (pairFirst)
-                    {
-
-                        switch (numberProduct)
-                        {
-                            case 1:
-                                location = new Point(172, 54);
-                                break;
-                            case 2:
-                                location = new Point(430, 54);
-                                break;
-                            case 3:
-                                location = new Point(693, 54);
-                                break;
-                        }
-                    }
-                    else
-                    {
-                        switch (numberProduct)
-                        {
-                            case 1:
-                                location = new Point(172, 100);
-                                break;
-                            case 2:
-                                location = new Point(430, 100);
-                                break;
-                            case 3:
-                                location = new Point(693, 100);
-                                break;
-                        }
-                    }
-                    MessageBox.Show($"Setting location of {control.GetType().Name} to {location}");
-                    control.Location = location;
-
-
+                    case 0:
+                        location = new Point(172, 54);
+                        break;
+                    case 1:
+                        location = new Point(430, 54);
+                        break;
+                    case 2:
+                        location = new Point(693, 54);
+                        break;
                 }
             }
+            else
+            {
+                switch (numberProduct)
+                {
+                    case 0:
+                        location = new Point(172, 300);
+                        break;
+                    case 1:
+                        location = new Point(430, 300);
+                        break;
+                    case 2:
+                        location = new Point(693, 300);
+                        break;
+                }
+            }
+            return location;
 
         }
 
