@@ -12,7 +12,7 @@ namespace Hardware_Store
     {
         List<int> productsIdAdded = new List<int>();
         bool pairFirst = false;
-        int index = 0;
+        int index = 0, nextIndexCol = 3, indexCol = 1;
 
         public Frm_MenuLoja()
         {
@@ -98,12 +98,27 @@ namespace Hardware_Store
 
         private void AddProduct(string name, float price, string image, Panel panel)
         {
+
+
+            if (index == nextIndexCol)
+            {
+                indexCol++;
+                index = 0;
+            }
+            index++;
+
             PictureBox pb = CreateProductPictureBox(image, panel);
             Label lblName = CreateProductLabelsTop(name, pb, panel, index);
             Label lblPrice = CreateProductLabelsBottom(price, pb, panel, index);
             Button btn = CreateProductButton(panel, lblPrice);
 
-            index++;
+            //index++;
+            //if (index == nextIndexCol)
+            //{
+            //    nextIndexCol += 3;
+            //    indexCol++;
+            //    index = 0;
+            //}
         }
 
         private Label CreateProductLabelsTop(string name, PictureBox pb, Panel panel, int index)
@@ -154,7 +169,7 @@ namespace Hardware_Store
                 Size = new Size(150, 150),
                 SizeMode = PictureBoxSizeMode.StretchImage
             };
-            pictureBox.Location = CalculateNewPoint(index, pairFirst, pictureBox);
+            pictureBox.Location = CalculateNewPoint(index, indexCol, pictureBox);
 
             string imagePath = Path.Combine(Application.StartupPath + "\\", image);
             if (File.Exists(imagePath))
@@ -192,45 +207,17 @@ namespace Hardware_Store
         }
 
 
-        //Arrumar as posições dos controles
-        private Point CalculateNewPoint(int numberProduct, bool pairFirst, PictureBox pb)
+        private Point CalculateNewPoint(int numberProduct, int indexCol, PictureBox pb)
         {
+            const int horizontalSpacing = 200;
+            const int verticalSpacing = 100;
+            const int initialX = 50;
 
-            Point location = Point.Empty;
+            int totalHeight = pb.Height + verticalSpacing;
+            int posX = initialX + (numberProduct - 1) * horizontalSpacing;
+            int posY = (indexCol - 1) * totalHeight + 50;
 
-            if (pairFirst)
-            {
-
-                switch (numberProduct)
-                {
-                    case 0:
-                        location = new Point(172, 54);
-                        break;
-                    case 1:
-                        location = new Point(430, 54);
-                        break;
-                    case 2:
-                        location = new Point(693, 54);
-                        break;
-                }
-            }
-            else
-            {
-                switch (numberProduct)
-                {
-                    case 0:
-                        location = new Point(172, 300);
-                        break;
-                    case 1:
-                        location = new Point(430, 300);
-                        break;
-                    case 2:
-                        location = new Point(693, 300);
-                        break;
-                }
-            }
-            return location;
-
+            return new Point(posX, posY);
         }
 
 
