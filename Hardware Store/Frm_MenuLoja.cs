@@ -13,6 +13,7 @@ namespace Hardware_Store
         List<int> productsIdAdded = new List<int>();
         int numberProducts = 0;
         bool pairFirst = true;
+        int index = 0;
 
         public Frm_MenuLoja()
         {
@@ -98,28 +99,38 @@ namespace Hardware_Store
         private void AddProduct(string name, float price, string image, Panel panel)
         {
 
-            CreateProductPictureBox(image, CreateProductLabelsTop(name, price, panel), panel);
+            //CreateProductPictureBox(image, CreateProductLabelsTop(name, price, panel), panel);
+            PictureBox pb = CreateProductPictureBox(image, panel);
+            CreateProductLabelsTop(name, pb, panel, index);
+            CreateProductLabelsBottom(price, pb, panel, index);
             //CreateProductButton(flp);
 
             //numberProducts++;
             //pairFirst = pairFirst ? false : true;
             //MessageBox.Show($"NP: {numberProducts}, PF: {pairFirst}");
+            index++;
         }
 
-        private Label CreateProductLabelsTop(string name, float price, Panel panel)
+        private void CreateProductLabelsTop(string name, PictureBox pb, Panel panel, int index)
         {
             Label lblName = new Label
             {
                 Text = name,
+                Name = $"lblName_{index}",
                 AutoSize = true,
             };
 
             panel.Controls.Add(lblName);
 
-            return lblName;
+            int centerX = pb.Left + pb.Width / 2;
+            int labelTop = pb.Top - lblName.Height - 10;
+
+            lblName.Left = centerX - lblName.Width / 2;
+            lblName.Top = labelTop;
+
         }
 
-        private Label CreateProductLabelsBottom(float price, PictureBox pb, Panel panel, int index)
+        private void CreateProductLabelsBottom(float price, PictureBox pb, Panel panel, int index)
         {
             Label lblPrice = new Label
             {
@@ -131,27 +142,14 @@ namespace Hardware_Store
             panel.Controls.Add(lblPrice);
 
             int centerX = pb.Left + pb.Width / 2;
-            int labelTop = pb.Top - lblPrice.Bottom + 10;
+            int labelTop = pb.Top - lblPrice.Bottom + 170;
 
             lblPrice.Left = centerX - lblPrice.Width / 2;
             lblPrice.Top = labelTop;
 
-            return lblPrice;
         }
 
-        private void CreateProductButton(Panel panel)
-        {
-            Button bt = new Button()
-            {
-                Text = "Adicionar ao carrinho",
-                AutoSize = true,
-                TextAlign = ContentAlignment.BottomCenter,
-
-            };
-            panel.Controls.Add(bt);
-        }
-
-        private void CreateProductPictureBox(string image, Label lblName, Panel panel)
+        private PictureBox CreateProductPictureBox(string image, Panel panel)
         {
             PictureBox pictureBox = new PictureBox
             {
@@ -169,9 +167,23 @@ namespace Hardware_Store
                 MessageBox.Show($"Imagem não encontrada: {imagePath}");
             }
             panel.Controls.Add(pictureBox);
-            CenterLabelTop(lblName, pictureBox);
+
+            return pictureBox;
 
         }
+
+        private void CreateProductButton(Panel panel)
+        {
+            Button bt = new Button()
+            {
+                Text = "Adicionar ao carrinho",
+                AutoSize = true,
+                TextAlign = ContentAlignment.BottomCenter,
+
+            };
+            panel.Controls.Add(bt);
+        }
+
 
         //Parametros opcionais com controls
         private void CalculateNewPoint(int numberProduct, bool pairFirst,
@@ -229,27 +241,6 @@ namespace Hardware_Store
 
         }
 
-        private void CenterLabelTop(Label lbl, PictureBox pb)
-        {
-            //Centraliza o label acima do PictureBox
-            int centerX = pb.Left + pb.Width / 2;
-            int labelTop = pb.Top - lbl.Height - 10;
-
-            lbl.Left = centerX - lbl.Width / 2;
-            lbl.Top = labelTop;
-
-        }
-
-        private void CenterLabelBottom(Label lbl, PictureBox pb)
-        {
-            //Centraliza o label abaixo do PictureBox
-            int centerX = pb.Left + pb.Width / 2;
-            int labelTop = pb.Top - lbl.Bottom + 10;
-
-            lbl.Left = centerX - lbl.Width / 2;
-            lbl.Top = labelTop;
-
-        }
 
     }
 }
