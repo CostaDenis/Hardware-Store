@@ -1,11 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Hardware_Store
@@ -43,6 +38,58 @@ namespace Hardware_Store
             */
             frm_adm.Show();
         }
-    }
+
+        private void Frm_Login_Load(object sender, EventArgs e)
+        {
+            SetPlaceHolderCPF(txt_cpf, txt_senha, "CPF", "Password");
+        }
+
+        private void SetPlaceHolderCPF(TextBox textBoxCPF, TextBox textBoxPassword, string placeholderCPF,
+                                         string placeholderPassword)
+        {
+            textBoxCPF.Text = placeholderCPF;
+            textBoxCPF.ForeColor = Color.Gray;
+            textBoxPassword.Text = placeholderPassword;
+            textBoxPassword.ForeColor = Color.Gray;
+
+            textBoxCPF.Enter += (s, e) =>
+            {
+                if (textBoxCPF.Text == placeholderCPF)
+                {
+                    textBoxCPF.Text = "";
+                    textBoxCPF.ForeColor = Color.Black;
+                }
+            };
+
+            textBoxCPF.Leave += (s, e) =>
+            {
+                if (textBoxCPF.Text.Length == 0)
+                {
+                    textBoxCPF.Text = placeholderCPF;
+                    textBoxCPF.ForeColor = Color.Gray;
+                }
+            };
+
+
+            textBoxPassword.Enter += (s, e) =>
+            {
+                if (textBoxPassword.Text == placeholderPassword)
+                {
+                    textBoxPassword.Text = "";
+                    textBoxPassword.ForeColor = Color.Black;
+                }
+            };
+
+            textBoxPassword.Leave += (s, e) =>
+            {
+                if (textBoxPassword.Text.Length == 0)
+                {
+                    textBoxPassword.Text = placeholderPassword;
+                    textBoxPassword.ForeColor = Color.Gray;
+                }
+            };
+        }
 
     }
+
+}
