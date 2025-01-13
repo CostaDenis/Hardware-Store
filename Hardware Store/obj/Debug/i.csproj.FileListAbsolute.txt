@@ -44,3 +44,4 @@ C:\Users\denis\dev\DotNet\Hardware_Store\Hardware Store\obj\Debug\i.csproj.CoreC
 C:\Users\denis\dev\DotNet\Hardware_Store\Hardware Store\obj\Debug\i.csproj.Up2Date
 C:\Users\denis\dev\DotNet\Hardware_Store\Hardware Store\obj\Debug\Hardware Store.exe
 C:\Users\denis\dev\DotNet\Hardware_Store\Hardware Store\obj\Debug\Hardware Store.pdb
+C:\Users\denis\dev\DotNet\Hardware_Store\Hardware Store\obj\Debug\Hardware_Store.Frm_RecoverPassword.resources

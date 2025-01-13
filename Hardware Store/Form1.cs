@@ -90,6 +90,23 @@ namespace Hardware_Store
             };
         }
 
+        private void chb_mostrarSenha_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chb_mostrarSenha.Checked)
+            {
+                txt_senha.UseSystemPasswordChar = false;
+            }
+            else
+            {
+                txt_senha.UseSystemPasswordChar = true;
+            }
+        }
+
+        private void lbl_recoverPassword_Click(object sender, EventArgs e)
+        {
+            Frm_RecoverPassword frm_recoverPassword = new Frm_RecoverPassword();
+            frm_recoverPassword.Show();
+        }
     }
 
 }

@@ -33,10 +33,10 @@
             this.txt_senha = new System.Windows.Forms.TextBox();
             this.txt_cpf = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.lbl_recoverPassword = new System.Windows.Forms.Label();
+            this.chb_mostrarSenha = new System.Windows.Forms.CheckBox();
             this.label3 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -62,6 +62,7 @@
             this.txt_senha.Size = new System.Drawing.Size(473, 35);
             this.txt_senha.TabIndex = 7;
             this.txt_senha.TabStop = false;
+            this.txt_senha.UseSystemPasswordChar = true;
             // 
             // txt_cpf
             // 
@@ -76,8 +77,8 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.Highlight;
-            this.panel1.Controls.Add(this.label1);
-            this.panel1.Controls.Add(this.checkBox1);
+            this.panel1.Controls.Add(this.lbl_recoverPassword);
+            this.panel1.Controls.Add(this.chb_mostrarSenha);
             this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.btn_entrar);
             this.panel1.Controls.Add(this.txt_cpf);
@@ -87,14 +88,37 @@
             this.panel1.Size = new System.Drawing.Size(654, 749);
             this.panel1.TabIndex = 11;
             // 
+            // lbl_recoverPassword
+            // 
+            this.lbl_recoverPassword.AutoSize = true;
+            this.lbl_recoverPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_recoverPassword.Location = new System.Drawing.Point(406, 423);
+            this.lbl_recoverPassword.Name = "lbl_recoverPassword";
+            this.lbl_recoverPassword.Size = new System.Drawing.Size(164, 22);
+            this.lbl_recoverPassword.TabIndex = 14;
+            this.lbl_recoverPassword.Text = "Recuperar senha >";
+            this.lbl_recoverPassword.Click += new System.EventHandler(this.lbl_recoverPassword_Click);
+            // 
+            // chb_mostrarSenha
+            // 
+            this.chb_mostrarSenha.AutoSize = true;
+            this.chb_mostrarSenha.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chb_mostrarSenha.Location = new System.Drawing.Point(97, 422);
+            this.chb_mostrarSenha.Name = "chb_mostrarSenha";
+            this.chb_mostrarSenha.Size = new System.Drawing.Size(146, 26);
+            this.chb_mostrarSenha.TabIndex = 13;
+            this.chb_mostrarSenha.Text = "Mostrar senha";
+            this.chb_mostrarSenha.UseVisualStyleBackColor = true;
+            this.chb_mostrarSenha.CheckedChanged += new System.EventHandler(this.chb_mostrarSenha_CheckedChanged);
+            // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Font = new System.Drawing.Font("Arial", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.SystemColors.Window;
             this.label3.Location = new System.Drawing.Point(173, 134);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(320, 69);
+            this.label3.Size = new System.Drawing.Size(337, 70);
             this.label3.TabIndex = 12;
             this.label3.Text = "Bem vindo";
             // 
@@ -107,27 +131,6 @@
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 12;
             this.pictureBox1.TabStop = false;
-            // 
-            // checkBox1
-            // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkBox1.Location = new System.Drawing.Point(97, 422);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(146, 26);
-            this.checkBox1.TabIndex = 13;
-            this.checkBox1.Text = "Mostrar senha";
-            this.checkBox1.UseVisualStyleBackColor = true;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(406, 423);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(164, 22);
-            this.label1.TabIndex = 14;
-            this.label1.Text = "Recuperar senha >";
             // 
             // Frm_Login
             // 
@@ -157,8 +160,8 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.Label lbl_recoverPassword;
+        private System.Windows.Forms.CheckBox chb_mostrarSenha;
     }
 }
 
