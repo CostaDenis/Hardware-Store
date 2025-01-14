@@ -17,6 +17,13 @@ namespace Hardware_Store
 
         private void btn_adicionar_Click(object sender, EventArgs e)
         {
+            string cpf = txt_cpf.Text;
+            string name = txt_name.Text;
+            string password = Central.EncryptData(txt_password.Text, Central.CheckDataBaseKey());
+            string email = "aaaaaaaaaa";
+            int access = int.Parse(txt_access.Text);
+            string active = cmb_active.Text;
+
             if (Checar_Campos() == true)
             {
                 sql = "SELECT * FROM TBCONTAS WHERE ID_CPF='" + txt_cpf.Text + "'";
@@ -30,9 +37,9 @@ namespace Hardware_Store
                 }
                 else
                 {
-                    sql = "INSERT INTO TBCONTAS VALUES ('" + txt_cpf.Text + "', " +
-                        "'" + txt_name.Text + "', '" + txt_password.Text + "', " + int.TryParse(txt_password.Text, out int r) + ", '" +
-                        cmb_active.Text + "')";
+                    sql = $"INSERT INTO TBCONTAS VALUES ('{cpf}', " +
+                        $" '{name}', '{password}', '{email}', '{access}', " +
+                        $"'{active}')";
                     Central.Query(sql);
 
                     MessageBox.Show("Conta Adicionada", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);

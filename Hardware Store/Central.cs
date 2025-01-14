@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SQLite;
+using System.IO;
+using System.Security.Cryptography;
 using System.Windows.Forms;
 
 namespace Hardware_Store
@@ -10,6 +12,58 @@ namespace Hardware_Store
     {
 
         private static SQLiteConnection connection;
+
+        public static string CheckDataBaseKey()
+        {
+            string key = Environment.GetEnvironmentVariable("CATELOGIC_DB_KEY", EnvironmentVariableTarget.User);
+
+            if (!string.IsNullOrEmpty(key))
+            {
+                return key;
+            }
+            else
+            {
+                string newKey = CreateDataBaseKey();
+
+                Environment.SetEnvironmentVariable("CATELOGIC_DB_KEY", newKey, EnvironmentVariableTarget.User);
+
+                MessageBox.Show("Chave de criptografia gerada com sucesso nas variáveis de ambiente do seu usuário! NÃO A EXCLUA, pois ela será necessária para acessar o banco de dados.",
+                    "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                return newKey;
+            }
+        }
+
+        public static string CreateDataBaseKey()
+        {
+            using (var aes = Aes.Create())
+            {
+                aes.GenerateKey();
+                string key = Convert.ToBase64String(aes.Key);
+
+                return Convert.ToBase64String(aes.Key);
+            }
+        }
+
+        public static string EncryptData(string sql, string key)
+        {
+            using (var aes = Aes.Create())
+            {
+                aes.Key = Convert.FromBase64String(key);
+                aes.IV = new byte[16];
+                var encryptor = aes.CreateEncryptor(aes.Key, aes.IV);
+
+                using (var ms = new MemoryStream())
+                {
+                    using (var cs = new CryptoStream(ms, encryptor, CryptoStreamMode.Write))
+                    using (var writer = new StreamWriter(cs))
+                    {
+                        writer.Write(sql);
+                    }
+                    return Convert.ToBase64String(ms.ToArray());
+                }
+            }
+        }
 
         public static SQLiteConnection ConexaoBanco()
         {
