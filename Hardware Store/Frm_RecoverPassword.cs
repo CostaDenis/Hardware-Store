@@ -29,9 +29,19 @@ namespace Hardware_Store
             }
             else
             {
-                MessageBox.Show($"email: {email_store}, senha: {password_store}");
-                SendEmail(email, "Recuperação de senha", $"Sua senha é: {dt.Rows[0]["senha"].ToString()}");
+                sql = $"Select ativo from TBCONTAS where email = '{email}'";
+                dt = Central.Query(sql);
 
+                if (dt.Rows[0]["ativo"].ToString() == "Não")
+                {
+                    MessageBox.Show("Conta desativada! Entre em contato com o administrador", "Atenção",
+                        MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    return;
+                }
+                else
+                {
+                    SendEmail(email, "Recuperação de senha", $"Sua senha é: {dt.Rows[0]["senha"].ToString()}");
+                }
             }
         }
 
@@ -40,7 +50,7 @@ namespace Hardware_Store
 
             try
             {
-                SmtpClient smtpClient = new SmtpClient("smtp.office365.com", 587)
+                SmtpClient smtpClient = new SmtpClient("smtp.gmail.com", 587)
                 {
                     Credentials = new NetworkCredential($"{email_store}", $"{password_store}"),
                     EnableSsl = true
@@ -65,5 +75,33 @@ namespace Hardware_Store
             }
         }
 
+        private void Frm_RecoverPassword_Load(object sender, EventArgs e)
+        {
+            SetPlaceHolderEmail(txt_email, "Email");
+        }
+
+        private void SetPlaceHolderEmail(TextBox txtemail, string placeholderEmail)
+        {
+            txtemail.Text = placeholderEmail;
+            txtemail.ForeColor = System.Drawing.Color.Gray;
+
+            txtemail.Enter += (s, e) =>
+            {
+                if (txtemail.Text == placeholderEmail)
+                {
+                    txtemail.Text = "";
+                    txtemail.ForeColor = System.Drawing.Color.Black;
+                }
+            };
+
+            txtemail.Leave += (s, e) =>
+            {
+                if (txtemail.Text.Length == 0)
+                {
+                    txtemail.Text = placeholderEmail;
+                    txtemail.ForeColor = System.Drawing.Color.Gray;
+                }
+            };
+        }
     }
 }
