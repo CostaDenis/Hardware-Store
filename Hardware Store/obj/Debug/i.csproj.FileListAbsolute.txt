@@ -45,3 +45,11 @@ C:\Users\denis\dev\DotNet\Hardware_Store\Hardware Store\obj\Debug\i.csproj.Up2Da
 C:\Users\denis\dev\DotNet\Hardware_Store\Hardware Store\obj\Debug\Hardware Store.exe
 C:\Users\denis\dev\DotNet\Hardware_Store\Hardware Store\obj\Debug\Hardware Store.pdb
 C:\Users\denis\dev\DotNet\Hardware_Store\Hardware Store\obj\Debug\Hardware_Store.Frm_RecoverPassword.resources
+C:\Users\denis\dev\DotNet\Hardware_Store\Hardware Store\bin\Debug\System.Buffers.dll
+C:\Users\denis\dev\DotNet\Hardware_Store\Hardware Store\bin\Debug\System.Memory.dll
+C:\Users\denis\dev\DotNet\Hardware_Store\Hardware Store\bin\Debug\System.Numerics.Vectors.dll
+C:\Users\denis\dev\DotNet\Hardware_Store\Hardware Store\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
+C:\Users\denis\dev\DotNet\Hardware_Store\Hardware Store\bin\Debug\System.Buffers.xml
+C:\Users\denis\dev\DotNet\Hardware_Store\Hardware Store\bin\Debug\System.Memory.xml
+C:\Users\denis\dev\DotNet\Hardware_Store\Hardware Store\bin\Debug\System.Numerics.Vectors.xml
+C:\Users\denis\dev\DotNet\Hardware_Store\Hardware Store\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml

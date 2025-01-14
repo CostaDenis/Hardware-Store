@@ -50,15 +50,15 @@
             this.txt_password = new System.Windows.Forms.TextBox();
             this.txt_cpf = new System.Windows.Forms.TextBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.dgv = new System.Windows.Forms.DataGridView();
             this.panel2 = new System.Windows.Forms.Panel();
             this.label8 = new System.Windows.Forms.Label();
+            this.dgv = new System.Windows.Forms.DataGridView();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.tabPage2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgv)).BeginInit();
             this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -286,6 +286,7 @@
             this.txt_password.Name = "txt_password";
             this.txt_password.Size = new System.Drawing.Size(304, 35);
             this.txt_password.TabIndex = 2;
+            this.txt_password.UseSystemPasswordChar = true;
             // 
             // txt_cpf
             // 
@@ -311,18 +312,6 @@
             this.tabPage2.Text = "Visualizar Contas";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // dgv
-            // 
-            this.dgv.BackgroundColor = System.Drawing.SystemColors.ActiveCaption;
-            this.dgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgv.GridColor = System.Drawing.SystemColors.MenuHighlight;
-            this.dgv.Location = new System.Drawing.Point(8, 118);
-            this.dgv.Margin = new System.Windows.Forms.Padding(4);
-            this.dgv.Name = "dgv";
-            this.dgv.RowHeadersWidth = 51;
-            this.dgv.Size = new System.Drawing.Size(883, 488);
-            this.dgv.TabIndex = 0;
-            // 
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.SystemColors.Highlight;
@@ -344,6 +333,18 @@
             this.label8.TabIndex = 5;
             this.label8.Text = "Contas cadastradas";
             // 
+            // dgv
+            // 
+            this.dgv.BackgroundColor = System.Drawing.SystemColors.ActiveCaption;
+            this.dgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgv.GridColor = System.Drawing.SystemColors.MenuHighlight;
+            this.dgv.Location = new System.Drawing.Point(8, 118);
+            this.dgv.Margin = new System.Windows.Forms.Padding(4);
+            this.dgv.Name = "dgv";
+            this.dgv.RowHeadersWidth = 51;
+            this.dgv.Size = new System.Drawing.Size(883, 488);
+            this.dgv.TabIndex = 0;
+            // 
             // Frm_Contas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -362,9 +363,9 @@
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.tabPage2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dgv)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv)).EndInit();
             this.ResumeLayout(false);
 
         }

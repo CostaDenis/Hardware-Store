@@ -30,8 +30,11 @@ namespace Hardware_Store
 
                 if (Central.Query(sql).Rows.Count > 0)
                 {
-                    sql = "Update TBCONTAS SET NOME='" + txt_name.Text + "', SENHA='" + txt_password.Text + "', ACESSO='" +
-                    txt_access.Text + "', ATIVO='" + cmb_active.Text + "' WHERE ID_CPF='" + txt_cpf.Text + "'";
+                    string passwordCrypt = Central.EncryptData(txt_password.Text, Central.CheckDataBaseKey());
+
+                    sql = $"Update TBCONTAS SET nome ='{txt_name.Text}', senha ='{passwordCrypt}', acesso =" +
+                    $"'{access}', ativo ='{active}' WHERE id_cpf='{cpf}'";
+
                     Central.Query(sql);
                     MessageBox.Show("Conta Alterada!", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     UpdateGrid();
@@ -93,14 +96,35 @@ namespace Hardware_Store
             if (dt.Rows.Count > 0)
             {
                 btn_delete.Visible = true;
+
                 foreach (DataRow row in dt.Rows)
                 {
-                    txt_name.Text = row["nome"].ToString();
-                    txt_password.Text = row["senha"].ToString();
-                    txt_email.Text = row["email"].ToString();
-                    txt_access.Text = row["acesso"].ToString();
-                    cmb_active.Text = row["ativo"].ToString();
+                    try
+                    {
+                        string passwordCrypt = row["senha"].ToString();
+
+                        if (Central.IsBase64String(passwordCrypt))
+                        {
+                            string password = Central.DecryptData(passwordCrypt, Central.CheckDataBaseKey());
+                            txt_password.Text = password;
+                        }
+                        else
+                        {
+                            MessageBox.Show("O email armazenado não está no formato esperado.");
+                            txt_email.Text = "";
+                        }
+
+                        txt_name.Text = row["nome"].ToString();
+                        txt_email.Text = row["email"].ToString();
+                        txt_access.Text = row["acesso"].ToString();
+                        cmb_active.Text = row["ativo"].ToString();
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show($"Erro ao descriptografar o email: {ex.Message}");
+                    }
                 }
+
                 btn_add.Text = "Alterar";
             }
             else

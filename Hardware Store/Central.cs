@@ -65,6 +65,23 @@ namespace Hardware_Store
             }
         }
 
+        public static string DecryptData(string sql, string key)
+        {
+            using (var aes = Aes.Create())
+            {
+                aes.Key = Convert.FromBase64String(key);
+                aes.IV = new byte[16];
+                var decryptor = aes.CreateDecryptor(aes.Key, aes.IV);
+
+                using (var ms = new MemoryStream(Convert.FromBase64String(sql)))
+                using (var cs = new CryptoStream(ms, decryptor, CryptoStreamMode.Read))
+                using (var reader = new StreamReader(cs))
+                {
+                    return reader.ReadToEnd();
+                }
+            }
+        }
+
         public static SQLiteConnection ConexaoBanco()
         {
             connection = new SQLiteConnection("Data Source = " + Application.StartupPath + "\\DataBase\\Hardware_DataBase.db");
@@ -119,6 +136,34 @@ namespace Hardware_Store
             }
 
             return categorias;
+        }
+
+        public static bool IsBase64String(string base64)
+        {
+            if (string.IsNullOrEmpty(base64))
+                return false;
+
+            try
+            {
+                Convert.FromBase64String(base64);
+                return true;
+            }
+            catch (FormatException)
+            {
+                return false;
+            }
+        }
+
+        public static string StringToBase64(string texto)
+        {
+            byte[] bytes = System.Text.Encoding.UTF8.GetBytes(texto);
+            return Convert.ToBase64String(bytes);
+        }
+
+        public static string Base64ToString(string textoBase64)
+        {
+            byte[] bytes = Convert.FromBase64String(textoBase64);
+            return System.Text.Encoding.UTF8.GetString(bytes);
         }
     }
 }
