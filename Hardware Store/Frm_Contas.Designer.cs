@@ -108,7 +108,6 @@
             this.txt_email.Name = "txt_email";
             this.txt_email.Size = new System.Drawing.Size(304, 35);
             this.txt_email.TabIndex = 13;
-            this.txt_email.Leave += new System.EventHandler(this.txt_email_Leave);
             // 
             // label7
             // 
@@ -341,6 +340,7 @@
             this.dgv.Location = new System.Drawing.Point(8, 118);
             this.dgv.Margin = new System.Windows.Forms.Padding(4);
             this.dgv.Name = "dgv";
+            this.dgv.ReadOnly = true;
             this.dgv.RowHeadersWidth = 51;
             this.dgv.Size = new System.Drawing.Size(883, 488);
             this.dgv.TabIndex = 0;

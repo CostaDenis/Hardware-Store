@@ -30,28 +30,46 @@ namespace Hardware_Store
 
                 if (Central.Query(sql).Rows.Count > 0)
                 {
-                    string passwordCrypt = Central.EncryptData(txt_password.Text, Central.CheckDataBaseKey());
 
-                    sql = $"Update TBCONTAS SET nome ='{txt_name.Text}', senha ='{passwordCrypt}', acesso =" +
-                    $"'{access}', ativo ='{active}' WHERE id_cpf='{cpf}'";
+                    if (CheckEmailAvailability("Update"))
+                    {
 
-                    Central.Query(sql);
-                    MessageBox.Show("Conta Alterada!", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    UpdateGrid();
+                        if (CheckEmail())
+                        {
+                            string passwordCrypt = Central.EncryptData(txt_password.Text, Central.CheckDataBaseKey());
+
+                            sql = $"Update TBCONTAS SET nome ='{txt_name.Text}', senha ='{passwordCrypt}', email = '{email}'," +
+                            $"acesso = '{access}', ativo ='{active}' WHERE id_cpf='{cpf}'";
+
+                            Central.Query(sql);
+                            MessageBox.Show("Conta Alterada!", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            UpdateGrid();
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Email já cadastrado!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+
                 }
                 else
                 {
 
-                    if (CheckEmail())
+                    if (CheckEmailAvailability("Insert"))
                     {
-                        sql = $"INSERT INTO TBCONTAS VALUES ('{cpf}', " +
-                        $" '{name}', '{password}', '{email}', '{access}', " +
-                        $"'{active}')";
-                        Central.Query(sql);
 
-                        MessageBox.Show("Conta Adicionada", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        Limpar_Form();
-                        UpdateGrid();
+                        if (CheckEmail())
+                        {
+                            sql = $"INSERT INTO TBCONTAS VALUES ('{cpf}', " +
+                            $" '{name}', '{password}', '{email}', '{access}', " +
+                            $"'{active}')";
+                            Central.Query(sql);
+
+                            MessageBox.Show("Conta Adicionada", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            Limpar_Form();
+                            UpdateGrid();
+                        }
+
                     }
                     else
                     {
@@ -110,7 +128,7 @@ namespace Hardware_Store
                         }
                         else
                         {
-                            MessageBox.Show("O email armazenado não está no formato esperado.");
+                            MessageBox.Show("A senha armazenada não está no formato esperado. Fale com o ADM");
                             txt_email.Text = "";
                         }
 
@@ -121,7 +139,7 @@ namespace Hardware_Store
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show($"Erro ao descriptografar o email: {ex.Message}");
+                        MessageBox.Show($"Erro ao descriptografar a senha: {ex.Message}");
                     }
                 }
 
@@ -165,6 +183,7 @@ namespace Hardware_Store
                     sql = "DELETE FROM TBCONTAS WHERE ID_CPF='" + txt_cpf.Text + "'";
                     Central.Query(sql);
                     Limpar_Form();
+                    UpdateGrid();
                 }
             }
             else
@@ -188,7 +207,7 @@ namespace Hardware_Store
 
         private void txt_cpf_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (txt_cpf.TextLength > 11)
+            if (txt_cpf.TextLength > 11 && e.KeyChar != (char)8)
             {
                 e.Handled = true;
                 MessageBox.Show("CPF deve ter 11 digitos!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -199,34 +218,56 @@ namespace Hardware_Store
             }
         }
 
-        private void txt_email_Leave(object sender, EventArgs e)
-        {
-            if (txt_email.Text.Contains("@") && txt_email.Text.Contains(".com"))
-            {
-                MessageBox.Show("Email válido!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-            else
-            {
-                MessageBox.Show("Email inválido!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
         private bool CheckEmail()
         {
-            string email = txt_email.Text;
-
-            sql = $"Select * from TBCONTAS where email = '{email}'";
-
-            dt = Central.Query(sql);
-
-            if (dt.Rows.Count == 0)
+            if (!txt_email.Text.Contains("@") && !txt_email.Text.Contains(".com"))
+            {
+                MessageBox.Show("Email inválido!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+            else
             {
                 return true;
             }
+        }
+
+        private bool CheckEmailAvailability(string option)
+        {
+            string email = txt_email.Text;
+            string cpf = txt_cpf.Text;
+
+
+            if (option == "Insert")
+            {
+                sql = $"Select * from TBCONTAS where email = '{email}'";
+
+                dt = Central.Query(sql);
+
+                if (dt.Rows.Count == 0)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
             else
             {
-                return false;
+                sql = $"Select * from TBCONTAS where email = '{email}' and id_cpf != '{cpf}'";
+                dt = Central.Query(sql);
+
+                if (dt.Rows.Count == 0)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
             }
+
+
 
         }
     }

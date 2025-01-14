@@ -312,5 +312,6 @@ namespace Hardware_Store
         {
             CheckForNumbers(sender, e);
         }
+
     }
 }
