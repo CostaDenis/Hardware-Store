@@ -20,7 +20,7 @@ namespace Hardware_Store
             string cpf = txt_cpf.Text;
             string name = txt_name.Text;
             string password = Central.EncryptData(txt_password.Text, Central.CheckDataBaseKey());
-            string email = "aaaaaaaaaa";
+            string email = txt_email.Text;
             int access = int.Parse(txt_access.Text);
             string active = cmb_active.Text;
 
@@ -34,16 +34,27 @@ namespace Hardware_Store
                     txt_access.Text + "', ATIVO='" + cmb_active.Text + "' WHERE ID_CPF='" + txt_cpf.Text + "'";
                     Central.Query(sql);
                     MessageBox.Show("Conta Alterada!", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    UpdateGrid();
                 }
                 else
                 {
-                    sql = $"INSERT INTO TBCONTAS VALUES ('{cpf}', " +
+
+                    if (CheckEmail())
+                    {
+                        sql = $"INSERT INTO TBCONTAS VALUES ('{cpf}', " +
                         $" '{name}', '{password}', '{email}', '{access}', " +
                         $"'{active}')";
-                    Central.Query(sql);
+                        Central.Query(sql);
 
-                    MessageBox.Show("Conta Adicionada", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    Limpar_Form();
+                        MessageBox.Show("Conta Adicionada", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        Limpar_Form();
+                        UpdateGrid();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Email já cadastrado!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+
                 }
             }
             else
@@ -55,7 +66,8 @@ namespace Hardware_Store
         {
             bool resp = true;
             if (txt_access.TextLength == 0 || txt_cpf.TextLength == 0 ||
-               txt_name.TextLength == 0 || txt_password.TextLength == 0 || cmb_active.Text.Length == 0)
+               txt_name.TextLength == 0 || txt_password.TextLength == 0 ||
+               txt_email.TextLength == 0 || cmb_active.Text.Length == 0)
             {
                 resp = false;
             }
@@ -67,6 +79,7 @@ namespace Hardware_Store
             txt_access.Clear();
             txt_name.Clear();
             txt_password.Clear();
+            txt_email.Clear();
             txt_cpf.Clear();
             cmb_active.ResetText();
             txt_cpf.Focus();
@@ -84,6 +97,7 @@ namespace Hardware_Store
                 {
                     txt_name.Text = row["nome"].ToString();
                     txt_password.Text = row["senha"].ToString();
+                    txt_email.Text = row["email"].ToString();
                     txt_access.Text = row["acesso"].ToString();
                     cmb_active.Text = row["ativo"].ToString();
                 }
@@ -93,6 +107,7 @@ namespace Hardware_Store
             {
                 txt_name.Text = "";
                 txt_password.Text = "";
+                txt_email.Text = "";
                 txt_access.Text = "0";
                 btn_add.Text = "Adicionar";
                 btn_delete.Visible = false;
@@ -137,9 +152,58 @@ namespace Hardware_Store
 
         private void Frm_Contas_Load(object sender, EventArgs e)
         {
+            UpdateGrid();
+        }
+
+        private void UpdateGrid()
+        {
             sql = "Select * from TBCONTAS";
             dgv.DataSource = Central.Query(sql);
         }
 
+
+        private void txt_cpf_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (txt_cpf.TextLength > 11)
+            {
+                e.Handled = true;
+                MessageBox.Show("CPF deve ter 11 digitos!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                e.Handled = false;
+            }
+        }
+
+        private void txt_email_Leave(object sender, EventArgs e)
+        {
+            if (txt_email.Text.Contains("@") && txt_email.Text.Contains(".com"))
+            {
+                MessageBox.Show("Email válido!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                MessageBox.Show("Email inválido!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private bool CheckEmail()
+        {
+            string email = txt_email.Text;
+
+            sql = $"Select * from TBCONTAS where email = '{email}'";
+
+            dt = Central.Query(sql);
+
+            if (dt.Rows.Count == 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+
+        }
     }
 }
