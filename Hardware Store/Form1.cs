@@ -36,7 +36,7 @@ namespace Hardware_Store
             //        frm_adm.Show();
             //    }
 
-            //    frm_adm.Show();
+            frm_adm.Show();
             //}
 
         }
@@ -44,7 +44,6 @@ namespace Hardware_Store
 
         private void Frm_Login_Load(object sender, EventArgs e)
         {
-            Central.CheckDataBaseKey();
             SetPlaceHolderCPF(txt_cpf, txt_password, "CPF", "Password");
         }
 

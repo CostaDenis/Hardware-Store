@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Data.SqlClient;
 using System.Data.SQLite;
-using System.IO;
+using System.Linq;
 using System.Security.Cryptography;
 using System.Windows.Forms;
 
@@ -14,85 +13,16 @@ namespace Hardware_Store
 
         private static SQLiteConnection connection;
 
-        public static string CheckDataBaseKey()
-        {
-            string key = Environment.GetEnvironmentVariable("CATELOGIC_DB_KEY", EnvironmentVariableTarget.User);
-
-            if (!string.IsNullOrEmpty(key))
-            {
-                return key;
-            }
-            else
-            {
-                string newKey = CreateDataBaseKey();
-
-                Environment.SetEnvironmentVariable("CATELOGIC_DB_KEY", newKey, EnvironmentVariableTarget.User);
-
-                MessageBox.Show("Chave de criptografia gerada com sucesso nas variáveis de ambiente do seu usuário! NÃO A EXCLUA, pois ela será necessária para acessar o banco de dados.",
-                    "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                return newKey;
-            }
-        }
-
-        public static string CreateDataBaseKey()
-        {
-            using (var aes = Aes.Create())
-            {
-                aes.GenerateKey();
-                string key = Convert.ToBase64String(aes.Key);
-
-                return Convert.ToBase64String(aes.Key);
-            }
-        }
-
-        public static string EncryptData(string sql, string key)
-        {
-            using (var aes = Aes.Create())
-            {
-                aes.Key = Convert.FromBase64String(key);
-                aes.IV = new byte[16];
-                var encryptor = aes.CreateEncryptor(aes.Key, aes.IV);
-
-                using (var ms = new MemoryStream())
-                {
-                    using (var cs = new CryptoStream(ms, encryptor, CryptoStreamMode.Write))
-                    using (var writer = new StreamWriter(cs))
-                    {
-                        writer.Write(sql);
-                    }
-                    return Convert.ToBase64String(ms.ToArray());
-                }
-            }
-        }
-
-        public static string DecryptData(string sql, string key)
-        {
-            using (var aes = Aes.Create())
-            {
-                aes.Key = Convert.FromBase64String(key);
-                aes.IV = new byte[16];
-                var decryptor = aes.CreateDecryptor(aes.Key, aes.IV);
-
-                using (var ms = new MemoryStream(Convert.FromBase64String(sql)))
-                using (var cs = new CryptoStream(ms, decryptor, CryptoStreamMode.Read))
-                using (var reader = new StreamReader(cs))
-                {
-                    return reader.ReadToEnd();
-                }
-            }
-        }
-
         public static DataTable ExecuteQuery(string sql, Dictionary<string, object> parameters)
         {
             DataTable dt = new DataTable();
 
             try
             {
-                using (SqlConnection conn = new SqlConnection(BDConnection().ToString()))
+                using (SQLiteConnection conn = new SQLiteConnection(BDConnection().ConnectionString))
                 {
                     conn.Open();
-                    using (SqlCommand cmd = new SqlCommand(sql, conn))
+                    using (SQLiteCommand cmd = new SQLiteCommand(sql, conn))
                     {
 
                         if (parameters != null)
@@ -103,7 +33,7 @@ namespace Hardware_Store
                             }
                         }
 
-                        using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                        using (SQLiteDataAdapter da = new SQLiteDataAdapter(cmd))
                         {
                             da.Fill(dt);
                         }
@@ -145,6 +75,38 @@ namespace Hardware_Store
             return dt;
         }
 
+        //Hash senha
+        public static (string Hash, string Salt) HashPassword(string password)
+        {
+            byte[] salt = new byte[16];
+
+            using (var rng = new RNGCryptoServiceProvider())
+            {
+                rng.GetBytes(salt);
+            }
+
+            var pbkdf2 = new Rfc2898DeriveBytes(password, salt, 10000);
+            byte[] hash = pbkdf2.GetBytes(20);
+
+            string saltBase64 = Convert.ToBase64String(salt);
+            string hashBase64 = Convert.ToBase64String(hash);
+
+            return (hashBase64, saltBase64);
+        }
+
+        public static bool VerifyPassword(string storedPassword, string storedHash, string storedSalt)
+        {
+            byte[] salt = Convert.FromBase64String(storedSalt);
+
+            var pbkdf2 = new Rfc2898DeriveBytes(storedPassword, salt, 10000);
+            byte[] inputHash = pbkdf2.GetBytes(20);
+
+            byte[] storedHashBytes = Convert.FromBase64String(storedHash);
+
+            return inputHash.SequenceEqual(storedHashBytes);
+        }
+
+
         public static Dictionary<string, int> ObterCategoriasNomeParaId()
         {
             Dictionary<string, int> categorias = new Dictionary<string, int>();
@@ -173,32 +135,5 @@ namespace Hardware_Store
             return categorias;
         }
 
-        public static bool IsBase64String(string base64)
-        {
-            if (string.IsNullOrEmpty(base64))
-                return false;
-
-            try
-            {
-                Convert.FromBase64String(base64);
-                return true;
-            }
-            catch (FormatException)
-            {
-                return false;
-            }
-        }
-
-        public static string StringToBase64(string texto)
-        {
-            byte[] bytes = System.Text.Encoding.UTF8.GetBytes(texto);
-            return Convert.ToBase64String(bytes);
-        }
-
-        public static string Base64ToString(string textoBase64)
-        {
-            byte[] bytes = Convert.FromBase64String(textoBase64);
-            return System.Text.Encoding.UTF8.GetString(bytes);
-        }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Windows.Forms;
 
@@ -17,13 +18,6 @@ namespace Hardware_Store
 
         private void Btn_add_Click(object sender, EventArgs e)
         {
-            string cpf = txt_cpf.Text;
-            string name = txt_name.Text;
-            string password = Central.EncryptData(txt_password.Text, Central.CheckDataBaseKey());
-            string email = txt_email.Text;
-            int access = int.Parse(txt_access.Text);
-            string active = cmb_active.Text;
-
             if (Check_Texts() == true)
             {
                 sql = "SELECT * FROM TBCONTAS WHERE ID_CPF='" + txt_cpf.Text + "'";
@@ -36,14 +30,12 @@ namespace Hardware_Store
 
                         if (CheckEmail())
                         {
-                            string passwordCrypt = Central.EncryptData(txt_password.Text, Central.CheckDataBaseKey());
+                            //sql = $"Update TBCONTAS SET nome ='{txt_name.Text}', senha ='{password}', email = '{email}'," +
+                            //$"acesso = '{access}', ativo ='{active}' WHERE id_cpf='{cpf}'";
 
-                            sql = $"Update TBCONTAS SET nome ='{txt_name.Text}', senha ='{passwordCrypt}', email = '{email}'," +
-                            $"acesso = '{access}', ativo ='{active}' WHERE id_cpf='{cpf}'";
-
-                            Central.Query(sql);
-                            MessageBox.Show("Conta Alterada!", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            UpdateGrid();
+                            //Central.Query(sql);
+                            //MessageBox.Show("Conta Alterada!", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            //UpdateGrid();
                         }
                     }
                     else
@@ -60,11 +52,23 @@ namespace Hardware_Store
 
                         if (CheckEmail())
                         {
-                            sql = $"INSERT INTO TBCONTAS VALUES ('{cpf}', " +
-                            $" '{name}', '{password}', '{email}', '{access}', " +
-                            $"'{active}')";
-                            Central.Query(sql);
+                            (string hash, string salt) = Central.HashPassword(txt_password.Text);
 
+                            sql = "INSERT INTO TBCONTAS VALUES (@cpf, @name, @password, @salt, @email, " +
+                            "@access, @active)";
+
+                            var parameters = new Dictionary<string, object>
+                            {
+                                { "@cpf", txt_cpf.Text },
+                                { "@name", txt_name.Text },
+                                { "@password", hash },
+                                { "@salt", salt },
+                                { "@email", txt_email.Text },
+                                { "@access", txt_access.Text },
+                                { "@active", cmb_active.Text }
+                            };
+
+                            Central.ExecuteQuery(sql, parameters);
                             MessageBox.Show("Conta Adicionada", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             Clean_Form();
                             UpdateGrid();
@@ -117,30 +121,13 @@ namespace Hardware_Store
 
                 foreach (DataRow row in dt.Rows)
                 {
-                    try
-                    {
-                        string passwordCrypt = row["senha"].ToString();
 
-                        if (Central.IsBase64String(passwordCrypt))
-                        {
-                            string password = Central.DecryptData(passwordCrypt, Central.CheckDataBaseKey());
-                            txt_password.Text = password;
-                        }
-                        else
-                        {
-                            MessageBox.Show("A senha armazenada não está no formato esperado. Fale com o ADM");
-                            txt_email.Text = "";
-                        }
+                    txt_name.Text = row["nome"].ToString();
+                    txt_password.Text = row["senha"].ToString();
+                    txt_email.Text = row["email"].ToString();
+                    txt_access.Text = row["acesso"].ToString();
+                    cmb_active.Text = row["ativo"].ToString();
 
-                        txt_name.Text = row["nome"].ToString();
-                        txt_email.Text = row["email"].ToString();
-                        txt_access.Text = row["acesso"].ToString();
-                        cmb_active.Text = row["ativo"].ToString();
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show($"Erro ao descriptografar a senha: {ex.Message}");
-                    }
                 }
 
                 btn_add.Text = "Alterar";
