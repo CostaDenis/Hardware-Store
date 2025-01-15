@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
 using System.Data.SQLite;
 using System.IO;
 using System.Security.Cryptography;
@@ -82,7 +83,41 @@ namespace Hardware_Store
             }
         }
 
-        public static SQLiteConnection ConexaoBanco()
+        public static DataTable ExecuteQuery(string sql, Dictionary<string, object> parameters)
+        {
+            DataTable dt = new DataTable();
+
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(BDConnection().ToString()))
+                {
+                    conn.Open();
+                    using (SqlCommand cmd = new SqlCommand(sql, conn))
+                    {
+
+                        if (parameters != null)
+                        {
+                            foreach (var p in parameters)
+                            {
+                                cmd.Parameters.AddWithValue(p.Key, p.Value ?? DBNull.Value);
+                            }
+                        }
+
+                        using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                        {
+                            da.Fill(dt);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            return dt;
+        }
+
+        public static SQLiteConnection BDConnection()
         {
             connection = new SQLiteConnection("Data Source = " + Application.StartupPath + "\\DataBase\\Hardware_DataBase.db");
             connection.Open();
@@ -96,10 +131,10 @@ namespace Hardware_Store
 
             try
             {
-                using (var cmd = ConexaoBanco().CreateCommand())
+                using (var cmd = BDConnection().CreateCommand())
                 {
                     cmd.CommandText = sql;
-                    da = new SQLiteDataAdapter(cmd.CommandText, ConexaoBanco());
+                    da = new SQLiteDataAdapter(cmd.CommandText, BDConnection());
                     da.Fill(dt);
                 }
             }

@@ -24,7 +24,7 @@ namespace Hardware_Store
             //}
             //else
             //{
-            //    sql = "SELECT * FROM TBCONTAS WHERE ID_CPF=" + txt_cpf.Text + " AND SENHA='" + txt_senha.Text + "'";
+            //    sql = "SELECT * FROM TBCONTAS WHERE ID_CPF=" + txt_cpf.Text + " AND SENHA='" + txt_password.Text + "'";
             //    dt = Central.Query(sql);
 
             //    if (dt.Rows.Count == 0)
@@ -36,9 +36,11 @@ namespace Hardware_Store
             //        frm_adm.Show();
             //    }
 
-            frm_adm.Show();
+            //    frm_adm.Show();
             //}
+
         }
+
 
         private void Frm_Login_Load(object sender, EventArgs e)
         {

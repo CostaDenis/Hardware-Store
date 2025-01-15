@@ -20,7 +20,13 @@ namespace Hardware_Store
         private void btn_enviar_Click(object sender, EventArgs e)
         {
             string email = txt_email.Text;
-            sql = $"Select * from TBCONTAS where email = '{email}'";
+            sql = $"Select * from TBCONTAS where email = @email";
+
+
+
+
+
+
             DataTable dt = Central.Query(sql);
 
             if (dt.Rows.Count == 0)
