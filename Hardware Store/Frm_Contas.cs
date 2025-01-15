@@ -15,7 +15,7 @@ namespace Hardware_Store
             InitializeComponent();
         }
 
-        private void btn_adicionar_Click(object sender, EventArgs e)
+        private void Btn_add_Click(object sender, EventArgs e)
         {
             string cpf = txt_cpf.Text;
             string name = txt_name.Text;
@@ -24,7 +24,7 @@ namespace Hardware_Store
             int access = int.Parse(txt_access.Text);
             string active = cmb_active.Text;
 
-            if (Checar_Campos() == true)
+            if (Check_Texts() == true)
             {
                 sql = "SELECT * FROM TBCONTAS WHERE ID_CPF='" + txt_cpf.Text + "'";
 
@@ -66,7 +66,7 @@ namespace Hardware_Store
                             Central.Query(sql);
 
                             MessageBox.Show("Conta Adicionada", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            Limpar_Form();
+                            Clean_Form();
                             UpdateGrid();
                         }
 
@@ -83,7 +83,7 @@ namespace Hardware_Store
                 MessageBox.Show("Preencha todos os campos!", "Atenção", MessageBoxButtons.OKCancel, MessageBoxIcon.Error);
             }
         }
-        private bool Checar_Campos()
+        private bool Check_Texts()
         {
             bool resp = true;
             if (txt_access.TextLength == 0 || txt_cpf.TextLength == 0 ||
@@ -95,7 +95,7 @@ namespace Hardware_Store
             return resp;
         }
 
-        private void Limpar_Form()
+        private void Clean_Form()
         {
             txt_access.Clear();
             txt_name.Clear();
@@ -106,7 +106,7 @@ namespace Hardware_Store
             txt_cpf.Focus();
         }
 
-        private void txt_cpf_Leave(object sender, EventArgs e)
+        private void Txt_cpf_Leave(object sender, EventArgs e)
         {
             sql = "SELECT * FROM TBCONTAS WHERE ID_CPF='" + txt_cpf.Text + "'";
             dt = Central.Query(sql);
@@ -156,7 +156,7 @@ namespace Hardware_Store
             }
         }
 
-        private void btn_up_Click(object sender, EventArgs e)
+        private void Btn_up_Click(object sender, EventArgs e)
         {
             if (int.Parse(txt_access.Text) == 0)
             {
@@ -165,7 +165,7 @@ namespace Hardware_Store
             }
         }
 
-        private void btn_down_Click(object sender, EventArgs e)
+        private void Btn_down_Click(object sender, EventArgs e)
         {
             if (int.Parse(txt_access.Text) == 1)
             {
@@ -174,7 +174,7 @@ namespace Hardware_Store
             }
         }
 
-        private void btn_excluir_Click(object sender, EventArgs e)
+        private void Btn_excluir_Click(object sender, EventArgs e)
         {
             if (txt_cpf.TextLength != 11)
             {
@@ -182,7 +182,7 @@ namespace Hardware_Store
                 {
                     sql = "DELETE FROM TBCONTAS WHERE ID_CPF='" + txt_cpf.Text + "'";
                     Central.Query(sql);
-                    Limpar_Form();
+                    Clean_Form();
                     UpdateGrid();
                 }
             }
@@ -205,7 +205,7 @@ namespace Hardware_Store
         }
 
 
-        private void txt_cpf_KeyPress(object sender, KeyPressEventArgs e)
+        private void Txt_cpf_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (txt_cpf.TextLength > 11 && e.KeyChar != (char)8)
             {

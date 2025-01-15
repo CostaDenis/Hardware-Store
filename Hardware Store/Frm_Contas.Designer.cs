@@ -65,6 +65,7 @@
             // 
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
+            this.tabControl1.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tabControl1.Location = new System.Drawing.Point(16, 10);
             this.tabControl1.Margin = new System.Windows.Forms.Padding(4);
             this.tabControl1.Name = "tabControl1";
@@ -91,11 +92,12 @@
             this.tabPage1.Controls.Add(this.txt_name);
             this.tabPage1.Controls.Add(this.txt_password);
             this.tabPage1.Controls.Add(this.txt_cpf);
-            this.tabPage1.Location = new System.Drawing.Point(4, 25);
+            this.tabPage1.Font = new System.Drawing.Font("Arial", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tabPage1.Location = new System.Drawing.Point(4, 32);
             this.tabPage1.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(4);
-            this.tabPage1.Size = new System.Drawing.Size(863, 614);
+            this.tabPage1.Size = new System.Drawing.Size(863, 607);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Contas";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -187,7 +189,7 @@
             this.btn_add.TabIndex = 5;
             this.btn_add.Text = "Adicionar ";
             this.btn_add.UseVisualStyleBackColor = true;
-            this.btn_add.Click += new System.EventHandler(this.btn_adicionar_Click);
+            this.btn_add.Click += new System.EventHandler(this.Btn_add_Click);
             // 
             // btn_down
             // 
@@ -199,7 +201,7 @@
             this.btn_down.Size = new System.Drawing.Size(44, 34);
             this.btn_down.TabIndex = 5;
             this.btn_down.UseVisualStyleBackColor = true;
-            this.btn_down.Click += new System.EventHandler(this.btn_down_Click);
+            this.btn_down.Click += new System.EventHandler(this.Btn_down_Click);
             // 
             // btn_up
             // 
@@ -211,7 +213,7 @@
             this.btn_up.Size = new System.Drawing.Size(44, 34);
             this.btn_up.TabIndex = 4;
             this.btn_up.UseVisualStyleBackColor = true;
-            this.btn_up.Click += new System.EventHandler(this.btn_up_Click);
+            this.btn_up.Click += new System.EventHandler(this.Btn_up_Click);
             // 
             // label5
             // 
@@ -295,18 +297,18 @@
             this.txt_cpf.Name = "txt_cpf";
             this.txt_cpf.Size = new System.Drawing.Size(233, 35);
             this.txt_cpf.TabIndex = 0;
-            this.txt_cpf.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_cpf_KeyPress);
-            this.txt_cpf.Leave += new System.EventHandler(this.txt_cpf_Leave);
+            this.txt_cpf.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Txt_cpf_KeyPress);
+            this.txt_cpf.Leave += new System.EventHandler(this.Txt_cpf_Leave);
             // 
             // tabPage2
             // 
             this.tabPage2.Controls.Add(this.panel2);
             this.tabPage2.Controls.Add(this.dgv);
-            this.tabPage2.Location = new System.Drawing.Point(4, 25);
+            this.tabPage2.Location = new System.Drawing.Point(4, 32);
             this.tabPage2.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(4);
-            this.tabPage2.Size = new System.Drawing.Size(863, 614);
+            this.tabPage2.Size = new System.Drawing.Size(863, 607);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Visualizar Contas";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -355,6 +357,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Frm_Contas";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Contas";
             this.Load += new System.EventHandler(this.Frm_Contas_Load);
             this.tabControl1.ResumeLayout(false);

@@ -198,7 +198,7 @@ namespace Hardware_Store
             panel.Controls.Add(btn);
 
             int centerX = lblBottom.Left + lblBottom.Width / 2;
-            int labelTop = lblBottom.Top - btn.Bottom + 40;
+            int labelTop = lblBottom.Top - btn.Bottom + 50;
 
             btn.Left = centerX - btn.Width / 2;
             btn.Top = labelTop;
@@ -211,11 +211,11 @@ namespace Hardware_Store
         {
             const int horizontalSpacing = 200;
             const int verticalSpacing = 100;
-            const int initialX = 50;
+            const int initialX = 80;
 
             int totalHeight = pb.Height + verticalSpacing;
             int posX = initialX + (numberProduct - 1) * horizontalSpacing;
-            int posY = (indexCol - 1) * totalHeight + 50;
+            int posY = (indexCol - 1) * totalHeight + 60;
 
             return new Point(posX, posY);
         }

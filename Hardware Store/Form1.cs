@@ -16,33 +16,34 @@ namespace Hardware_Store
             InitializeComponent();
         }
 
-        private void btn_entrar_Click(object sender, EventArgs e)
+        private void Btn_login_Click(object sender, EventArgs e)
         {
-            /*     if (txt_cpf.Text.Length == 0 || txt_cpf.Text.Length == 0)
-                 {
-                     MessageBox.Show("Insira todos os dados necessários!");
-                 }
-                 else
-                 {
-                     sql = "SELECT * FROM TBCONTAS WHERE ID_CPF=" + txt_cpf.Text + " AND SENHA='" + txt_senha.Text + "'";
-                     dt = Central.Consulta(sql);
+            //if (txt_cpf.Text.Length == 0 || txt_cpf.Text.Length == 0)
+            //{
+            //    MessageBox.Show("Insira todos os dados necessários!");
+            //}
+            //else
+            //{
+            //    sql = "SELECT * FROM TBCONTAS WHERE ID_CPF=" + txt_cpf.Text + " AND SENHA='" + txt_senha.Text + "'";
+            //    dt = Central.Query(sql);
 
-                     if (dt.Rows.Count == 0)
-                     {
-                         MessageBox.Show("Credenciais não compatíveis! Tente Novamente", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                     }
-                     else
-                     {
-                         frm_adm.Show();
-                     }
-            */
+            //    if (dt.Rows.Count == 0)
+            //    {
+            //        MessageBox.Show("Credenciais não compatíveis! Tente Novamente", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            //    }
+            //    else
+            //    {
+            //        frm_adm.Show();
+            //    }
+
             frm_adm.Show();
+            //}
         }
 
         private void Frm_Login_Load(object sender, EventArgs e)
         {
             Central.CheckDataBaseKey();
-            SetPlaceHolderCPF(txt_cpf, txt_senha, "CPF", "Password");
+            SetPlaceHolderCPF(txt_cpf, txt_password, "CPF", "Password");
         }
 
         private void SetPlaceHolderCPF(TextBox textBoxCPF, TextBox textBoxPassword, string placeholderCPF,
@@ -91,19 +92,19 @@ namespace Hardware_Store
             };
         }
 
-        private void chb_mostrarSenha_CheckedChanged(object sender, EventArgs e)
+        private void Chb_showPassword_CheckedChanged(object sender, EventArgs e)
         {
-            if (chb_mostrarSenha.Checked)
+            if (chb_showPasword.Checked)
             {
-                txt_senha.UseSystemPasswordChar = false;
+                txt_password.UseSystemPasswordChar = false;
             }
             else
             {
-                txt_senha.UseSystemPasswordChar = true;
+                txt_password.UseSystemPasswordChar = true;
             }
         }
 
-        private void lbl_recoverPassword_Click(object sender, EventArgs e)
+        private void Lbl_recoverPassword_Click(object sender, EventArgs e)
         {
             Frm_RecoverPassword frm_recoverPassword = new Frm_RecoverPassword();
             frm_recoverPassword.Show();

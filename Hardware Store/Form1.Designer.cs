@@ -29,40 +29,40 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Frm_Login));
-            this.btn_entrar = new System.Windows.Forms.Button();
-            this.txt_senha = new System.Windows.Forms.TextBox();
+            this.btn_login = new System.Windows.Forms.Button();
+            this.txt_password = new System.Windows.Forms.TextBox();
             this.txt_cpf = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.lbl_recoverPassword = new System.Windows.Forms.Label();
-            this.chb_mostrarSenha = new System.Windows.Forms.CheckBox();
+            this.chb_showPasword = new System.Windows.Forms.CheckBox();
             this.label3 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
-            // btn_entrar
+            // btn_login
             // 
-            this.btn_entrar.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_entrar.Location = new System.Drawing.Point(97, 489);
-            this.btn_entrar.Margin = new System.Windows.Forms.Padding(4);
-            this.btn_entrar.Name = "btn_entrar";
-            this.btn_entrar.Size = new System.Drawing.Size(473, 42);
-            this.btn_entrar.TabIndex = 8;
-            this.btn_entrar.Text = "Entrar";
-            this.btn_entrar.UseVisualStyleBackColor = true;
-            this.btn_entrar.Click += new System.EventHandler(this.btn_entrar_Click);
+            this.btn_login.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_login.Location = new System.Drawing.Point(97, 489);
+            this.btn_login.Margin = new System.Windows.Forms.Padding(4);
+            this.btn_login.Name = "btn_login";
+            this.btn_login.Size = new System.Drawing.Size(473, 42);
+            this.btn_login.TabIndex = 8;
+            this.btn_login.Text = "Entrar";
+            this.btn_login.UseVisualStyleBackColor = true;
+            this.btn_login.Click += new System.EventHandler(this.Btn_login_Click);
             // 
-            // txt_senha
+            // txt_password
             // 
-            this.txt_senha.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_senha.Location = new System.Drawing.Point(97, 380);
-            this.txt_senha.Margin = new System.Windows.Forms.Padding(4);
-            this.txt_senha.Name = "txt_senha";
-            this.txt_senha.Size = new System.Drawing.Size(473, 35);
-            this.txt_senha.TabIndex = 7;
-            this.txt_senha.TabStop = false;
-            this.txt_senha.UseSystemPasswordChar = true;
+            this.txt_password.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txt_password.Location = new System.Drawing.Point(97, 380);
+            this.txt_password.Margin = new System.Windows.Forms.Padding(4);
+            this.txt_password.Name = "txt_password";
+            this.txt_password.Size = new System.Drawing.Size(473, 35);
+            this.txt_password.TabIndex = 7;
+            this.txt_password.TabStop = false;
+            this.txt_password.UseSystemPasswordChar = true;
             // 
             // txt_cpf
             // 
@@ -78,11 +78,11 @@
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.Highlight;
             this.panel1.Controls.Add(this.lbl_recoverPassword);
-            this.panel1.Controls.Add(this.chb_mostrarSenha);
+            this.panel1.Controls.Add(this.chb_showPasword);
             this.panel1.Controls.Add(this.label3);
-            this.panel1.Controls.Add(this.btn_entrar);
+            this.panel1.Controls.Add(this.btn_login);
             this.panel1.Controls.Add(this.txt_cpf);
-            this.panel1.Controls.Add(this.txt_senha);
+            this.panel1.Controls.Add(this.txt_password);
             this.panel1.Location = new System.Drawing.Point(1, -7);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(654, 749);
@@ -97,19 +97,19 @@
             this.lbl_recoverPassword.Size = new System.Drawing.Size(164, 22);
             this.lbl_recoverPassword.TabIndex = 14;
             this.lbl_recoverPassword.Text = "Recuperar senha >";
-            this.lbl_recoverPassword.Click += new System.EventHandler(this.lbl_recoverPassword_Click);
+            this.lbl_recoverPassword.Click += new System.EventHandler(this.Lbl_recoverPassword_Click);
             // 
-            // chb_mostrarSenha
+            // chb_showPasword
             // 
-            this.chb_mostrarSenha.AutoSize = true;
-            this.chb_mostrarSenha.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chb_mostrarSenha.Location = new System.Drawing.Point(97, 422);
-            this.chb_mostrarSenha.Name = "chb_mostrarSenha";
-            this.chb_mostrarSenha.Size = new System.Drawing.Size(146, 26);
-            this.chb_mostrarSenha.TabIndex = 13;
-            this.chb_mostrarSenha.Text = "Mostrar senha";
-            this.chb_mostrarSenha.UseVisualStyleBackColor = true;
-            this.chb_mostrarSenha.CheckedChanged += new System.EventHandler(this.chb_mostrarSenha_CheckedChanged);
+            this.chb_showPasword.AutoSize = true;
+            this.chb_showPasword.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chb_showPasword.Location = new System.Drawing.Point(97, 422);
+            this.chb_showPasword.Name = "chb_showPasword";
+            this.chb_showPasword.Size = new System.Drawing.Size(146, 26);
+            this.chb_showPasword.TabIndex = 13;
+            this.chb_showPasword.Text = "Mostrar senha";
+            this.chb_showPasword.UseVisualStyleBackColor = true;
+            this.chb_showPasword.CheckedChanged += new System.EventHandler(this.Chb_showPassword_CheckedChanged);
             // 
             // label3
             // 
@@ -143,6 +143,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Frm_Login";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Login";
             this.Load += new System.EventHandler(this.Frm_Login_Load);
             this.panel1.ResumeLayout(false);
@@ -154,14 +155,14 @@
 
         #endregion
 
-        private System.Windows.Forms.Button btn_entrar;
-        private System.Windows.Forms.TextBox txt_senha;
+        private System.Windows.Forms.Button btn_login;
+        private System.Windows.Forms.TextBox txt_password;
         private System.Windows.Forms.TextBox txt_cpf;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label lbl_recoverPassword;
-        private System.Windows.Forms.CheckBox chb_mostrarSenha;
+        private System.Windows.Forms.CheckBox chb_showPasword;
     }
 }
 
