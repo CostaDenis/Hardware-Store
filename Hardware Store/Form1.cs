@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
 using System.Windows.Forms;
@@ -18,26 +19,42 @@ namespace Hardware_Store
 
         private void Btn_login_Click(object sender, EventArgs e)
         {
-            //if (txt_cpf.Text.Length == 0 || txt_cpf.Text.Length == 0)
-            //{
-            //    MessageBox.Show("Insira todos os dados necessários!");
-            //}
-            //else
-            //{
-            //    sql = "SELECT * FROM TBCONTAS WHERE ID_CPF=" + txt_cpf.Text + " AND SENHA='" + txt_password.Text + "'";
-            //    dt = Central.Query(sql);
 
-            //    if (dt.Rows.Count == 0)
-            //    {
-            //        MessageBox.Show("Credenciais não compatíveis! Tente Novamente", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-            //    }
-            //    else
-            //    {
-            //        frm_adm.Show();
-            //    }
+            if (txt_cpf.Text == "CPF" || txt_password.Text == "Password")
+            {
+                MessageBox.Show("Insira todos os dados necessários!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            else
+            {
 
-            frm_adm.Show();
-            //}
+                sql = "Select senha, salt from TBCONTAS where id_cpf = @cpf";
+
+                var parameters = new Dictionary<string, object>
+            {
+                { "@cpf", txt_cpf.Text }
+            };
+
+                dt = Central.ExecuteQuery(sql, parameters);
+                if (dt.Rows.Count == 0)
+                {
+                    MessageBox.Show("CPF não encontrado", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                string storedHash = dt.Rows[0]["senha"].ToString();
+                string storedSalt = dt.Rows[0]["salt"].ToString();
+
+                if (Central.VerifyPassword(txt_password.Text, storedHash, storedSalt))
+                {
+                    frm_adm.Show();
+                }
+                else
+                {
+                    MessageBox.Show("Senha incorreta", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+
+            }
 
         }
 
