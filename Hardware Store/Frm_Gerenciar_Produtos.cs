@@ -15,14 +15,15 @@ namespace Hardware_Store
         string relativePath;
         Dictionary<string, int> categoriasId = Central.ObterCategoriasNomeParaId();
         Dictionary<int, string> categoriasName = Central.ObterCategoriasIdParaNome();
+
         public Frm_Gerenciar_Produtos()
         {
             InitializeComponent();
         }
 
-        private void btn_CadastrarProduto_Click(object sender, EventArgs e)
+        private void Btn_CadastrarProduto_Click(object sender, EventArgs e)
         {
-            if (Checar_Campos("Produtos") == true)
+            if (CheckTexts("Produtos") == true)
             {
                 string productName = txt_name.Text;
                 string productDescription = txt_description.Text;
@@ -47,32 +48,58 @@ namespace Hardware_Store
                         throw new Exception("ID do produto inválido!");
                     }
 
+                    sql = "select * from TBPRODUTOS where id = @id";
+                    var parameters = new Dictionary<string, object>
+                    {
+                        { "@id", idProduct }
+                    };
 
-                    sql = $"SELECT * FROM TBPRODUTOS WHERE id = {idProduct}";
-                    dt = Central.Query(sql);
+                    dt = Central.ExecuteQuery(sql, parameters);
+
                     if (dt.Rows.Count > 0)
                     {
 
-                        sql = $"Update TBPRODUTOS set nome = '{productName}', preco = '{preco}', quantidade = '{quantityProduct}', id_categoria = '{idCategory}'," +
-                            $"descricao = '{productDescription}', foto = '{relativePath}' where id = '{idProduct}'";
+                        sql = "Update TBPRODUTOS set nome = @name, preco = @price, quantidade = @quantity, id_categoria = @id_category," +
+                            "descricao = @description, foto = @picture where id = @id";
+                        var parametersUpdate = new Dictionary<string, object>
+                        {
+                            { "@name", productName },
+                            { "@price", preco },
+                            { "@quantity", quantityProduct },
+                            { "@id_category", idCategory },
+                            { "@description", productDescription },
+                            { "@picture", relativePath },
+                            { "@id", idProduct }
+                        };
 
+                        Central.ExecuteQuery(sql, parametersUpdate);
 
-                        Central.Query(sql);
                         MessageBox.Show("Produto Alterado!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         sql = "Select * from TBPRODUTOS";
                         Atualizar_dgvProduto(sql);
                     }
                     else
                     {
-                        sql = $"INSERT INTO TBPRODUTOS (id, nome, preco, quantidade, id_categoria, descricao, foto) " +
-                        $"VALUES ({idProduct}, '{productName}', '{preco}', '{quantityProduct}', {idCategory}, " +
-                        $"'{productDescription}', '{relativePath}')";
+                        sql = "insert into TBPRODUTOS (id, nome, preco, quantidade, id_categoria, descricao, foto) " +
+                            "values (@id, @name, @price, @quantity, @id_category, @description, @picture)";
 
-                        Central.Query(sql);
+                        var parametersInsert = new Dictionary<string, object>
+                        {
+                            { "@id", idProduct },
+                            { "@name", productName },
+                            { "@price", preco },
+                            { "@quantity", quantityProduct },
+                            { "@id_category", idCategory },
+                            { "@description", productDescription },
+                            { "@picture", relativePath }
+                        };
+
+                        Central.ExecuteQuery(sql, parametersInsert);
+
                         MessageBox.Show("Cadastrado com sucesso!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         sql = "Select * from TBPRODUTOS";
                         Atualizar_dgvProduto(sql);
-                        Limpar_Campos("Produtos");
+                        CleanTexts("Produtos");
                     }
                 }
                 catch (System.FormatException)
@@ -90,27 +117,50 @@ namespace Hardware_Store
             }
         }
 
-        private void btn_categoria_Click(object sender, EventArgs e)
+        private void Btn_categoria_Click(object sender, EventArgs e)
         {
-            if (Checar_Campos("Categorias") == true)
+            if (CheckTexts("Categorias") == true)
             {
-                sql = "SELECT * FROM TBCATEGORIAS WHERE id = " + int.Parse(txt_idcategory.Text) + "";
-                if (Central.Query(sql).Rows.Count > 0)
+                sql = "select * from TBCATEGORIAS where id = @id";
+                var parameters = new Dictionary<string, object>
                 {
-                    sql = "UPDATE TBCATEGORIAS SET NOME = '" + txt_category.Text + "' WHERE id = " + int.Parse(txt_idcategory.Text);
-                    Central.Query(sql);
+                    { "@id", int.Parse(txt_idcategory.Text) }
+                };
+
+                dt = Central.ExecuteQuery(sql, parameters);
+
+                if (dt.Rows.Count > 0)
+                {
+                    sql = "update TBCATEGORIAS set nome = @name where id = @id";
+                    var parametersUpdate = new Dictionary<string, object>
+                    {
+                        { "@name", txt_category.Text },
+                        { "@id", int.Parse(txt_idcategory.Text) }
+                    };
+
+                    Central.ExecuteQuery(sql, parametersUpdate);
+
                     sql = "Select * from TBCATEGORIAS";
                     Atualizar_dgvCategoria(sql);
                     MessageBox.Show("Alterado com sucesso!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else
                 {
-                    sql = "Insert into TBCATEGORIAS (id, nome) Values (" + int.Parse(txt_idcategory.Text) + ", '" + txt_category.Text + "')";
-                    Central.Query(sql);
+                    sql = "insert into TBCATEGORIAS (id, nome) values (@id, @name)";
+                    var parametersInsert = new Dictionary<string, object>
+                    {
+                        { "@id", int.Parse(txt_idcategory.Text) },
+                        { "@name", txt_category.Text }
+                    };
+
+                    Central.ExecuteQuery(sql, parametersInsert);
+
                     MessageBox.Show("Cadastrado com sucesso!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
                     sql = "Select * from TBCATEGORIAS";
                     Atualizar_dgvCategoria(sql);
-                    Limpar_Campos("Categorias");
+                    CleanTexts("Categorias");
+
                 }
             }
             else
@@ -119,7 +169,7 @@ namespace Hardware_Store
             }
         }
 
-        private bool Checar_Campos(string tipo)
+        private bool CheckTexts(string tipo)
         {
             bool resp = true;
 
@@ -170,7 +220,7 @@ namespace Hardware_Store
 
         }
 
-        private void pic_foto_Click(object sender, EventArgs e)
+        private void Pic_foto_Click(object sender, EventArgs e)
         {
             openFileDialog1.InitialDirectory = Application.StartupPath + "\\Img\\Produtos\\";
             openFileDialog1.Title = "Selecione uma foto!";
@@ -184,10 +234,16 @@ namespace Hardware_Store
             }
         }
 
-        private void txt_id_Leave(object sender, EventArgs e)
+        private void Txt_id_Leave(object sender, EventArgs e)
         {
-            sql = "Select * from TBPRODUTOS where id ='" + txt_id.Text + "'";
-            dt = Central.Query(sql);
+            sql = "Select * from TBPRODUTOS where id = @id";
+            var parameters = new Dictionary<string, object>
+            {
+                { "@id", int.Parse(txt_id.Text) }
+            };
+
+            dt = Central.ExecuteQuery(sql, parameters);
+
             if (dt.Rows.Count > 0)
             {
                 btn_deleteproduct.Visible = true;
@@ -208,24 +264,36 @@ namespace Hardware_Store
 
         }
 
-        private void txt_idCategoria_Leave(object sender, EventArgs e)
+        private void Txt_idCategoria_Leave(object sender, EventArgs e)
         {
-            sql = "SELECT NOME FROM TBCATEGORIAS WHERE id = " + int.Parse(txt_idcategory.Text) + "";
-            dt = Central.Query(sql);
-            if (dt.Rows.Count > 0)
+            try
             {
-                object obj = dt.Rows[0][0];
-                btn_delete_category.Visible = true;
-                txt_category.Text = obj.ToString();
-                btn_addcategory.Text = "Alterar Categoria";
-            }
-            else
+                sql = "select * from TBCATEGORIAS where id = @id";
+                var parameters = new Dictionary<string, object>
             {
-                Limpar_Campos("Categorias");
+                { "@id", int.Parse(txt_idcategory.Text) }
+            };
+
+                dt = Central.ExecuteQuery(sql, parameters);
+                if (dt.Rows.Count > 0)
+                {
+                    foreach (DataRow r in dt.Rows)
+                    {
+                        txt_idcategory.Text = r["id"].ToString();
+                        txt_category.Text = r["nome"].ToString();
+                    }
+                    btn_delete_category.Visible = true;
+                    btn_addcategory.Text = "Alterar Categoria";
+                }
             }
+            catch
+            {
+
+            }
+
         }
 
-        private void Limpar_Campos(string campos)
+        private void CleanTexts(string campos)
         {
             switch (campos)
             {
@@ -250,16 +318,23 @@ namespace Hardware_Store
             }
         }
 
-        private void btn_excluir_Click(object sender, EventArgs e)
+        private void Btn_excluir_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Você está prestes a excluir esse produto da base de dados! Deseja Continuar?", "Aviso", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            if (MessageBox.Show("Você está prestes a excluir esse produto da base de dados! Deseja Continuar?", "Aviso",
+                MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
                 try
                 {
-                    sql = "Delete from TBPRODUTOS WHERE id = " + int.Parse(txt_id.Text) + "";
-                    Central.Query(sql);
+                    sql = "Delete from TBPRODUTOS where id = @id";
+                    var parameters = new Dictionary<string, object>
+                    {
+                        { "@id", int.Parse(txt_id.Text) }
+                    };
+
+                    Central.ExecuteQuery(sql, parameters);
+
                     MessageBox.Show("Produto Deletado!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    Limpar_Campos("Produtos");
+                    CleanTexts("Produtos");
                     txt_id.Text = "";
                     Atualizar_dgvProduto("select * from tbprodutos");
                 }
@@ -270,16 +345,22 @@ namespace Hardware_Store
             }
         }
 
-        private void btn_excluir_Categoria_Click(object sender, EventArgs e)
+        private void Btn_excluir_Categoria_Click(object sender, EventArgs e)
         {
             if (MessageBox.Show("Você está prestes a excluir essa categoria da base de dados! Deseja Continuar?", "Aviso", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
                 try
                 {
-                    sql = "Delete from TBCATEGORIAS WHERE id = " + int.Parse(txt_idcategory.Text) + "";
-                    Central.Query(sql);
+                    sql = "Delete from TBCATEGORIAS where id = @id";
+                    var parameters = new Dictionary<string, object>
+                    {
+                        { "@id", int.Parse(txt_idcategory.Text) }
+                    };
+
+                    Central.ExecuteQuery(sql, parameters);
+
                     MessageBox.Show("Categoria Deletada!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    Limpar_Campos("Categorias");
+                    CleanTexts("Categorias");
                     txt_idcategory.Text = "";
                     Atualizar_dgvCategoria("select * from tbcategorias");
                 }
@@ -298,17 +379,17 @@ namespace Hardware_Store
             }
         }
 
-        private void txt_id_KeyPress(object sender, KeyPressEventArgs e)
+        private void Txt_id_KeyPress(object sender, KeyPressEventArgs e)
         {
             CheckForNumbers(sender, e);
         }
 
-        private void txt_quantity_KeyPress(object sender, KeyPressEventArgs e)
+        private void Txt_quantity_KeyPress(object sender, KeyPressEventArgs e)
         {
             CheckForNumbers(sender, e);
         }
 
-        private void txt_price_KeyPress(object sender, KeyPressEventArgs e)
+        private void Txt_price_KeyPress(object sender, KeyPressEventArgs e)
         {
             CheckForNumbers(sender, e);
         }

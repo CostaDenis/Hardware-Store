@@ -151,7 +151,7 @@
             this.txt_quantity.Size = new System.Drawing.Size(153, 34);
             this.txt_quantity.TabIndex = 25;
             this.txt_quantity.Text = "0";
-            this.txt_quantity.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_quantity_KeyPress);
+            this.txt_quantity.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Txt_quantity_KeyPress);
             // 
             // label14
             // 
@@ -186,7 +186,7 @@
             this.btn_deleteproduct.TabIndex = 19;
             this.btn_deleteproduct.UseVisualStyleBackColor = true;
             this.btn_deleteproduct.Visible = false;
-            this.btn_deleteproduct.Click += new System.EventHandler(this.btn_excluir_Click);
+            this.btn_deleteproduct.Click += new System.EventHandler(this.Btn_excluir_Click);
             // 
             // txt_id
             // 
@@ -196,8 +196,8 @@
             this.txt_id.Name = "txt_id";
             this.txt_id.Size = new System.Drawing.Size(243, 34);
             this.txt_id.TabIndex = 1;
-            this.txt_id.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_id_KeyPress);
-            this.txt_id.Leave += new System.EventHandler(this.txt_id_Leave);
+            this.txt_id.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Txt_id_KeyPress);
+            this.txt_id.Leave += new System.EventHandler(this.Txt_id_Leave);
             // 
             // label1
             // 
@@ -240,7 +240,7 @@
             this.btn_addproduct.TabIndex = 17;
             this.btn_addproduct.Text = "Cadastrar produto";
             this.btn_addproduct.UseVisualStyleBackColor = true;
-            this.btn_addproduct.Click += new System.EventHandler(this.btn_CadastrarProduto_Click);
+            this.btn_addproduct.Click += new System.EventHandler(this.Btn_CadastrarProduto_Click);
             // 
             // label3
             // 
@@ -272,7 +272,7 @@
             this.txt_price.Name = "txt_price";
             this.txt_price.Size = new System.Drawing.Size(135, 34);
             this.txt_price.TabIndex = 3;
-            this.txt_price.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_price_KeyPress);
+            this.txt_price.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Txt_price_KeyPress);
             // 
             // txt_description
             // 
@@ -293,7 +293,7 @@
             this.pic_picture.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pic_picture.TabIndex = 11;
             this.pic_picture.TabStop = false;
-            this.pic_picture.Click += new System.EventHandler(this.pic_foto_Click);
+            this.pic_picture.Click += new System.EventHandler(this.Pic_foto_Click);
             // 
             // label5
             // 
@@ -426,7 +426,7 @@
             this.btn_delete_category.TabIndex = 26;
             this.btn_delete_category.UseVisualStyleBackColor = true;
             this.btn_delete_category.Visible = false;
-            this.btn_delete_category.Leave += new System.EventHandler(this.btn_excluir_Categoria_Click);
+            this.btn_delete_category.Leave += new System.EventHandler(this.Btn_excluir_Categoria_Click);
             // 
             // label12
             // 
@@ -458,7 +458,7 @@
             this.txt_idcategory.Name = "txt_idcategory";
             this.txt_idcategory.Size = new System.Drawing.Size(243, 34);
             this.txt_idcategory.TabIndex = 23;
-            this.txt_idcategory.Leave += new System.EventHandler(this.txt_idCategoria_Leave);
+            this.txt_idcategory.Leave += new System.EventHandler(this.Txt_idCategoria_Leave);
             // 
             // label10
             // 
@@ -481,7 +481,7 @@
             this.btn_addcategory.TabIndex = 21;
             this.btn_addcategory.Text = "Cadastrar categoria";
             this.btn_addcategory.UseVisualStyleBackColor = true;
-            this.btn_addcategory.Click += new System.EventHandler(this.btn_categoria_Click);
+            this.btn_addcategory.Click += new System.EventHandler(this.Btn_categoria_Click);
             // 
             // txt_category
             // 

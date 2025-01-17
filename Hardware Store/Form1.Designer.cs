@@ -73,6 +73,7 @@
             this.txt_cpf.Size = new System.Drawing.Size(473, 35);
             this.txt_cpf.TabIndex = 6;
             this.txt_cpf.TabStop = false;
+            this.txt_cpf.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_cpf_KeyPress);
             // 
             // panel1
             // 

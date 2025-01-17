@@ -135,5 +135,18 @@ namespace Hardware_Store
             return categorias;
         }
 
+        public static void VerifyTextCPF(TextBox txt_cpf, KeyPressEventArgs e)
+        {
+            if (txt_cpf.TextLength >= 11 && e.KeyChar != (char)8)
+            {
+                e.Handled = true;
+                MessageBox.Show("CPF deve ter 11 digitos!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                e.Handled = false;
+            }
+
+        }
     }
 }

@@ -154,6 +154,7 @@
             this.btn_delete.TabIndex = 10;
             this.btn_delete.UseVisualStyleBackColor = true;
             this.btn_delete.Visible = false;
+            this.btn_delete.Click += new System.EventHandler(this.Btn_delete_Click);
             // 
             // cmb_active
             // 

@@ -8,7 +8,6 @@ namespace Hardware_Store
 {
     public partial class Frm_Login : Form
     {
-        Frm_Adm frm_adm = new Frm_Adm();
         string sql;
         DataTable dt = new DataTable();
 
@@ -47,6 +46,7 @@ namespace Hardware_Store
 
                 if (Central.VerifyPassword(txt_password.Text, storedHash, storedSalt))
                 {
+                    Frm_Adm frm_adm = new Frm_Adm();
                     frm_adm.Show();
                 }
                 else
@@ -55,6 +55,9 @@ namespace Hardware_Store
                 }
 
             }
+
+            //Frm_Adm frm_adm = new Frm_Adm();
+            //frm_adm.Show();
 
         }
 
@@ -126,6 +129,11 @@ namespace Hardware_Store
         {
             Frm_RecoverPassword frm_recoverPassword = new Frm_RecoverPassword();
             frm_recoverPassword.Show();
+        }
+
+        private void txt_cpf_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            Central.VerifyTextCPF(txt_cpf, e);
         }
     }
 
