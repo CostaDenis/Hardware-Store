@@ -107,18 +107,11 @@ namespace Hardware_Store
             }
             index++;
 
-            PictureBox pb = CreateProductPictureBox(image, panel);
+            PictureBox pb = CreateProductPictureBox(image, panel, name, price.ToString());
             Label lblName = CreateProductLabelsTop(name, pb, panel, index);
             Label lblPrice = CreateProductLabelsBottom(price, pb, panel, index);
             Button btn = CreateProductButton(panel, lblPrice);
 
-            //index++;
-            //if (index == nextIndexCol)
-            //{
-            //    nextIndexCol += 3;
-            //    indexCol++;
-            //    index = 0;
-            //}
         }
 
         private Label CreateProductLabelsTop(string name, PictureBox pb, Panel panel, int index)
@@ -128,18 +121,23 @@ namespace Hardware_Store
                 Text = name,
                 Name = $"lblName_{index}",
                 AutoSize = true,
+                Font = new Font("Arial", 12, FontStyle.Regular)
             };
 
             panel.Controls.Add(lblName);
-
-            int centerX = pb.Left + pb.Width / 2;
-            int labelTop = pb.Top - lblName.Height - 10;
-
-            lblName.Left = centerX - lblName.Width / 2;
-            lblName.Top = labelTop;
+            CenterLabelTop(pb, lblName);
 
             return lblName;
 
+        }
+
+        private void CenterLabelTop(PictureBox pb, Label lbl)
+        {
+            int centerX = pb.Left + pb.Width / 2;
+            int labelTop = pb.Top - lbl.Height - 10;
+
+            lbl.Left = centerX - lbl.Width / 2;
+            lbl.Top = labelTop;
         }
 
         private Label CreateProductLabelsBottom(float price, PictureBox pb, Panel panel, int index)
@@ -148,21 +146,26 @@ namespace Hardware_Store
             {
                 Text = price.ToString(),
                 Name = $"lblPrice_{index}",
-                AutoSize = true
+                AutoSize = true,
+                Font = new Font("Arial", 12, FontStyle.Regular)
             };
 
             panel.Controls.Add(lblPrice);
-
-            int centerX = pb.Left + pb.Width / 2;
-            int labelTop = pb.Top - lblPrice.Bottom + 170;
-
-            lblPrice.Left = centerX - lblPrice.Width / 2;
-            lblPrice.Top = labelTop;
+            CenterLabelBottom(pb, lblPrice);
 
             return lblPrice;
         }
 
-        private PictureBox CreateProductPictureBox(string image, Panel panel)
+        private void CenterLabelBottom(PictureBox pb, Label lbl)
+        {
+            int centerX = pb.Left + pb.Width / 2;
+            int labelTop = pb.Top - lbl.Bottom + 170;
+
+            lbl.Left = centerX - lbl.Width / 2;
+            lbl.Top = labelTop;
+        }
+
+        private PictureBox CreateProductPictureBox(string image, Panel panel, string name, string price)
         {
             PictureBox pictureBox = new PictureBox
             {
@@ -180,6 +183,13 @@ namespace Hardware_Store
             {
                 MessageBox.Show($"Imagem não encontrada: {imagePath}");
             }
+
+            pictureBox.Click += (sender, e) =>
+            {
+                SelectProduct(imagePath, name, price);
+            };
+
+
             panel.Controls.Add(pictureBox);
 
             return pictureBox;
@@ -193,7 +203,10 @@ namespace Hardware_Store
                 Text = "Adicionar ao carrinho",
                 AutoSize = true,
                 TextAlign = ContentAlignment.BottomCenter,
-
+                Font = new Font("Arial", 12, FontStyle.Regular),
+                ForeColor = Color.White,
+                FlatStyle = FlatStyle.Flat,
+                BackColor = SystemColors.Highlight
             };
             panel.Controls.Add(btn);
 
@@ -218,6 +231,27 @@ namespace Hardware_Store
             int posY = (indexCol - 1) * totalHeight + 60;
 
             return new Point(posX, posY);
+        }
+
+        private void SelectProduct(string picLocation, string name, string price)
+        {
+            if (File.Exists(picLocation))
+            {
+                pb_imageProduct.ImageLocation = picLocation;
+            }
+            else
+            {
+                MessageBox.Show("Imagem não encontrada!");
+            }
+
+            //Arrumar bug do preço
+            lbl_name.Text = name;
+            lbl_name.Visible = true;
+            CenterLabelTop(pb_imageProduct, lbl_name);
+
+            lbl_price.Text = price;
+            lbl_price.Visible = true;
+            CenterLabelBottom(pb_imageProduct, lbl_price);
         }
 
 
