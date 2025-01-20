@@ -2,17 +2,21 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 
 namespace Hardware_Store
 {
+
     public partial class Frm_MenuLoja : Form
     {
         List<int> productsIdAdded = new List<int>();
         bool pairFirst = false;
         int index = 0, nextIndexCol = 3, indexCol = 1;
+        CultureInfo currentCulture = CultureInfo.CurrentCulture;
+
 
         public Frm_MenuLoja()
         {
@@ -67,6 +71,8 @@ namespace Hardware_Store
             string sql = "select Distinct id, nome, preco, id_categoria, descricao, foto from TBPRODUTOS";
             string productName = "", productPicture = "";
             float productPrice = 0.0f;
+            string productPriceFormatted = "";
+            string productDescription = "";
             int productId = 0;
             DataTable dt = Central.Query(sql);
             int idCategoria = 0;
@@ -77,6 +83,7 @@ namespace Hardware_Store
                 productName = dt.Rows[i]["nome"].ToString().Trim();
                 idCategoria = Convert.ToInt32(dt.Rows[i]["id_categoria"]);
                 productPrice = float.Parse(dt.Rows[i]["preco"].ToString());
+                productDescription = dt.Rows[i]["descricao"].ToString();
                 productPicture = dt.Rows[i]["foto"].ToString();
 
                 if (categorias.TryGetValue(idCategoria, out string nomeCategoria) &&
@@ -86,8 +93,10 @@ namespace Hardware_Store
 
                     if (!productsIdAdded.Contains(productId))
                     {
+                        productPriceFormatted = productPrice.ToString("C", currentCulture);
+
                         productsIdAdded.Add(productId);
-                        AddProduct(productName, productPrice, productPicture, panel);
+                        AddProduct(productName, productPriceFormatted, productDescription, productPicture, panel);
                     }
 
                 }
@@ -96,7 +105,7 @@ namespace Hardware_Store
             pairFirst = !pairFirst;
         }
 
-        private void AddProduct(string name, float price, string image, Panel panel)
+        private void AddProduct(string name, string price, string description, string image, Panel panel)
         {
 
 
@@ -107,7 +116,7 @@ namespace Hardware_Store
             }
             index++;
 
-            PictureBox pb = CreateProductPictureBox(image, panel, name, price.ToString());
+            PictureBox pb = CreateProductPictureBox(image, panel, name, price.ToString(), description);
             Label lblName = CreateProductLabelsTop(name, pb, panel, index);
             Label lblPrice = CreateProductLabelsBottom(price, pb, panel, index);
             Button btn = CreateProductButton(panel, lblPrice);
@@ -140,7 +149,7 @@ namespace Hardware_Store
             lbl.Top = labelTop;
         }
 
-        private Label CreateProductLabelsBottom(float price, PictureBox pb, Panel panel, int index)
+        private Label CreateProductLabelsBottom(string price, PictureBox pb, Panel panel, int index)
         {
             Label lblPrice = new Label
             {
@@ -165,16 +174,16 @@ namespace Hardware_Store
             }
             else
             {
-                labelTop = pb.Top + pb.Height + 20;
+                labelTop = pb.Top + pb.Height + 10;
             }
             int centerX = pb.Left + pb.Width / 2;
-            //int labelTop = pb.Top - lbl.Bottom + 170;
 
             lbl.Left = centerX - lbl.Width / 2;
             lbl.Top = labelTop;
         }
 
-        private PictureBox CreateProductPictureBox(string image, Panel panel, string name, string price)
+        private PictureBox CreateProductPictureBox(string image, Panel panel, string name, string price,
+                string description)
         {
             PictureBox pictureBox = new PictureBox
             {
@@ -195,7 +204,7 @@ namespace Hardware_Store
 
             pictureBox.Click += (sender, e) =>
             {
-                SelectProduct(imagePath, name, price);
+                SelectProduct(imagePath, name, price, description);
             };
 
 
@@ -242,7 +251,7 @@ namespace Hardware_Store
             return new Point(posX, posY);
         }
 
-        private void SelectProduct(string picLocation, string name, string price)
+        private void SelectProduct(string picLocation, string name, string price, string description)
         {
             if (File.Exists(picLocation))
             {
@@ -253,13 +262,27 @@ namespace Hardware_Store
                 MessageBox.Show("Imagem não encontrada!");
             }
 
-            //Arrumar bug do preço
+
             lbl_name.Text = name;
             lbl_name.Visible = true;
-            CenterLabelTop(pb_imageProduct, lbl_name);
 
             lbl_price.Text = price;
             lbl_price.Visible = true;
+
+            txt_description.Text = description;
+            txt_description.Visible = true;
+
+            pb_imageProduct.Visible = true;
+
+            lbl_QTDE.Visible = true;
+
+            txt_quantity.Visible = true;
+            txt_quantity.Text = "0";
+
+            btn_addToCart.Visible = true;
+
+
+            CenterLabelTop(pb_imageProduct, lbl_name);
             CenterLabelBottom(pb_imageProduct, lbl_price, "Select");
 
             this.Refresh();
