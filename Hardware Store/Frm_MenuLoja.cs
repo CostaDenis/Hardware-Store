@@ -93,7 +93,7 @@ namespace Hardware_Store
                 }
 
             }
-            pairFirst = pairFirst ? false : true;
+            pairFirst = !pairFirst;
         }
 
         private void AddProduct(string name, float price, string image, Panel panel)
@@ -156,10 +156,19 @@ namespace Hardware_Store
             return lblPrice;
         }
 
-        private void CenterLabelBottom(PictureBox pb, Label lbl)
+        private void CenterLabelBottom(PictureBox pb, Label lbl, string option = null)
         {
+            int labelTop;
+            if (option == null)
+            {
+                labelTop = pb.Top - lbl.Bottom + 170;
+            }
+            else
+            {
+                labelTop = pb.Top + pb.Height + 20;
+            }
             int centerX = pb.Left + pb.Width / 2;
-            int labelTop = pb.Top - lbl.Bottom + 170;
+            //int labelTop = pb.Top - lbl.Bottom + 170;
 
             lbl.Left = centerX - lbl.Width / 2;
             lbl.Top = labelTop;
@@ -251,7 +260,10 @@ namespace Hardware_Store
 
             lbl_price.Text = price;
             lbl_price.Visible = true;
-            CenterLabelBottom(pb_imageProduct, lbl_price);
+            CenterLabelBottom(pb_imageProduct, lbl_price, "Select");
+
+            this.Refresh();
+
         }
 
 

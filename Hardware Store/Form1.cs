@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
 using System.Windows.Forms;
@@ -19,45 +18,45 @@ namespace Hardware_Store
         private void Btn_login_Click(object sender, EventArgs e)
         {
 
-            if (txt_cpf.Text == "CPF" || txt_password.Text == "Password")
-            {
-                MessageBox.Show("Insira todos os dados necessários!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-            else
-            {
+            //if (txt_cpf.Text == "CPF" || txt_password.Text == "Password")
+            //{
+            //    MessageBox.Show("Insira todos os dados necessários!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            //    return;
+            //}
+            //else
+            //{
 
-                sql = "Select senha, salt from TBCONTAS where id_cpf = @cpf";
+            //    sql = "Select senha, salt from TBCONTAS where id_cpf = @cpf";
 
-                var parameters = new Dictionary<string, object>
-            {
-                { "@cpf", txt_cpf.Text }
-            };
+            //    var parameters = new Dictionary<string, object>
+            //{
+            //    { "@cpf", txt_cpf.Text }
+            //};
 
-                dt = Central.ExecuteQuery(sql, parameters);
-                if (dt.Rows.Count == 0)
-                {
-                    MessageBox.Show("CPF não encontrado", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
+            //    dt = Central.ExecuteQuery(sql, parameters);
+            //    if (dt.Rows.Count == 0)
+            //    {
+            //        MessageBox.Show("CPF não encontrado", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            //        return;
+            //    }
 
-                string storedHash = dt.Rows[0]["senha"].ToString();
-                string storedSalt = dt.Rows[0]["salt"].ToString();
+            //    string storedHash = dt.Rows[0]["senha"].ToString();
+            //    string storedSalt = dt.Rows[0]["salt"].ToString();
 
-                if (Central.VerifyPassword(txt_password.Text, storedHash, storedSalt))
-                {
-                    Frm_Adm frm_adm = new Frm_Adm();
-                    frm_adm.Show();
-                }
-                else
-                {
-                    MessageBox.Show("Senha incorreta", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                }
+            //    if (Central.VerifyPassword(txt_password.Text, storedHash, storedSalt))
+            //    {
+            //        Frm_Adm frm_adm = new Frm_Adm();
+            //        frm_adm.Show();
+            //    }
+            //    else
+            //    {
+            //        MessageBox.Show("Senha incorreta", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            //    }
 
-            }
+            //}
 
-            //Frm_Adm frm_adm = new Frm_Adm();
-            //frm_adm.Show();
+            Frm_Adm frm_adm = new Frm_Adm();
+            frm_adm.Show();
 
         }
 
