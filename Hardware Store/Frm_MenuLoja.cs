@@ -68,12 +68,13 @@ namespace Hardware_Store
             Dictionary<int, string> categorias = Central.ObterCategoriasIdParaNome();
             var tabPagesMap = tc_category.TabPages.Cast<TabPage>()
                 .ToDictionary(tabPage => tabPage.Text, tabPage => tabPage);
-            string sql = "select Distinct id, nome, preco, id_categoria, descricao, foto from TBPRODUTOS";
+            string sql = "select Distinct id, nome, preco, quantidade, id_categoria, descricao, foto from TBPRODUTOS";
             string productName = "", productPicture = "";
             float productPrice = 0.0f;
             string productPriceFormatted = "";
             string productDescription = "";
             int productId = 0;
+            int productQuantity = 0;
             DataTable dt = Central.Query(sql);
             int idCategoria = 0;
 
@@ -83,6 +84,7 @@ namespace Hardware_Store
                 productName = dt.Rows[i]["nome"].ToString().Trim();
                 idCategoria = Convert.ToInt32(dt.Rows[i]["id_categoria"]);
                 productPrice = float.Parse(dt.Rows[i]["preco"].ToString());
+                productQuantity = Convert.ToInt32(dt.Rows[i]["quantidade"]);
                 productDescription = dt.Rows[i]["descricao"].ToString();
                 productPicture = dt.Rows[i]["foto"].ToString();
 
@@ -96,7 +98,8 @@ namespace Hardware_Store
                         productPriceFormatted = productPrice.ToString("C", currentCulture);
 
                         productsIdAdded.Add(productId);
-                        AddProduct(productName, productPriceFormatted, productDescription, productPicture, panel);
+                        AddProduct(productName, productPriceFormatted, productDescription, productPicture, productQuantity,
+                            panel);
                     }
 
                 }
@@ -105,7 +108,8 @@ namespace Hardware_Store
             pairFirst = !pairFirst;
         }
 
-        private void AddProduct(string name, string price, string description, string image, Panel panel)
+        private void AddProduct(string name, string price, string description, string image,
+            int quantity, Panel panel)
         {
 
 
@@ -116,14 +120,14 @@ namespace Hardware_Store
             }
             index++;
 
-            PictureBox pb = CreateProductPictureBox(image, panel, name, price.ToString(), description);
-            Label lblName = CreateProductLabelsTop(name, pb, panel, index);
-            Label lblPrice = CreateProductLabelsBottom(price, pb, panel, index);
-            Button btn = CreateProductButton(panel, lblPrice);
+            PictureBox pb = CreateProductPictureBox(image, panel, name, price.ToString(), quantity, description);
+            Label lblName = CreateProductLabelsTop(name, quantity, pb, panel, index);
+            Label lblPrice = CreateProductLabelsBottom(price, quantity, pb, panel, index);
+            //Button btn = CreateProductButton(panel, quantity, lblPrice);
 
         }
 
-        private Label CreateProductLabelsTop(string name, PictureBox pb, Panel panel, int index)
+        private Label CreateProductLabelsTop(string name, int quantity, PictureBox pb, Panel panel, int index)
         {
             Label lblName = new Label
             {
@@ -132,6 +136,11 @@ namespace Hardware_Store
                 AutoSize = true,
                 Font = new Font("Arial", 12, FontStyle.Regular)
             };
+
+            if (quantity == 0)
+            {
+                lblName.ForeColor = Color.Gray;
+            }
 
             panel.Controls.Add(lblName);
             CenterLabelTop(pb, lblName);
@@ -149,7 +158,7 @@ namespace Hardware_Store
             lbl.Top = labelTop;
         }
 
-        private Label CreateProductLabelsBottom(string price, PictureBox pb, Panel panel, int index)
+        private Label CreateProductLabelsBottom(string price, int quantity, PictureBox pb, Panel panel, int index)
         {
             Label lblPrice = new Label
             {
@@ -158,6 +167,11 @@ namespace Hardware_Store
                 AutoSize = true,
                 Font = new Font("Arial", 12, FontStyle.Regular)
             };
+
+            if (quantity == 0)
+            {
+                lblPrice.ForeColor = Color.Gray;
+            }
 
             panel.Controls.Add(lblPrice);
             CenterLabelBottom(pb, lblPrice);
@@ -183,7 +197,7 @@ namespace Hardware_Store
         }
 
         private PictureBox CreateProductPictureBox(string image, Panel panel, string name, string price,
-                string description)
+                int quantity, string description)
         {
             PictureBox pictureBox = new PictureBox
             {
@@ -204,7 +218,7 @@ namespace Hardware_Store
 
             pictureBox.Click += (sender, e) =>
             {
-                SelectProduct(imagePath, name, price, description);
+                SelectProduct(imagePath, name, price, quantity, description);
             };
 
 
@@ -214,27 +228,59 @@ namespace Hardware_Store
 
         }
 
-        private Button CreateProductButton(Panel panel, Label lblBottom)
+        private Button CreateProductButton(Panel panel, int quantity, Label lblBottom)
         {
-            Button btn = new Button()
+            if (quantity > 0)
             {
-                Text = "Adicionar ao carrinho",
-                AutoSize = true,
-                TextAlign = ContentAlignment.BottomCenter,
-                Font = new Font("Arial", 12, FontStyle.Regular),
-                ForeColor = Color.White,
-                FlatStyle = FlatStyle.Flat,
-                BackColor = SystemColors.Highlight
-            };
-            panel.Controls.Add(btn);
 
-            int centerX = lblBottom.Left + lblBottom.Width / 2;
-            int labelTop = lblBottom.Top - btn.Bottom + 50;
+                Button btn = new Button()
+                {
+                    Text = "Adicionar ao carrinho",
+                    AutoSize = true,
+                    TextAlign = ContentAlignment.BottomCenter,
+                    Font = new Font("Arial", 12, FontStyle.Regular),
+                    ForeColor = Color.White,
+                    FlatStyle = FlatStyle.Flat,
+                    BackColor = SystemColors.Highlight
+                };
 
-            btn.Left = centerX - btn.Width / 2;
-            btn.Top = labelTop;
+                panel.Controls.Add(btn);
 
-            return btn;
+                int centerX = lblBottom.Left + lblBottom.Width / 2;
+                int labelTop = lblBottom.Top - btn.Bottom + 50;
+
+                btn.Left = centerX - btn.Width / 2;
+                btn.Top = labelTop;
+
+                return btn;
+
+            }
+            else
+            {
+                Button btn = new Button()
+                {
+                    Text = "Produto Indisponível",
+                    AutoSize = true,
+                    TextAlign = ContentAlignment.BottomCenter,
+                    Font = new Font("Arial", 12, FontStyle.Bold),
+                    ForeColor = Color.White,
+                    FlatStyle = FlatStyle.Flat,
+                    BackColor = Color.Gray,
+                    Enabled = false
+                };
+
+                panel.Controls.Add(btn);
+
+                int centerX = lblBottom.Left + lblBottom.Width / 2;
+                int labelTop = lblBottom.Top - btn.Bottom + 50;
+
+                btn.Left = centerX - btn.Width / 2;
+                btn.Top = labelTop;
+
+                return btn;
+
+            }
+
         }
 
 
@@ -246,12 +292,12 @@ namespace Hardware_Store
 
             int totalHeight = pb.Height + verticalSpacing;
             int posX = initialX + (numberProduct - 1) * horizontalSpacing;
-            int posY = (indexCol - 1) * totalHeight + 60;
+            int posY = (indexCol - 1) * totalHeight + 100;
 
             return new Point(posX, posY);
         }
 
-        private void SelectProduct(string picLocation, string name, string price, string description)
+        private void SelectProduct(string picLocation, string name, string price, int quantity, string description)
         {
             if (File.Exists(picLocation))
             {
@@ -284,6 +330,19 @@ namespace Hardware_Store
 
             CenterLabelTop(pb_imageProduct, lbl_name);
             CenterLabelBottom(pb_imageProduct, lbl_price, "Select");
+
+            if (quantity > 0)
+            {
+                btn_addToCart.Enabled = true;
+                btn_addToCart.Text = "Adicionar ao carrinho";
+                btn_addToCart.BackColor = SystemColors.Highlight;
+            }
+            else
+            {
+                btn_addToCart.Enabled = false;
+                btn_addToCart.Text = "Produto Indisponível";
+                btn_addToCart.BackColor = Color.Gray;
+            }
 
             this.Refresh();
 
