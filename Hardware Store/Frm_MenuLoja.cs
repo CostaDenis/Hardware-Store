@@ -12,6 +12,8 @@ namespace Hardware_Store
 
     public partial class Frm_MenuLoja : Form
     {
+        string sql = "";
+        DataTable dt = new DataTable();
         List<int> productsIdAdded = new List<int>();
         bool pairFirst = false;
         int index = 0, nextIndexCol = 3, indexCol = 1;
@@ -283,6 +285,11 @@ namespace Hardware_Store
 
         }
 
+        private void Btn_addToCart_Click(object sender, EventArgs e)
+        {
+
+            VerifyQuantity();
+        }
 
         private Point CalculateNewPoint(int numberProduct, int indexCol, PictureBox pb)
         {
@@ -348,6 +355,50 @@ namespace Hardware_Store
 
         }
 
+        private bool VerifyQuantity()
+        {
 
+            if (txt_quantity.Text == "0")
+            {
+                MessageBox.Show("Selecione a quantidade do produto!");
+                return false;
+            }
+
+            int idProduct = GetIdProduct(lbl_name.Text);
+            int availableQuantity = 0, requestedQuantity = 0;
+
+            sql = "select quantidade from TBPRODUTOS where id = @id";
+            var parameters = new Dictionary<string, object>
+            {
+                {"@id", idProduct}
+            };
+
+            dt = Central.ExecuteQuery(sql, parameters);
+
+            availableQuantity = Convert.ToInt32(dt.Rows[0]["quantidade"]);
+            requestedQuantity = Convert.ToInt32(txt_quantity.Text);
+
+
+            if (requestedQuantity > availableQuantity)
+            {
+                MessageBox.Show("Quantidade indisponível!");
+                return false;
+            }
+            return true;
+        }
+
+        private int GetIdProduct(string name)
+        {
+            sql = "select id from TBPRODUTOS where nome = @name";
+            var parameters = new Dictionary<string, object>
+            {
+                {"@name", name}
+            };
+            dt = Central.ExecuteQuery(sql, parameters);
+            return Convert.ToInt32(dt.Rows[0]["id"]);
+
+
+        }
     }
 }
+

@@ -45,8 +45,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.lbl_amount = new System.Windows.Forms.Label();
             this.btn_cancel = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.btn_verifyCart = new System.Windows.Forms.Button();
+            this.btn_buyCart = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pb_imageProduct)).BeginInit();
             this.tabPage1.SuspendLayout();
             this.tc_category.SuspendLayout();
@@ -71,7 +71,7 @@
             this.tabPage2.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(4);
-            this.tabPage2.Size = new System.Drawing.Size(1004, 553);
+            this.tabPage2.Size = new System.Drawing.Size(1019, 527);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "tabPage2";
             // 
@@ -175,6 +175,7 @@
             this.btn_addToCart.Text = "Adicionar ao carrinho";
             this.btn_addToCart.UseVisualStyleBackColor = false;
             this.btn_addToCart.Visible = false;
+            this.btn_addToCart.Click += new System.EventHandler(this.Btn_addToCart_Click);
             // 
             // lbl_QTDE
             // 
@@ -229,31 +230,31 @@
             this.btn_cancel.Text = "Cancelar";
             this.btn_cancel.UseVisualStyleBackColor = false;
             // 
-            // button1
+            // btn_verifyCart
             // 
-            this.button1.BackColor = System.Drawing.SystemColors.Highlight;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Font = new System.Drawing.Font("Arial", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.ForeColor = System.Drawing.Color.White;
-            this.button1.Location = new System.Drawing.Point(816, 715);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(284, 68);
-            this.button1.TabIndex = 29;
-            this.button1.Text = "Verificar pedido";
-            this.button1.UseVisualStyleBackColor = false;
+            this.btn_verifyCart.BackColor = System.Drawing.SystemColors.Highlight;
+            this.btn_verifyCart.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_verifyCart.Font = new System.Drawing.Font("Arial", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_verifyCart.ForeColor = System.Drawing.Color.White;
+            this.btn_verifyCart.Location = new System.Drawing.Point(816, 715);
+            this.btn_verifyCart.Name = "btn_verifyCart";
+            this.btn_verifyCart.Size = new System.Drawing.Size(284, 68);
+            this.btn_verifyCart.TabIndex = 29;
+            this.btn_verifyCart.Text = "Verificar pedido";
+            this.btn_verifyCart.UseVisualStyleBackColor = false;
             // 
-            // button2
+            // btn_buyCart
             // 
-            this.button2.BackColor = System.Drawing.SystemColors.Highlight;
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.Font = new System.Drawing.Font("Arial", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.ForeColor = System.Drawing.Color.White;
-            this.button2.Location = new System.Drawing.Point(1107, 715);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(286, 68);
-            this.button2.TabIndex = 30;
-            this.button2.Text = "Finalizar pedido";
-            this.button2.UseVisualStyleBackColor = false;
+            this.btn_buyCart.BackColor = System.Drawing.SystemColors.Highlight;
+            this.btn_buyCart.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_buyCart.Font = new System.Drawing.Font("Arial", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_buyCart.ForeColor = System.Drawing.Color.White;
+            this.btn_buyCart.Location = new System.Drawing.Point(1107, 715);
+            this.btn_buyCart.Name = "btn_buyCart";
+            this.btn_buyCart.Size = new System.Drawing.Size(286, 68);
+            this.btn_buyCart.TabIndex = 30;
+            this.btn_buyCart.Text = "Finalizar pedido";
+            this.btn_buyCart.UseVisualStyleBackColor = false;
             // 
             // Frm_MenuLoja
             // 
@@ -261,9 +262,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
             this.ClientSize = new System.Drawing.Size(1406, 795);
-            this.Controls.Add(this.button2);
+            this.Controls.Add(this.btn_buyCart);
             this.Controls.Add(this.btn_cancel);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btn_verifyCart);
             this.Controls.Add(this.lbl_amount);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txt_quantity);
@@ -308,7 +309,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label lbl_amount;
         private System.Windows.Forms.Button btn_cancel;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btn_verifyCart;
+        private System.Windows.Forms.Button btn_buyCart;
     }
 }
