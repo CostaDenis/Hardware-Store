@@ -12,6 +12,8 @@ namespace Hardware_Store
 
     public partial class Frm_MenuLoja : Form
     {
+        //List<CartItem> cart = new List<CartItem>();
+        List<CartItem> cart = Central.cart;
         string sql = "";
         DataTable dt = new DataTable();
         List<int> productsIdAdded = new List<int>();
@@ -125,7 +127,6 @@ namespace Hardware_Store
             PictureBox pb = CreateProductPictureBox(image, panel, name, price.ToString(), quantity, description);
             Label lblName = CreateProductLabelsTop(name, quantity, pb, panel, index);
             Label lblPrice = CreateProductLabelsBottom(price, quantity, pb, panel, index);
-            //Button btn = CreateProductButton(panel, quantity, lblPrice);
 
         }
 
@@ -230,66 +231,15 @@ namespace Hardware_Store
 
         }
 
-        private Button CreateProductButton(Panel panel, int quantity, Label lblBottom)
-        {
-            if (quantity > 0)
-            {
-
-                Button btn = new Button()
-                {
-                    Text = "Adicionar ao carrinho",
-                    AutoSize = true,
-                    TextAlign = ContentAlignment.BottomCenter,
-                    Font = new Font("Arial", 12, FontStyle.Regular),
-                    ForeColor = Color.White,
-                    FlatStyle = FlatStyle.Flat,
-                    BackColor = SystemColors.Highlight
-                };
-
-                panel.Controls.Add(btn);
-
-                int centerX = lblBottom.Left + lblBottom.Width / 2;
-                int labelTop = lblBottom.Top - btn.Bottom + 50;
-
-                btn.Left = centerX - btn.Width / 2;
-                btn.Top = labelTop;
-
-                return btn;
-
-            }
-            else
-            {
-                Button btn = new Button()
-                {
-                    Text = "Produto Indisponível",
-                    AutoSize = true,
-                    TextAlign = ContentAlignment.BottomCenter,
-                    Font = new Font("Arial", 12, FontStyle.Bold),
-                    ForeColor = Color.White,
-                    FlatStyle = FlatStyle.Flat,
-                    BackColor = Color.Gray,
-                    Enabled = false
-                };
-
-                panel.Controls.Add(btn);
-
-                int centerX = lblBottom.Left + lblBottom.Width / 2;
-                int labelTop = lblBottom.Top - btn.Bottom + 50;
-
-                btn.Left = centerX - btn.Width / 2;
-                btn.Top = labelTop;
-
-                return btn;
-
-            }
-
-        }
-
         private void Btn_addToCart_Click(object sender, EventArgs e)
         {
 
-            VerifyQuantity();
+            if (VerifyQuantity())
+            {
+                cart.Add(new CartItem(GetIdProduct(lbl_name.Text), Convert.ToInt32(txt_quantity.Text)));
+            }
         }
+
 
         private Point CalculateNewPoint(int numberProduct, int indexCol, PictureBox pb)
         {
@@ -353,6 +303,22 @@ namespace Hardware_Store
 
             this.Refresh();
 
+        }
+
+        private void Btn_cancel_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void Btn_buyCart_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show($"{cart.Count}");
+        }
+
+        private void Btn_verifyCart_Click(object sender, EventArgs e)
+        {
+            Frm_VerifyCart frm_VerifyCart = new Frm_VerifyCart();
+            frm_VerifyCart.Show();
         }
 
         private bool VerifyQuantity()

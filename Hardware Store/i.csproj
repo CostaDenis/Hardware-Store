@@ -93,6 +93,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CartItem.cs" />
     <Compile Include="Central.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
@@ -130,6 +131,12 @@
     <Compile Include="Frm_RecoverPassword.Designer.cs">
       <DependentUpon>Frm_RecoverPassword.cs</DependentUpon>
     </Compile>
+    <Compile Include="Frm_VerifyCart.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Frm_VerifyCart.Designer.cs">
+      <DependentUpon>Frm_VerifyCart.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Form1.resx">
@@ -149,6 +156,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Frm_RecoverPassword.resx">
       <DependentUpon>Frm_RecoverPassword.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frm_VerifyCart.resx">
+      <DependentUpon>Frm_VerifyCart.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

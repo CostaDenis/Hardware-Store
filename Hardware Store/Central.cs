@@ -10,7 +10,7 @@ namespace Hardware_Store
 {
     internal class Central
     {
-
+        public static List<CartItem> cart = new List<CartItem>();
         private static SQLiteConnection connection;
 
         public static DataTable ExecuteQuery(string sql, Dictionary<string, object> parameters)

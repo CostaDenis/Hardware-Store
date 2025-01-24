@@ -229,6 +229,7 @@
             this.btn_cancel.TabIndex = 28;
             this.btn_cancel.Text = "Cancelar";
             this.btn_cancel.UseVisualStyleBackColor = false;
+            this.btn_cancel.Click += new System.EventHandler(this.Btn_cancel_Click);
             // 
             // btn_verifyCart
             // 
@@ -242,6 +243,7 @@
             this.btn_verifyCart.TabIndex = 29;
             this.btn_verifyCart.Text = "Verificar pedido";
             this.btn_verifyCart.UseVisualStyleBackColor = false;
+            this.btn_verifyCart.Click += new System.EventHandler(this.Btn_verifyCart_Click);
             // 
             // btn_buyCart
             // 
@@ -255,6 +257,7 @@
             this.btn_buyCart.TabIndex = 30;
             this.btn_buyCart.Text = "Finalizar pedido";
             this.btn_buyCart.UseVisualStyleBackColor = false;
+            this.btn_buyCart.Click += new System.EventHandler(this.Btn_buyCart_Click);
             // 
             // Frm_MenuLoja
             // 

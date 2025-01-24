@@ -53,3 +53,4 @@ C:\Users\denis\dev\DotNet\Hardware_Store\Hardware Store\bin\Debug\System.Buffers
 C:\Users\denis\dev\DotNet\Hardware_Store\Hardware Store\bin\Debug\System.Memory.xml
 C:\Users\denis\dev\DotNet\Hardware_Store\Hardware Store\bin\Debug\System.Numerics.Vectors.xml
 C:\Users\denis\dev\DotNet\Hardware_Store\Hardware Store\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
+C:\Users\denis\dev\DotNet\Hardware_Store\Hardware Store\obj\Debug\Hardware_Store.Frm_VerifyCart.resources
