@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Data;
 using System.Data.SQLite;
 using System.Linq;
@@ -10,7 +11,7 @@ namespace Hardware_Store
 {
     internal class Central
     {
-        public static List<CartItem> cart = new List<CartItem>();
+        public static BindingList<CartItem> cart = new BindingList<CartItem>();
         private static SQLiteConnection connection;
 
         public static DataTable ExecuteQuery(string sql, Dictionary<string, object> parameters)

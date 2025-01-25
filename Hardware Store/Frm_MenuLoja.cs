@@ -12,7 +12,7 @@ namespace Hardware_Store
 
     public partial class Frm_MenuLoja : Form
     {
-        List<CartItem> cart = Central.cart;
+        System.ComponentModel.BindingList<CartItem> cart = Central.cart;
         string sql = "";
         DataTable dt = new DataTable();
         List<int> productsIdAdded = new List<int>();

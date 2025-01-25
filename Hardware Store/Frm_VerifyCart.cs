@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+﻿using System.ComponentModel;
 using System.Globalization;
 using System.Windows.Forms;
 
@@ -6,7 +6,7 @@ namespace Hardware_Store
 {
     public partial class Frm_VerifyCart : Form
     {
-        List<CartItem> cart = Central.cart;
+        BindingList<CartItem> cart = Central.cart;
 
         public Frm_VerifyCart()
         {
@@ -34,6 +34,10 @@ namespace Hardware_Store
             dgv_cart.Columns["ProductPrice"].HeaderText = "Preço";
             dgv_cart.Columns["Quantity"].HeaderText = "Quantidade";
 
+            foreach (DataGridViewColumn column in dgv_cart.Columns)
+            {
+                column.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            }
 
 
             var btn = new DataGridViewButtonColumn
@@ -50,8 +54,18 @@ namespace Hardware_Store
         {
             if (e.ColumnIndex == dgv_cart.Columns["Excluir"].Index && e.RowIndex >= 0)
             {
-                var productName = dgv_cart.Rows[e.RowIndex].Cells["ProductName"].Value?.ToString();
-                //MessageBox.Show($"Botão clicado na linha {e.RowIndex + 1} para o produto: {productName}");
+                var ProductName = dgv_cart.Rows[e.RowIndex].Cells["ProductName"].Value.ToString();
+
+                var resp = MessageBox.Show($"Essa ação irá excluir o {ProductName} do seu carrinho! " +
+                    "Deseja continuar?", "Atenção", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+
+                if (resp == DialogResult.Yes)
+                {
+                    var productToRemove = cart[e.RowIndex];
+                    cart.Remove(productToRemove);
+                }
+
+
             }
         }
 
