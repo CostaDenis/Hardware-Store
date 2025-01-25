@@ -31,8 +31,9 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Frm_VerifyCart));
             this.panel1 = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
-            this.panel2 = new System.Windows.Forms.Panel();
+            this.dgv_cart = new System.Windows.Forms.DataGridView();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv_cart)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -56,13 +57,16 @@
             this.label2.TabIndex = 5;
             this.label2.Text = "Carrinho";
             // 
-            // panel2
+            // dgv_cart
             // 
-            this.panel2.AutoScroll = true;
-            this.panel2.Location = new System.Drawing.Point(2, 113);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(749, 635);
-            this.panel2.TabIndex = 14;
+            this.dgv_cart.BackgroundColor = System.Drawing.SystemColors.ActiveCaption;
+            this.dgv_cart.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgv_cart.Location = new System.Drawing.Point(12, 210);
+            this.dgv_cart.Name = "dgv_cart";
+            this.dgv_cart.RowHeadersWidth = 51;
+            this.dgv_cart.RowTemplate.Height = 24;
+            this.dgv_cart.Size = new System.Drawing.Size(726, 527);
+            this.dgv_cart.TabIndex = 14;
             // 
             // Frm_VerifyCart
             // 
@@ -70,7 +74,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
             this.ClientSize = new System.Drawing.Size(750, 749);
-            this.Controls.Add(this.panel2);
+            this.Controls.Add(this.dgv_cart);
             this.Controls.Add(this.panel1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Frm_VerifyCart";
@@ -78,6 +82,7 @@
             this.Load += new System.EventHandler(this.Frm_VerifyCart_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv_cart)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -86,6 +91,6 @@
 
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.DataGridView dgv_cart;
     }
 }

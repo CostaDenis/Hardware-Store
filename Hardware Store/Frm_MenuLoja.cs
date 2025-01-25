@@ -12,7 +12,6 @@ namespace Hardware_Store
 
     public partial class Frm_MenuLoja : Form
     {
-        //List<CartItem> cart = new List<CartItem>();
         List<CartItem> cart = Central.cart;
         string sql = "";
         DataTable dt = new DataTable();
@@ -236,7 +235,9 @@ namespace Hardware_Store
 
             if (VerifyQuantity())
             {
-                cart.Add(new CartItem(GetIdProduct(lbl_name.Text), Convert.ToInt32(txt_quantity.Text)));
+                double.TryParse(lbl_price.Text, NumberStyles.Currency, CultureInfo.CurrentCulture, out double price);
+                cart.Add(new CartItem(GetIdProduct(lbl_name.Text), lbl_name.Text, price, Convert.ToInt32(txt_quantity.Text)));
+
             }
         }
 
