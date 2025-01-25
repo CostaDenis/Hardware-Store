@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Globalization;
@@ -9,10 +10,11 @@ using System.Windows.Forms;
 
 namespace Hardware_Store
 {
-
+    //Arrumar o total do valor
     public partial class Frm_MenuLoja : Form
     {
-        System.ComponentModel.BindingList<CartItem> cart = Central.cart;
+        BindingList<CartItem> cart = Central.cart;
+        double amount = 0;
         string sql = "";
         DataTable dt = new DataTable();
         List<int> productsIdAdded = new List<int>();
@@ -237,10 +239,15 @@ namespace Hardware_Store
             {
                 double.TryParse(lbl_price.Text, NumberStyles.Currency, CultureInfo.CurrentCulture, out double price);
                 cart.Add(new CartItem(GetIdProduct(lbl_name.Text), lbl_name.Text, price, Convert.ToInt32(txt_quantity.Text)));
-
+                UpdateTotalAmount();
             }
         }
 
+        private void UpdateTotalAmount()
+        {
+            amount = cart.Sum(item => item.ProductPrice * item.Quantity);
+            lbl_amount.Text = $"Total: {amount.ToString("C", currentCulture)}";
+        }
 
         private Point CalculateNewPoint(int numberProduct, int indexCol, PictureBox pb)
         {

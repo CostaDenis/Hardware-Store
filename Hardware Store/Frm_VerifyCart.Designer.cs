@@ -33,7 +33,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.dgv_cart = new System.Windows.Forms.DataGridView();
             this.lbl_amount = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_cart)).BeginInit();
             this.SuspendLayout();
@@ -69,26 +68,18 @@
             this.dgv_cart.RowTemplate.Height = 24;
             this.dgv_cart.Size = new System.Drawing.Size(726, 527);
             this.dgv_cart.TabIndex = 14;
+            this.dgv_cart.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.Dgv_cart_CellEndEdit);
+            this.dgv_cart.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.Dgv_cart_CellValueChanged);
             // 
             // lbl_amount
             // 
             this.lbl_amount.AutoSize = true;
             this.lbl_amount.Font = new System.Drawing.Font("Arial", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_amount.Location = new System.Drawing.Point(163, 160);
+            this.lbl_amount.Location = new System.Drawing.Point(12, 174);
             this.lbl_amount.Name = "lbl_amount";
             this.lbl_amount.Size = new System.Drawing.Size(31, 33);
             this.lbl_amount.TabIndex = 29;
             this.lbl_amount.Text = "0";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Arial", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(21, 161);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(152, 32);
-            this.label1.TabIndex = 28;
-            this.label1.Text = "Valor total: ";
             // 
             // Frm_VerifyCart
             // 
@@ -97,7 +88,6 @@
             this.BackColor = System.Drawing.SystemColors.Window;
             this.ClientSize = new System.Drawing.Size(750, 749);
             this.Controls.Add(this.lbl_amount);
-            this.Controls.Add(this.label1);
             this.Controls.Add(this.dgv_cart);
             this.Controls.Add(this.panel1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -118,6 +108,5 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.DataGridView dgv_cart;
         private System.Windows.Forms.Label lbl_amount;
-        private System.Windows.Forms.Label label1;
     }
 }

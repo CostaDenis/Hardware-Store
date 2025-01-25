@@ -3,24 +3,20 @@
   "WorkspaceRootPath": "C:\\Users\\denis\\dev\\DotNet\\Hardware_Store\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{1A776E3D-9731-4AB3-B69A-612DD9F0730E}|Hardware Store\\i.csproj|c:\\users\\denis\\dev\\dotnet\\hardware_store\\hardware store\\frm_verifycart.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{1A776E3D-9731-4AB3-B69A-612DD9F0730E}|Hardware Store\\i.csproj|C:\\Users\\denis\\dev\\DotNet\\Hardware_Store\\hardware store\\frm_verifycart.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{1A776E3D-9731-4AB3-B69A-612DD9F0730E}|Hardware Store\\i.csproj|solutionrelative:hardware store\\frm_verifycart.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1A776E3D-9731-4AB3-B69A-612DD9F0730E}|Hardware Store\\i.csproj|c:\\users\\denis\\dev\\dotnet\\hardware_store\\hardware store\\frm_verifycart.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{1A776E3D-9731-4AB3-B69A-612DD9F0730E}|Hardware Store\\i.csproj|solutionrelative:hardware store\\frm_verifycart.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1A776E3D-9731-4AB3-B69A-612DD9F0730E}|Hardware Store\\i.csproj|c:\\users\\denis\\dev\\dotnet\\hardware_store\\hardware store\\frm_menuloja.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{1A776E3D-9731-4AB3-B69A-612DD9F0730E}|Hardware Store\\i.csproj|solutionrelative:hardware store\\frm_menuloja.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
       "AbsoluteMoniker": "D:0:0:{1A776E3D-9731-4AB3-B69A-612DD9F0730E}|Hardware Store\\i.csproj|c:\\users\\denis\\dev\\dotnet\\hardware_store\\hardware store\\frm_menuloja.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{1A776E3D-9731-4AB3-B69A-612DD9F0730E}|Hardware Store\\i.csproj|solutionrelative:hardware store\\frm_menuloja.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1A776E3D-9731-4AB3-B69A-612DD9F0730E}|Hardware Store\\i.csproj|c:\\users\\denis\\dev\\dotnet\\hardware_store\\hardware store\\central.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1A776E3D-9731-4AB3-B69A-612DD9F0730E}|Hardware Store\\i.csproj|solutionrelative:hardware store\\central.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1A776E3D-9731-4AB3-B69A-612DD9F0730E}|Hardware Store\\i.csproj|C:\\Users\\denis\\dev\\DotNet\\Hardware_Store\\hardware store\\cartitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1A776E3D-9731-4AB3-B69A-612DD9F0730E}|Hardware Store\\i.csproj|solutionrelative:hardware store\\cartitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1A776E3D-9731-4AB3-B69A-612DD9F0730E}|Hardware Store\\i.csproj|C:\\Users\\denis\\dev\\DotNet\\Hardware_Store\\hardware store\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1A776E3D-9731-4AB3-B69A-612DD9F0730E}|Hardware Store\\i.csproj|solutionrelative:hardware store\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -30,7 +26,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 7,
+          "SelectedChildIndex": 6,
           "Children": [
             {
               "$type": "Bookmark",
@@ -46,53 +42,40 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 3,
               "Title": "Frm_MenuLoja.cs",
               "DocumentMoniker": "C:\\Users\\denis\\dev\\DotNet\\Hardware_Store\\Hardware Store\\Frm_MenuLoja.cs",
               "RelativeDocumentMoniker": "Hardware Store\\Frm_MenuLoja.cs",
               "ToolTip": "C:\\Users\\denis\\dev\\DotNet\\Hardware_Store\\Hardware Store\\Frm_MenuLoja.cs",
               "RelativeToolTip": "Hardware Store\\Frm_MenuLoja.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAlAAAAAAAAAA==",
+              "ViewState": "AgIAAKMAAAAAAAAAAAAcwO8AAAB+AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-25T00:22:29.194Z",
+              "WhenOpened": "2025-01-25T15:31:52.713Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "Central.cs",
-              "DocumentMoniker": "C:\\Users\\denis\\dev\\DotNet\\Hardware_Store\\Hardware Store\\Central.cs",
-              "RelativeDocumentMoniker": "Hardware Store\\Central.cs",
-              "ToolTip": "C:\\Users\\denis\\dev\\DotNet\\Hardware_Store\\Hardware Store\\Central.cs",
-              "RelativeToolTip": "Hardware Store\\Central.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAA+AAAAAAAAAA==",
+              "Title": "Frm_MenuLoja.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\denis\\dev\\DotNet\\Hardware_Store\\Hardware Store\\Frm_MenuLoja.cs",
+              "RelativeDocumentMoniker": "Hardware Store\\Frm_MenuLoja.cs",
+              "ToolTip": "C:\\Users\\denis\\dev\\DotNet\\Hardware_Store\\Hardware Store\\Frm_MenuLoja.cs [Design]",
+              "RelativeToolTip": "Hardware Store\\Frm_MenuLoja.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-25T00:21:32.652Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-25T15:31:33.265Z",
+              "EditorCaption": " [Design]"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "Form1.cs",
-              "DocumentMoniker": "C:\\Users\\denis\\dev\\DotNet\\Hardware_Store\\Hardware Store\\Form1.cs",
-              "RelativeDocumentMoniker": "Hardware Store\\Form1.cs",
-              "ToolTip": "C:\\Users\\denis\\dev\\DotNet\\Hardware_Store\\Hardware Store\\Form1.cs",
-              "RelativeToolTip": "Hardware Store\\Form1.cs",
-              "ViewState": "AgIAADcAAAAAAAAAAAAkwEwAAAAlAAAAAAAAAA==",
+              "DocumentIndex": 1,
+              "Title": "Frm_VerifyCart.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\denis\\dev\\DotNet\\Hardware_Store\\Hardware Store\\Frm_VerifyCart.cs",
+              "RelativeDocumentMoniker": "Hardware Store\\Frm_VerifyCart.cs",
+              "ToolTip": "C:\\Users\\denis\\dev\\DotNet\\Hardware_Store\\Hardware Store\\Frm_VerifyCart.cs [Design]*",
+              "RelativeToolTip": "Hardware Store\\Frm_VerifyCart.cs [Design]*",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-24T23:57:27.829Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "CartItem.cs",
-              "DocumentMoniker": "C:\\Users\\denis\\dev\\DotNet\\Hardware_Store\\Hardware Store\\CartItem.cs",
-              "RelativeDocumentMoniker": "Hardware Store\\CartItem.cs",
-              "ToolTip": "C:\\Users\\denis\\dev\\DotNet\\Hardware_Store\\Hardware Store\\CartItem.cs",
-              "RelativeToolTip": "Hardware Store\\CartItem.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-24T23:31:17.907Z"
+              "WhenOpened": "2025-01-25T00:25:38.103Z",
+              "EditorCaption": " [Design]"
             },
             {
               "$type": "Document",
@@ -100,9 +83,9 @@
               "Title": "Frm_VerifyCart.cs",
               "DocumentMoniker": "C:\\Users\\denis\\dev\\DotNet\\Hardware_Store\\Hardware Store\\Frm_VerifyCart.cs",
               "RelativeDocumentMoniker": "Hardware Store\\Frm_VerifyCart.cs",
-              "ToolTip": "C:\\Users\\denis\\dev\\DotNet\\Hardware_Store\\Hardware Store\\Frm_VerifyCart.cs",
-              "RelativeToolTip": "Hardware Store\\Frm_VerifyCart.cs",
-              "ViewState": "AgIAAC4AAAAAAAAAAAAkwEEAAAApAAAAAAAAAA==",
+              "ToolTip": "C:\\Users\\denis\\dev\\DotNet\\Hardware_Store\\Hardware Store\\Frm_VerifyCart.cs*",
+              "RelativeToolTip": "Hardware Store\\Frm_VerifyCart.cs*",
+              "ViewState": "AgIAABAAAAAAAAAAAAAYwBIAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-01-24T14:04:51.586Z",
               "EditorCaption": ""

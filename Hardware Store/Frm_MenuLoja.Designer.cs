@@ -42,7 +42,6 @@
             this.btn_addToCart = new System.Windows.Forms.Button();
             this.lbl_QTDE = new System.Windows.Forms.Label();
             this.txt_quantity = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.lbl_amount = new System.Windows.Forms.Label();
             this.btn_cancel = new System.Windows.Forms.Button();
             this.btn_verifyCart = new System.Windows.Forms.Button();
@@ -197,21 +196,11 @@
             this.txt_quantity.TabIndex = 25;
             this.txt_quantity.Visible = false;
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Arial", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(22, 702);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(136, 32);
-            this.label1.TabIndex = 26;
-            this.label1.Text = "Valor total";
-            // 
             // lbl_amount
             // 
             this.lbl_amount.AutoSize = true;
             this.lbl_amount.Font = new System.Drawing.Font("Arial", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_amount.Location = new System.Drawing.Point(22, 735);
+            this.lbl_amount.Location = new System.Drawing.Point(22, 750);
             this.lbl_amount.Name = "lbl_amount";
             this.lbl_amount.Size = new System.Drawing.Size(31, 33);
             this.lbl_amount.TabIndex = 27;
@@ -269,7 +258,6 @@
             this.Controls.Add(this.btn_cancel);
             this.Controls.Add(this.btn_verifyCart);
             this.Controls.Add(this.lbl_amount);
-            this.Controls.Add(this.label1);
             this.Controls.Add(this.txt_quantity);
             this.Controls.Add(this.lbl_QTDE);
             this.Controls.Add(this.btn_addToCart);
@@ -309,7 +297,6 @@
         private System.Windows.Forms.Button btn_addToCart;
         private System.Windows.Forms.Label lbl_QTDE;
         private System.Windows.Forms.TextBox txt_quantity;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label lbl_amount;
         private System.Windows.Forms.Button btn_cancel;
         private System.Windows.Forms.Button btn_verifyCart;
