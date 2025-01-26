@@ -13,6 +13,7 @@ namespace Hardware_Store
     {
         public static BindingList<CartItem> cart = new BindingList<CartItem>();
         private static SQLiteConnection connection;
+        public static string cpf = "";
 
         public static DataTable ExecuteQuery(string sql, Dictionary<string, object> parameters)
         {
@@ -149,5 +150,6 @@ namespace Hardware_Store
             }
 
         }
+
     }
 }

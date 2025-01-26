@@ -47,11 +47,10 @@ namespace Hardware_Store
                     AutoScroll = true
                 };
                 tabPage.Controls.Add(panel);
-
                 FillProducts();
 
-
             }
+            UpdateTotalAmount();
 
         }
 
@@ -320,13 +319,52 @@ namespace Hardware_Store
 
         private void Btn_buyCart_Click(object sender, EventArgs e)
         {
-            MessageBox.Show($"{cart.Count}");
+            int i = 0;
+
+            if (cart.Count == 0)
+            {
+                MessageBox.Show("Carrinho vazio!");
+                return;
+            }
+
+            sql = "insert into TBVENDAS (data_venda, id_vendedor, valor_total)" +
+                " Values (@sale_date, @seller_id, @total_amount)";
+            var parameters = new Dictionary<string, object>
+            {
+                {"@sale_date", DateTime.Now},
+                {"@seller_id", Central.cpf},
+                {"@total_amount", amount}
+            };
+
+            Central.ExecuteQuery(sql, parameters);
+
+            //Arrumar
+            //while (i < cart.Count)
+            //{
+            //    sql = "insert into TBVENDAS_PRODUTOS (id_venda, id_produto, quantidade)" +
+            //        " Values (@sale_id, @product_id, @quantity)";
+            //    var parameters2 = new Dictionary<string, object>
+            //    {
+            //        {"@sale_id", Central.GetLastSaleId()},
+            //        {"@product_id", cart[i].ProductId},
+            //        {"@quantity", cart[i].Quantity}
+            //    };
+            //    Central.ExecuteQuery(sql, parameters2);
+            //    i++;
+            //}
+
+            MessageBox.Show("Compra realizada com sucesso!");
         }
 
         private void Btn_verifyCart_Click(object sender, EventArgs e)
         {
             Frm_VerifyCart frm_VerifyCart = new Frm_VerifyCart();
             frm_VerifyCart.Show();
+        }
+
+        private void Frm_MenuLoja_Activated(object sender, EventArgs e)
+        {
+            UpdateTotalAmount();
         }
 
         private bool VerifyQuantity()

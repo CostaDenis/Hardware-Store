@@ -272,6 +272,7 @@
             this.Name = "Frm_MenuLoja";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Loja";
+            this.Activated += new System.EventHandler(this.Frm_MenuLoja_Activated);
             this.Load += new System.EventHandler(this.Frm_MenuLoja_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pb_imageProduct)).EndInit();
             this.tabPage1.ResumeLayout(false);
