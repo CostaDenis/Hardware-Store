@@ -151,5 +151,21 @@ namespace Hardware_Store
 
         }
 
+        public static int GetLastSaleId()
+        {
+            string sql = "select max(id) from TBVENDAS";
+            DataTable dt = Query(sql);
+            return Convert.ToInt32(dt.Rows[0][0]);
+        }
+
+        public static double GetProductPrice(int id)
+        {
+            string sql = "select preco from TBPRODUTOS where id = @id";
+            Dictionary<string, object> parameters = new Dictionary<string, object>();
+            parameters.Add("@id", id);
+
+            DataTable dt = ExecuteQuery(sql, parameters);
+            return Convert.ToDouble(dt.Rows[0][0]);
+        }
     }
 }

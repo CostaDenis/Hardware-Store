@@ -327,31 +327,34 @@ namespace Hardware_Store
                 return;
             }
 
+            //Registrando a venda
             sql = "insert into TBVENDAS (data_venda, id_vendedor, valor_total)" +
                 " Values (@sale_date, @seller_id, @total_amount)";
-            var parameters = new Dictionary<string, object>
+            var parametersSale = new Dictionary<string, object>
             {
                 {"@sale_date", DateTime.Now},
                 {"@seller_id", Central.cpf},
                 {"@total_amount", amount}
             };
 
-            Central.ExecuteQuery(sql, parameters);
+            Central.ExecuteQuery(sql, parametersSale);
 
-            //Arrumar
-            //while (i < cart.Count)
-            //{
-            //    sql = "insert into TBVENDAS_PRODUTOS (id_venda, id_produto, quantidade)" +
-            //        " Values (@sale_id, @product_id, @quantity)";
-            //    var parameters2 = new Dictionary<string, object>
-            //    {
-            //        {"@sale_id", Central.GetLastSaleId()},
-            //        {"@product_id", cart[i].ProductId},
-            //        {"@quantity", cart[i].Quantity}
-            //    };
-            //    Central.ExecuteQuery(sql, parameters2);
-            //    i++;
-            //}
+
+            //Registrando todos os produtos da venda
+            while (i < cart.Count)
+            {
+                sql = "insert into TBVENDAS_PRODUTO (id_venda, id_produto, preco_unitario, quantidade)" +
+                    " Values (@sale_id, @product_id, @price, @quantity)";
+                var parametersProducts = new Dictionary<string, object>
+                {
+                    {"@sale_id", Central.GetLastSaleId()},
+                    {"@product_id", cart[i].ProductId},
+                    { "@price",  Central.GetProductPrice(cart[i].ProductId)},
+                    {"@quantity", cart[i].Quantity}
+                };
+                Central.ExecuteQuery(sql, parametersProducts);
+                i++;
+            }
 
             MessageBox.Show("Compra realizada com sucesso!");
         }
