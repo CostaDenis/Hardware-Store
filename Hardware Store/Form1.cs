@@ -27,7 +27,7 @@ namespace Hardware_Store
             else
             {
 
-                sql = "Select senha, salt from TBCONTAS where id_cpf = @cpf";
+                sql = "Select senha, salt, acesso, ativo from TBCONTAS where id_cpf = @cpf";
 
                 var parameters = new Dictionary<string, object>
             {
@@ -41,14 +41,34 @@ namespace Hardware_Store
                     return;
                 }
 
+                string active = dt.Rows[0]["ativo"].ToString();
+                int access = int.Parse(dt.Rows[0]["acesso"].ToString());
                 string storedHash = dt.Rows[0]["senha"].ToString();
                 string storedSalt = dt.Rows[0]["salt"].ToString();
+
+                if (active != "Sim")
+                {
+                    MessageBox.Show("Conta desativada! Entre em contato com o administrador", "Atenção",
+                        MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    return;
+                }
 
                 if (Central.VerifyPassword(txt_password.Text, storedHash, storedSalt))
                 {
                     Central.cpf = txt_cpf.Text;
-                    Frm_Adm frm_adm = new Frm_Adm();
-                    frm_adm.Show();
+
+                    switch (access)
+                    {
+                        case 0:
+                            Frm_Menu frm_menuLoja = new Frm_Menu();
+                            frm_menuLoja.Show();
+                            break;
+
+                        case 1:
+                            Frm_Adm frm_adm = new Frm_Adm();
+                            frm_adm.Show();
+                            break;
+                    }
                 }
                 else
                 {

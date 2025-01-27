@@ -35,9 +35,6 @@ C:\Users\denis\dev\DotNet\Hardware_Store\Hardware Store\bin\Debug\System.Data.SQ
 C:\Users\denis\dev\DotNet\Hardware_Store\Hardware Store\obj\Debug\i.csproj.AssemblyReference.cache
 C:\Users\denis\dev\DotNet\Hardware_Store\Hardware Store\obj\Debug\Hardware_Store.Frm_Login.resources
 C:\Users\denis\dev\DotNet\Hardware_Store\Hardware Store\obj\Debug\Hardware_Store.Frm_Adm.resources
-C:\Users\denis\dev\DotNet\Hardware_Store\Hardware Store\obj\Debug\Hardware_Store.Frm_Contas.resources
-C:\Users\denis\dev\DotNet\Hardware_Store\Hardware Store\obj\Debug\Hardware_Store.Frm_Gerenciar_Produtos.resources
-C:\Users\denis\dev\DotNet\Hardware_Store\Hardware Store\obj\Debug\Hardware_Store.Frm_MenuLoja.resources
 C:\Users\denis\dev\DotNet\Hardware_Store\Hardware Store\obj\Debug\Hardware_Store.Properties.Resources.resources
 C:\Users\denis\dev\DotNet\Hardware_Store\Hardware Store\obj\Debug\i.csproj.GenerateResource.cache
 C:\Users\denis\dev\DotNet\Hardware_Store\Hardware Store\obj\Debug\i.csproj.CoreCompileInputs.cache
@@ -54,3 +51,6 @@ C:\Users\denis\dev\DotNet\Hardware_Store\Hardware Store\bin\Debug\System.Memory.
 C:\Users\denis\dev\DotNet\Hardware_Store\Hardware Store\bin\Debug\System.Numerics.Vectors.xml
 C:\Users\denis\dev\DotNet\Hardware_Store\Hardware Store\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
 C:\Users\denis\dev\DotNet\Hardware_Store\Hardware Store\obj\Debug\Hardware_Store.Frm_VerifyCart.resources
+C:\Users\denis\dev\DotNet\Hardware_Store\Hardware Store\obj\Debug\Hardware_Store.Frm_Account.resources
+C:\Users\denis\dev\DotNet\Hardware_Store\Hardware Store\obj\Debug\Hardware_Store.Frm_Products.resources
+C:\Users\denis\dev\DotNet\Hardware_Store\Hardware Store\obj\Debug\Hardware_Store.Frm_Menu.resources

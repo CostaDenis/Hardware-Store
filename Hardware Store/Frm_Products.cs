@@ -7,7 +7,7 @@ using System.Windows.Forms;
 
 namespace Hardware_Store
 {
-    public partial class Frm_Gerenciar_Produtos : Form
+    public partial class Frm_Products : Form
     {
         string sql;
         DataTable dt;
@@ -16,7 +16,7 @@ namespace Hardware_Store
         Dictionary<string, int> categoriasId = Central.ObterCategoriasNomeParaId();
         Dictionary<int, string> categoriasName = Central.ObterCategoriasIdParaNome();
 
-        public Frm_Gerenciar_Produtos()
+        public Frm_Products()
         {
             InitializeComponent();
         }

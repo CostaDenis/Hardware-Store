@@ -33,13 +33,10 @@
             this.pb_products = new System.Windows.Forms.PictureBox();
             this.pb_store = new System.Windows.Forms.PictureBox();
             this.pb_accounts = new System.Windows.Forms.PictureBox();
-            this.pb_report = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.label5 = new System.Windows.Forms.Label();
             this.panel4 = new System.Windows.Forms.Panel();
             this.label6 = new System.Windows.Forms.Label();
             this.panel5 = new System.Windows.Forms.Panel();
@@ -48,10 +45,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.pb_products)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pb_store)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pb_accounts)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pb_report)).BeginInit();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
-            this.panel3.SuspendLayout();
             this.panel4.SuspendLayout();
             this.panel5.SuspendLayout();
             this.SuspendLayout();
@@ -78,7 +73,7 @@
             // pb_store
             // 
             this.pb_store.Image = ((System.Drawing.Image)(resources.GetObject("pb_store.Image")));
-            this.pb_store.Location = new System.Drawing.Point(468, 459);
+            this.pb_store.Location = new System.Drawing.Point(98, 445);
             this.pb_store.Name = "pb_store";
             this.pb_store.Size = new System.Drawing.Size(219, 188);
             this.pb_store.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -96,16 +91,6 @@
             this.pb_accounts.TabIndex = 9;
             this.pb_accounts.TabStop = false;
             this.pb_accounts.Click += new System.EventHandler(this.Pb_accounts_Click);
-            // 
-            // pb_report
-            // 
-            this.pb_report.Image = ((System.Drawing.Image)(resources.GetObject("pb_report.Image")));
-            this.pb_report.Location = new System.Drawing.Point(98, 459);
-            this.pb_report.Name = "pb_report";
-            this.pb_report.Size = new System.Drawing.Size(219, 188);
-            this.pb_report.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pb_report.TabIndex = 10;
-            this.pb_report.TabStop = false;
             // 
             // label1
             // 
@@ -149,32 +134,11 @@
             this.panel2.Size = new System.Drawing.Size(219, 47);
             this.panel2.TabIndex = 16;
             // 
-            // panel3
-            // 
-            this.panel3.BackColor = System.Drawing.SystemColors.Highlight;
-            this.panel3.Controls.Add(this.label5);
-            this.panel3.Location = new System.Drawing.Point(98, 644);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(219, 47);
-            this.panel3.TabIndex = 17;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.BackColor = System.Drawing.SystemColors.Highlight;
-            this.label5.Font = new System.Drawing.Font("Arial", 22.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.ForeColor = System.Drawing.SystemColors.Window;
-            this.label5.Location = new System.Drawing.Point(3, 2);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(201, 44);
-            this.label5.TabIndex = 12;
-            this.label5.Text = "Relatórios";
-            // 
             // panel4
             // 
             this.panel4.BackColor = System.Drawing.SystemColors.Highlight;
             this.panel4.Controls.Add(this.label6);
-            this.panel4.Location = new System.Drawing.Point(468, 645);
+            this.panel4.Location = new System.Drawing.Point(98, 631);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(219, 47);
             this.panel4.TabIndex = 18;
@@ -220,10 +184,8 @@
             this.ClientSize = new System.Drawing.Size(768, 720);
             this.Controls.Add(this.panel5);
             this.Controls.Add(this.panel4);
-            this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.pb_report);
             this.Controls.Add(this.pb_accounts);
             this.Controls.Add(this.pb_store);
             this.Controls.Add(this.pb_products);
@@ -237,13 +199,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.pb_products)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pb_store)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pb_accounts)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pb_report)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
-            this.panel3.ResumeLayout(false);
-            this.panel3.PerformLayout();
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
             this.panel5.ResumeLayout(false);
@@ -258,13 +217,10 @@
         private System.Windows.Forms.PictureBox pb_products;
         private System.Windows.Forms.PictureBox pb_store;
         private System.Windows.Forms.PictureBox pb_accounts;
-        private System.Windows.Forms.PictureBox pb_report;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Panel panel5;

@@ -6,12 +6,12 @@ using System.Windows.Forms;
 namespace Hardware_Store
 {
 
-    public partial class Frm_Contas : Form
+    public partial class Frm_Account : Form
     {
         DataTable dt = new DataTable();
         string sql;
         int access = 0;
-        public Frm_Contas()
+        public Frm_Account()
         {
             InitializeComponent();
         }
@@ -261,15 +261,16 @@ namespace Hardware_Store
 
         private void Btn_delete_Click(object sender, EventArgs e)
         {
-            if (txt_cpf.TextLength != 11)
+            if (txt_cpf.TextLength == 11)
             {
                 if (MessageBox.Show("Tem certeza que deseja excluir essa conta?", "Aviso", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
                     sql = "delete from TBCONTAS where id_cpf = @cpf";
                     var parameters = new Dictionary<string, object>
-            {
-                { "@cpf", txt_cpf.Text }
-            };
+                        {
+                            { "@cpf", txt_cpf.Text }
+                        };
+
                     Central.ExecuteQuery(sql, parameters);
                     Clean_Form();
                     UpdateGrid();

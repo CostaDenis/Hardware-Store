@@ -107,23 +107,23 @@
     <Compile Include="Frm_Adm.Designer.cs">
       <DependentUpon>Frm_Adm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Frm_Contas.cs">
+    <Compile Include="Frm_Account.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Frm_Contas.Designer.cs">
-      <DependentUpon>Frm_Contas.cs</DependentUpon>
+    <Compile Include="Frm_Account.Designer.cs">
+      <DependentUpon>Frm_Account.cs</DependentUpon>
     </Compile>
-    <Compile Include="Frm_Gerenciar_Produtos.cs">
+    <Compile Include="Frm_Products.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Frm_Gerenciar_Produtos.Designer.cs">
-      <DependentUpon>Frm_Gerenciar_Produtos.cs</DependentUpon>
+    <Compile Include="Frm_Products.Designer.cs">
+      <DependentUpon>Frm_Products.cs</DependentUpon>
     </Compile>
-    <Compile Include="Frm_MenuLoja.cs">
+    <Compile Include="Frm_Menu.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Frm_MenuLoja.Designer.cs">
-      <DependentUpon>Frm_MenuLoja.cs</DependentUpon>
+    <Compile Include="Frm_Menu.Designer.cs">
+      <DependentUpon>Frm_Menu.cs</DependentUpon>
     </Compile>
     <Compile Include="Frm_RecoverPassword.cs">
       <SubType>Form</SubType>
@@ -145,14 +145,14 @@
     <EmbeddedResource Include="Frm_Adm.resx">
       <DependentUpon>Frm_Adm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Frm_Contas.resx">
-      <DependentUpon>Frm_Contas.cs</DependentUpon>
+    <EmbeddedResource Include="Frm_Account.resx">
+      <DependentUpon>Frm_Account.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Frm_Gerenciar_Produtos.resx">
-      <DependentUpon>Frm_Gerenciar_Produtos.cs</DependentUpon>
+    <EmbeddedResource Include="Frm_Products.resx">
+      <DependentUpon>Frm_Products.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Frm_MenuLoja.resx">
-      <DependentUpon>Frm_MenuLoja.cs</DependentUpon>
+    <EmbeddedResource Include="Frm_Menu.resx">
+      <DependentUpon>Frm_Menu.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Frm_RecoverPassword.resx">
       <DependentUpon>Frm_RecoverPassword.cs</DependentUpon>

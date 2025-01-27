@@ -11,7 +11,7 @@ using System.Windows.Forms;
 namespace Hardware_Store
 {
     //Arrumar o total do valor
-    public partial class Frm_MenuLoja : Form
+    public partial class Frm_Menu : Form
     {
         BindingList<CartItem> cart = Central.cart;
         double amount = 0;
@@ -23,7 +23,7 @@ namespace Hardware_Store
         CultureInfo currentCulture = CultureInfo.CurrentCulture;
 
 
-        public Frm_MenuLoja()
+        public Frm_Menu()
         {
             InitializeComponent();
         }
@@ -287,7 +287,7 @@ namespace Hardware_Store
             lbl_QTDE.Visible = true;
 
             txt_quantity.Visible = true;
-            txt_quantity.Text = "0";
+            txt_quantity.Text = "";
 
             btn_addToCart.Visible = true;
 
@@ -357,6 +357,9 @@ namespace Hardware_Store
             }
 
             MessageBox.Show("Compra realizada com sucesso!");
+            cart.Clear();
+            lbl_amount.Text = "Total: R$ 0,00";
+
         }
 
         private void Btn_verifyCart_Click(object sender, EventArgs e)
