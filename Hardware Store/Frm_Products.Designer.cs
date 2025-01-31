@@ -257,7 +257,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Arial", 15.25F);
-            this.label6.Location = new System.Drawing.Point(472, 383);
+            this.label6.Location = new System.Drawing.Point(476, 283);
             this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(65, 31);
@@ -286,10 +286,10 @@
             // 
             // pic_picture
             // 
-            this.pic_picture.Location = new System.Drawing.Point(477, 414);
+            this.pic_picture.Location = new System.Drawing.Point(477, 322);
             this.pic_picture.Margin = new System.Windows.Forms.Padding(4);
             this.pic_picture.Name = "pic_picture";
-            this.pic_picture.Size = new System.Drawing.Size(197, 172);
+            this.pic_picture.Size = new System.Drawing.Size(284, 264);
             this.pic_picture.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pic_picture.TabIndex = 11;
             this.pic_picture.TabStop = false;

@@ -149,7 +149,7 @@ namespace Hardware_Store
             frm_recoverPassword.Show();
         }
 
-        private void txt_cpf_KeyPress(object sender, KeyPressEventArgs e)
+        private void Txt_cpf_KeyPress(object sender, KeyPressEventArgs e)
         {
             Central.VerifyTextCPF(txt_cpf, e);
         }
