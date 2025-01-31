@@ -47,6 +47,10 @@ namespace Hardware_Store
                     AutoScroll = true
                 };
                 tabPage.Controls.Add(panel);
+
+                indexCol = 1;
+                index = 0;
+
                 FillProducts();
 
             }
@@ -117,7 +121,7 @@ namespace Hardware_Store
         {
 
 
-            if (index == nextIndexCol)
+            if (index >= nextIndexCol)
             {
                 indexCol++;
                 index = 0;
