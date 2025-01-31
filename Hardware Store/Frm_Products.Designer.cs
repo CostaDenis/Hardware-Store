@@ -426,7 +426,7 @@
             this.btn_delete_category.TabIndex = 26;
             this.btn_delete_category.UseVisualStyleBackColor = true;
             this.btn_delete_category.Visible = false;
-            this.btn_delete_category.Leave += new System.EventHandler(this.Btn_excluir_Categoria_Click);
+            this.btn_delete_category.Click += new System.EventHandler(this.Btn_delete_category_Click);
             // 
             // label12
             // 
@@ -507,7 +507,7 @@
             // 
             this.openFileDialog1.FileName = "openFileDialog";
             // 
-            // Frm_Gerenciar_Produtos
+            // Frm_Products
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -516,7 +516,7 @@
             this.Controls.Add(this.tabControl1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4);
-            this.Name = "Frm_Gerenciar_Produtos";
+            this.Name = "Frm_Products";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Gerenciar Produtos";
             this.Load += new System.EventHandler(this.Frm_Gerenciar_Produtos_Load);

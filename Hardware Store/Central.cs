@@ -109,7 +109,7 @@ namespace Hardware_Store
         }
 
 
-        public static Dictionary<string, int> ObterCategoriasNomeParaId()
+        public static Dictionary<string, int> GetCategoryNameToId()
         {
             Dictionary<string, int> categorias = new Dictionary<string, int>();
             string sql = "select id, nome from TBCATEGORIAS";
@@ -123,7 +123,7 @@ namespace Hardware_Store
             return categorias;
         }
 
-        public static Dictionary<int, string> ObterCategoriasIdParaNome()
+        public static Dictionary<int, string> GetCategoryIdToName()
         {
             Dictionary<int, string> categorias = new Dictionary<int, string>();
             string sql = "select id, nome from TBCATEGORIAS";

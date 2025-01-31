@@ -11,10 +11,10 @@ namespace Hardware_Store
     {
         string sql;
         DataTable dt;
-        string caminho_foto;
+        string picture_path;
         string relativePath;
-        Dictionary<string, int> categoriasId = Central.ObterCategoriasNomeParaId();
-        Dictionary<int, string> categoriasName = Central.ObterCategoriasIdParaNome();
+        Dictionary<string, int> categoriasId = Central.GetCategoryNameToId();
+        Dictionary<int, string> categoriasName = Central.GetCategoryIdToName();
 
         public Frm_Products()
         {
@@ -228,14 +228,20 @@ namespace Hardware_Store
 
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
-                caminho_foto = openFileDialog1.FileName;
-                pic_picture.ImageLocation = caminho_foto;
-                relativePath = $"Img\\Produtos\\{Path.GetFileName(caminho_foto)}";
+                picture_path = openFileDialog1.FileName;
+                pic_picture.ImageLocation = picture_path;
+                relativePath = $"Img\\Produtos\\{Path.GetFileName(picture_path)}";
             }
         }
 
         private void Txt_id_Leave(object sender, EventArgs e)
         {
+
+            if (txt_id.TextLength == 0)
+            {
+                return;
+            }
+
             sql = "Select * from TBPRODUTOS where id = @id";
             var parameters = new Dictionary<string, object>
             {
@@ -345,7 +351,30 @@ namespace Hardware_Store
             }
         }
 
-        private void Btn_excluir_Categoria_Click(object sender, EventArgs e)
+        private void CheckForNumbers(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsDigit(e.KeyChar) && e.KeyChar != (char)8 && e.KeyChar != '.')
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void Txt_id_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            CheckForNumbers(sender, e);
+        }
+
+        private void Txt_quantity_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            CheckForNumbers(sender, e);
+        }
+
+        private void Txt_price_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            CheckForNumbers(sender, e);
+        }
+
+        private void Btn_delete_category_Click(object sender, EventArgs e)
         {
             if (MessageBox.Show("Você está prestes a excluir essa categoria da base de dados! Deseja Continuar?", "Aviso", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
@@ -370,29 +399,5 @@ namespace Hardware_Store
                 }
             }
         }
-
-        private void CheckForNumbers(object sender, KeyPressEventArgs e)
-        {
-            if (!char.IsDigit(e.KeyChar) && e.KeyChar != (char)8 && e.KeyChar != '.')
-            {
-                e.Handled = true;
-            }
-        }
-
-        private void Txt_id_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            CheckForNumbers(sender, e);
-        }
-
-        private void Txt_quantity_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            CheckForNumbers(sender, e);
-        }
-
-        private void Txt_price_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            CheckForNumbers(sender, e);
-        }
-
     }
 }

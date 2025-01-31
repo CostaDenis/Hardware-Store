@@ -69,7 +69,7 @@ namespace Hardware_Store
 
         private void FillProducts()
         {
-            Dictionary<int, string> categorias = Central.ObterCategoriasIdParaNome();
+            Dictionary<int, string> categorias = Central.GetCategoryIdToName();
             var tabPagesMap = tc_category.TabPages.Cast<TabPage>()
                 .ToDictionary(tabPage => tabPage.Text, tabPage => tabPage);
             string sql = "select Distinct id, nome, preco, quantidade, id_categoria, descricao, foto from TBPRODUTOS";
