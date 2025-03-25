@@ -77,6 +77,7 @@ namespace Hardware_Store
 
             }
 
+
         }
 
 
@@ -153,6 +154,8 @@ namespace Hardware_Store
         {
             Central.VerifyTextCPF(txt_cpf, e);
         }
+
+
     }
 
 }
